@@ -36,6 +36,9 @@ build/Release
 node_modules/
 jspm_packages/
 
+#mongo db database
+data/
+
 # Typescript v1 declaration files
 typings/
 
