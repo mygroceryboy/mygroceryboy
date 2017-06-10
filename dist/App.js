@@ -5,9 +5,7 @@ const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const api_routes_1 = require("./api-routes");
-// Creates and configures an ExpressJS web server.
 class App {
-    //Run configuration methods on the Express instance.
     constructor() {
         this.express = express();
         this.middleware();

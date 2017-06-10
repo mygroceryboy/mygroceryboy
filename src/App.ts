@@ -4,14 +4,10 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import { apiRoutes } from './api-routes';
 
-
-// Creates and configures an ExpressJS web server.
 class App {
 
-    // ref to Express instance
     public express: express.Application;
 
-    //Run configuration methods on the Express instance.
     constructor() {
         this.express = express();
         this.middleware();
