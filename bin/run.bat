@@ -21,6 +21,8 @@ for i in 1 2 3 4; do
 options+=($tab -e "bash -c '${cmds[i]} ; bash'" -t "${title[i]}")
 done
 
+options+=( --maximize)
+
 gnome-terminal "${options[@]}"
 
 exit 0
