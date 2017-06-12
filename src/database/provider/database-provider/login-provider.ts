@@ -6,7 +6,7 @@ import { ILoginProvider } from "../interface/i-login-provider";
 
 export class LoginProvider extends BaseProvider implements ILoginProvider {
 
-    getAllUser(): Promise<any> {
+    getAllUsers(): Promise<any> {
         return new Promise((resolve, reject) => {
             UserModel.find(function (err, response) {
                 if (err) {
@@ -16,7 +16,7 @@ export class LoginProvider extends BaseProvider implements ILoginProvider {
                 }
                 resolve(response);
             });
-        })
+        });
     }
 
     getUser(id: ObjectId): Promise<any> {
@@ -31,18 +31,49 @@ export class LoginProvider extends BaseProvider implements ILoginProvider {
                 }
                 resolve(response);
             });
-        })
+        });
     }
 
     saveUser(user: any): Promise<any> {
-        throw new Error("Method not implemented.");
+        return new Promise((resolve, reject) => {
+            UserModel.create(user, function (err, response) {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                    return;
+                }
+                resolve(response);
+            });
+        });
     }
 
     updateUser(user: any): Promise<any> {
-        throw new Error("Method not implemented.");
+        return new Promise((resolve, reject) => {
+            UserModel.findOneAndUpdate({
+                _id: user._id
+            }, user, function (err, response) {
+                if (err) {
+                    console.error(err);
+                    reject(err);
+                    return;
+                }
+                resolve(response);
+            });
+        });
     }
 
     deleteUser(id: ObjectId): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        return new Promise((resolve, reject) => {
+            UserModel.findOneAndRemove({
+                _id: id
+            }, function (err, response) {
+                if (err) {
+                    console.error(err);
+                    reject(err);
+                    return;
+                }
+                resolve(response);
+            });
+        });
     }
 }
