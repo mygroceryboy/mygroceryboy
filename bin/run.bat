@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd ~/code/github/mygroveryboy/
+#update this directory path as per your code base location
+cd ~/code/github/mygroceryboy/;
 
 tab=" --tab"
 options=()
