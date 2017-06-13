@@ -1,9 +1,6 @@
 import { ObjectId } from "bson";
+import { Response } from "../../model/Response";
 
 export interface ILoginProvider {
-    getAllUsers(): Promise<any>;
-    getUser(id: ObjectId): Promise<any>;
-    saveUser(user: any): Promise<any>;
-    updateUser(user: any): Promise<any>;
-    deleteUser(id: ObjectId): Promise<boolean>;
+    login(user:any): Promise<Response<any>>;
 }

@@ -2,12 +2,16 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as session from 'express-session';
+import * as connectMongo from 'connect-mongo';
+import * as mongoose from "mongoose";
 import { apiRoutes } from './api-routes';
 import { DbInitializer } from "./database/db-initializer";
 
 class App {
 
     public express: express.Application;
+    private MongoStore = connectMongo(session);
 
     constructor() {
         this.express = express();
@@ -18,20 +22,31 @@ class App {
 
     // Configure Express middleware.
     private middleware(): void {
+
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
         this.express.use('/', express.static(path.join(__dirname, "./public/dist/")));
+
+        this.express.use(session({
+            secret: "mygroceryboy",
+            resave: false,
+            saveUninitialized: true,
+            cookie: {
+                expires: new Date(Date.now() + (30 * 60 * 1000)),
+                maxAge: (30 * 60 * 1000)
+            }
+        }));
     }
 
     private connectDatabase() {
         new DbInitializer().connect()
-        .then(() => {
-            console.log("database connection successful");
-        })
-        .catch(() => {
-            console.error("database connection faliure!!");
-        })
+            .then(() => {
+                console.log("database connection successful");
+            })
+            .catch(() => {
+                console.error("database connection faliure!!");
+            })
     }
 }
 

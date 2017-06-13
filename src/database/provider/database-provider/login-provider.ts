@@ -3,75 +3,29 @@ import { BaseProvider } from "../base-provider";
 import { ObjectId } from "bson";
 import { UserModel } from "../../model/user-model";
 import { ILoginProvider } from "../interface/i-login-provider";
+import { Response } from "../../model/Response";
 
 export class LoginProvider extends BaseProvider implements ILoginProvider {
 
-    getAllUsers(): Promise<any> {
+    login(user: any): Promise<Response<any>> {
         return new Promise((resolve, reject) => {
-            UserModel.find(function (err, response) {
-                if (err) {
-                    console.error(err);
-                    reject(err);
-                    return;
-                }
-                resolve(response);
-            });
-        });
-    }
-
-    getUser(id: ObjectId): Promise<any> {
-        return new Promise((resolve, reject) => {
-            UserModel.findById({
-                _id: id
-            }, function (err, response) {
-                if (err) {
-                    console.error(err);
-                    reject(err);
-                    return;
-                }
-                resolve(response);
-            });
-        });
-    }
-
-    saveUser(user: any): Promise<any> {
-        return new Promise((resolve, reject) => {
-            UserModel.create(user, function (err, response) {
+            let response = new Response(null);
+            UserModel.findOne({
+                username: user.username,
+                password: user.password
+            }, function (err: any, dbRes: any) {
                 if (err) {
                     console.log(err);
-                    reject(err);
+                    response.status.message = "error occured while getting user data!";
+                    reject(response);
+                    return;
+                } else if(!dbRes) {
+                    response.status.message = "user not found!";
+                    reject(response);
                     return;
                 }
-                resolve(response);
-            });
-        });
-    }
-
-    updateUser(user: any): Promise<any> {
-        return new Promise((resolve, reject) => {
-            UserModel.findOneAndUpdate({
-                _id: user._id
-            }, user, function (err, response) {
-                if (err) {
-                    console.error(err);
-                    reject(err);
-                    return;
-                }
-                resolve(response);
-            });
-        });
-    }
-
-    deleteUser(id: ObjectId): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            UserModel.findOneAndRemove({
-                _id: id
-            }, function (err, response) {
-                if (err) {
-                    console.error(err);
-                    reject(err);
-                    return;
-                }
+                response.status.isSuccessful = true;
+                response.data = dbRes;
                 resolve(response);
             });
         });

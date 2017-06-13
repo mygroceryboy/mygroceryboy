@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_route_1 = require("./routes/index-route");
-const login_api_route_1 = require("./routes/login-api-route");
-const register_api_route_1 = require("./routes/register-api-route");
+const user_route_1 = require("./routes/user-route");
+const login_route_1 = require("./routes/login-route");
 class ApiRoutes {
     registerApiRoutes(app) {
-        app.use('/api/login', login_api_route_1.loginRoutes);
-        app.use('/api/register', register_api_route_1.registerRoutes);
+        app.use('/api/user', user_route_1.userRoutes);
+        app.use('/api/login', login_route_1.loginRoutes);
         //always register this route in the end
         app.use('/', index_route_1.indexRoute);
     }

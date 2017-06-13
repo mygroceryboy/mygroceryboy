@@ -1,11 +1,13 @@
 import * as express from "express";
-import { LoginProvider } from "../database/provider/database-provider/login-provider";
+import { Request, Response, NextFunction } from "express";
+import { UserProvider } from "../database/provider/database-provider/user-provider";
 import { ObjectId } from "bson";
+import { authenticate } from "./validate-session"; 
 
 let router = express.Router();
-let provider: LoginProvider = new LoginProvider();
+let provider: UserProvider = new UserProvider();
 
-router.get('', (req, res, next) => {
+router.get('', authenticate, (req: Request, res: Response, next: NextFunction) => {
     provider.getAllUsers()
         .then((response) => {
             res.json(response);
@@ -15,7 +17,7 @@ router.get('', (req, res, next) => {
         });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunction) => {
     provider.getUser(new ObjectId(req.params.id))
         .then((response) => {
             res.json(response);
@@ -25,7 +27,7 @@ router.get('/:id', (req, res, next) => {
         });
 });
 
-router.post('', (req, res, next) => {
+router.put('', authenticate, (req: Request, res: Response, next: NextFunction) => {
     req.body._id = new ObjectId();
     provider.saveUser(req.body)
         .then((response) => {
@@ -36,7 +38,7 @@ router.post('', (req, res, next) => {
         });
 });
 
-router.put('', (req, res, next) => {
+router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
     req.body._id = new ObjectId(req.body._id);
     provider.updateUser(req.body)
         .then((response) => {
@@ -47,9 +49,9 @@ router.put('', (req, res, next) => {
         });
 });
 
-router.delete('', (req, res, next) => {
+router.delete('', authenticate, (req: Request, res: Response, next: NextFunction) => {
     console.log(req.query.id);
-    
+
     provider.deleteUser(new ObjectId(req.query.id))
         .then((response) => {
             res.json(response);
@@ -59,4 +61,4 @@ router.delete('', (req, res, next) => {
         });
 });
 
-export let loginRoutes: express.Router = router;
+export let userRoutes: express.Router = router;
