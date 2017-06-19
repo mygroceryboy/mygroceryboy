@@ -27,9 +27,9 @@ router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunctio
         });
 });
 
-router.put('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body._id = new ObjectId();
-    provider.saveUser(req.body)
+router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
+    req.body._id = new ObjectId(req.body._id);
+    provider.updateUser(req.body)
         .then((response) => {
             res.json(response);
         })
@@ -38,9 +38,9 @@ router.put('', authenticate, (req: Request, res: Response, next: NextFunction) =
         });
 });
 
-router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body._id = new ObjectId(req.body._id);
-    provider.updateUser(req.body)
+router.put('', authenticate, (req: Request, res: Response, next: NextFunction) => {
+    req.body._id = new ObjectId();
+    provider.saveUser(req.body)
         .then((response) => {
             res.json(response);
         })

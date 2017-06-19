@@ -9,7 +9,16 @@ let provider: LoginProvider = new LoginProvider();
 
 router.post('', (req: Request, res: Response, next: NextFunction) => {
     provider.login(req.body).then(response => {
-        res.json(response);
+        req.session.user = req.body;
+        req.session.save(err => {
+            if (err) {
+                response.status.isSuccessful = false;
+                response.status.message = "falied to store user information in session!";
+                response.data = null;
+                res.json(response);
+            }
+            res.json(response);
+        });
     }).catch(err => {
         res.json(err);
     })

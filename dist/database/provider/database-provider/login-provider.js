@@ -17,11 +17,6 @@ class LoginProvider extends base_provider_1.BaseProvider {
                     reject(response);
                     return;
                 }
-                else if (!dbRes) {
-                    response.status.message = "user not found!";
-                    reject(response);
-                    return;
-                }
                 response.status.isSuccessful = true;
                 response.data = dbRes;
                 resolve(response);

@@ -3,6 +3,7 @@ import { indexRoute } from "./routes/index-route";
 import { userRoutes } from "./routes/user-route";
 import { loginRoutes } from "./routes/login-route";
 import { registerRoutes } from "./routes/register-route";
+import { cityRoutes } from "./routes/city-route";
 
 class ApiRoutes {
 
@@ -10,6 +11,7 @@ class ApiRoutes {
         app.use('/api/user', userRoutes);
         app.use('/api/login', loginRoutes);
         app.use('/api/register', registerRoutes);
+        app.use('/api/cities', cityRoutes);
         //always register this route in the end
         app.use('/', indexRoute);
     }

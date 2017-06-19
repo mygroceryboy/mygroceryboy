@@ -19,10 +19,6 @@ export class LoginProvider extends BaseProvider implements ILoginProvider {
                     response.status.message = "error occured while getting user data!";
                     reject(response);
                     return;
-                } else if(!dbRes) {
-                    response.status.message = "user not found!";
-                    reject(response);
-                    return;
                 }
                 response.status.isSuccessful = true;
                 response.data = dbRes;

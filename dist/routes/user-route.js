@@ -24,9 +24,9 @@ router.get('/:id', validate_session_1.authenticate, (req, res, next) => {
         res.json(err);
     });
 });
-router.put('', validate_session_1.authenticate, (req, res, next) => {
-    req.body._id = new bson_1.ObjectId();
-    provider.saveUser(req.body)
+router.post('', validate_session_1.authenticate, (req, res, next) => {
+    req.body._id = new bson_1.ObjectId(req.body._id);
+    provider.updateUser(req.body)
         .then((response) => {
         res.json(response);
     })
@@ -34,9 +34,9 @@ router.put('', validate_session_1.authenticate, (req, res, next) => {
         res.json(err);
     });
 });
-router.post('', validate_session_1.authenticate, (req, res, next) => {
-    req.body._id = new bson_1.ObjectId(req.body._id);
-    provider.updateUser(req.body)
+router.put('', validate_session_1.authenticate, (req, res, next) => {
+    req.body._id = new bson_1.ObjectId();
+    provider.saveUser(req.body)
         .then((response) => {
         res.json(response);
     })

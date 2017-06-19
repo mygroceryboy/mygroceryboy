@@ -1,7 +1,9 @@
 export let APP_CONSTANTS = {
     DB: {
         COLLECTIONS: {
-            USERS: "user"
+            USERS: "user",
+            PERSONALINFO: "personalinfo",
+            CITY: "city"
         }
     }
 }

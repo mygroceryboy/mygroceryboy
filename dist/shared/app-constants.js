@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.APP_CONSTANTS = {
     DB: {
         COLLECTIONS: {
-            USERS: "user"
+            USERS: "user",
+            PERSONALINFO: "personalinfo",
+            CITY: "city"
         }
     }
 };
