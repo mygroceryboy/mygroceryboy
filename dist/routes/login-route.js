@@ -9,9 +9,9 @@ router.post('', (req, res, next) => {
         req.session.user = req.body;
         req.session.save(err => {
             if (err) {
-                response.status.isSuccessful = false;
-                response.status.message = "falied to store user information in session!";
-                response.data = null;
+                response.Status.IsSuccessful = false;
+                response.Status.Message = "falied to store user information in session!";
+                response.Data = null;
                 res.json(response);
             }
             res.json(response);

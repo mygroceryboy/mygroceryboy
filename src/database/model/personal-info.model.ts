@@ -36,4 +36,4 @@ let PersonalInfoSchema = new mongoose.Schema({
     }
 });
 
-export let PersonalInfo = mongoose.model(APP_CONSTANTS.DB.COLLECTIONS.USERS, PersonalInfoSchema);
+export let PersonalInfo = mongoose.model(APP_CONSTANTS.DB.COLLECTIONS.PERSONALINFO, PersonalInfoSchema);

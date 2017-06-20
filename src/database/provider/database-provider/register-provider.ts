@@ -13,14 +13,14 @@ export class RegisterProvider extends BaseProvider implements IRegisterProvider 
             UserModel.create(user, function (err: any, dbRes: any) {
                 if (err) {
                     console.log(err);
-                    response.status.message = "error occured while creating new user!";
+                    response.Status.Message = "error occured while creating new user!";
                     reject(response);
                 } else if (!dbRes) {
-                    response.status.message = "failed to create user!";
+                    response.Status.Message = "failed to create user!";
                     reject(response);
                 } else {
-                    response.status.isSuccessful = true;
-                    response.data = dbRes;
+                    response.Status.IsSuccessful = true;
+                    response.Data = dbRes;
                     resolve(response);
                 }
             });

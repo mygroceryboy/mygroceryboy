@@ -2,38 +2,39 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Response {
     constructor(data) {
-        this.status = new Status();
-        this.data = data;
+        this.Status = new Status();
+        this.Data = data;
     }
-    get data() {
-        return this._data;
+    get Data() {
+        return this.data;
     }
-    set data(v) {
-        this._data = v;
+    set Data(v) {
+        this.data = v;
     }
-    get status() {
-        return this._status;
+    get Status() {
+        return this.status;
     }
-    set status(v) {
-        this._status = v;
+    set Status(v) {
+        this.status = v;
     }
 }
 exports.Response = Response;
 class Status {
     constructor(isSuccessful = false, message = "") {
-        this.isSuccessful = isSuccessful;
-        this.message = message;
+        this.IsSuccessful = isSuccessful;
+        this.Message = message;
     }
-    get isSuccessful() {
-        return this._isSuccessful;
+    get IsSuccessful() {
+        return this.isSuccessful;
     }
-    set isSuccessful(v) {
-        this._isSuccessful = v;
+    set IsSuccessful(v) {
+        this.isSuccessful = v;
     }
-    get message() {
-        return this._message;
+    get Message() {
+        return this.message;
     }
-    set message(v) {
-        this._message = v;
+    set Message(v) {
+        this.message = v;
     }
 }
+exports.Status = Status;

@@ -13,12 +13,12 @@ class LoginProvider extends base_provider_1.BaseProvider {
             }, function (err, dbRes) {
                 if (err) {
                     console.log(err);
-                    response.status.message = "error occured while getting user data!";
+                    response.Status.Message = "error occured while getting user data!";
                     reject(response);
                     return;
                 }
-                response.status.isSuccessful = true;
-                response.data = dbRes;
+                response.Status.IsSuccessful = true;
+                response.Data = dbRes;
                 resolve(response);
             });
         });

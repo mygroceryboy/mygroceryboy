@@ -1,49 +1,49 @@
 export class Response<T> {
 
     constructor(data: T) {
-        this.status = new Status();
-        this.data = data;
+        this.Status = new Status();
+        this.Data = data;
     }
 
-    private _data: T;
-    public get data(): T {
-        return this._data;
+    private data: T;
+    public get Data(): T {
+        return this.data;
     }
-    public set data(v: T) {
-        this._data = v;
+    public set Data(v: T) {
+        this.data = v;
     }
 
-    private _status: Status;
-    public get status(): Status {
-        return this._status;
+    private status: Status;
+    public get Status(): Status {
+        return this.status;
     }
-    public set status(v: Status) {
-        this._status = v;
+    public set Status(v: Status) {
+        this.status = v;
     }
 }
 
 
-class Status {
+export class Status {
 
     constructor(isSuccessful: boolean = false, message: string = "") {
-        this.isSuccessful = isSuccessful;
-        this.message = message;
+        this.IsSuccessful = isSuccessful;
+        this.Message = message;
     }
 
-    private _isSuccessful: boolean;
-    public get isSuccessful(): boolean {
-        return this._isSuccessful;
+    private isSuccessful: boolean;
+    public get IsSuccessful(): boolean {
+        return this.isSuccessful;
     }
-    public set isSuccessful(v: boolean) {
-        this._isSuccessful = v;
+    public set IsSuccessful(v: boolean) {
+        this.isSuccessful = v;
     }
 
-    private _message: string;
-    public get message(): string {
-        return this._message;
+    private message: string;
+    public get Message(): string {
+        return this.message;
     }
-    public set message(v: string) {
-        this._message = v;
+    public set Message(v: string) {
+        this.message = v;
     }
 
 }

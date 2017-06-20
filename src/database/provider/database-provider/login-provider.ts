@@ -16,12 +16,12 @@ export class LoginProvider extends BaseProvider implements ILoginProvider {
             }, function (err: any, dbRes: any) {
                 if (err) {
                     console.log(err);
-                    response.status.message = "error occured while getting user data!";
+                    response.Status.Message = "error occured while getting user data!";
                     reject(response);
                     return;
                 }
-                response.status.isSuccessful = true;
-                response.data = dbRes;
+                response.Status.IsSuccessful = true;
+                response.Data = dbRes;
                 resolve(response);
             });
         });

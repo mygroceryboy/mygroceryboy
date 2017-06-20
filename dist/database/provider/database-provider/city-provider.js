@@ -10,12 +10,12 @@ class CityProvider extends base_provider_1.BaseProvider {
             city_model_1.CityModel.insertMany(cities, function (err, dbRes) {
                 if (err) {
                     console.log(err);
-                    response.status.message = "error occured while inserting city data!";
+                    response.Status.Message = "error occured while inserting city data!";
                     reject(response);
                     return;
                 }
-                response.status.isSuccessful = true;
-                response.data = dbRes;
+                response.Status.IsSuccessful = true;
+                response.Data = dbRes;
                 resolve(response);
             });
         });
@@ -26,13 +26,13 @@ class CityProvider extends base_provider_1.BaseProvider {
             city_model_1.CityModel.find({ name: { $regex: new RegExp(".*" + name.toLowerCase() + ".*", 'i') } }, function (err, dbRes) {
                 if (err) {
                     console.log(err);
-                    response.status.message = "error occured while getting city data!";
+                    response.Status.Message = "error occured while getting city data!";
                     reject(response);
                     return;
                 }
                 console.log(dbRes);
-                response.status.isSuccessful = true;
-                response.data = dbRes;
+                response.Status.IsSuccessful = true;
+                response.Data = dbRes;
                 resolve(response);
             });
         });
