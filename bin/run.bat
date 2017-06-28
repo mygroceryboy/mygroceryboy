@@ -16,7 +16,7 @@ title[3]="tsc watch"
 cmds[3]="tsc --watch"
 
 title[4]="ng build watch"
-cmds[4]="cd dist/public && ng build --watch"
+cmds[4]="cd ui && ng build --watch"
 
 for i in 1 2 3 4; do
 options+=($tab -e "bash -c '${cmds[i]} ; bash'" -t "${title[i]}")

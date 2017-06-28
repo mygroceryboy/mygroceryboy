@@ -4,7 +4,7 @@
   "description": "An application to sell & buy grocery online.",
   "main": "server.js",
   "scripts": {
-    "start": "bin/run.bat"
+    "app": "bin/run.bat"
   },
   "keywords": [],
   "author": "",
