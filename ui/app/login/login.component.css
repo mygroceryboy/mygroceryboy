@@ -1,0 +1,20 @@
+:host-context {
+    background-color: red;
+}
+
+.container {
+    left: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+paper-input {
+    padding: 0 10px 0 10px;
+}
+
+paper-button {
+    background-color: var(--google-blue-700);
+    display: flex;
+    margin-top: 20px;
+}
