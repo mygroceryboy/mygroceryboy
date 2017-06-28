@@ -5,9 +5,10 @@
         "outDir": "./dist"
     },
     "include": [
-        "src/**/*.ts"
+        "server/**/*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "ui"
     ]
 }

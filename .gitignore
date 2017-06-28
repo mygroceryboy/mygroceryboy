@@ -39,6 +39,9 @@ jspm_packages/
 #mongo db database
 data/
 
+#distribution folder
+dist/
+
 # Typescript v1 declaration files
 typings/
 
