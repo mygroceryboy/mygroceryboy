@@ -21,6 +21,8 @@
     "iron-icons": "polymerelements/iron-icons#^2.0.1",
     "paper-tooltip": "polymerelements/paper-tooltip#^2.0.0",
     "paper-button": "polymerelements/paper-button#^2.0.0",
-    "paper-styles": "polymerelements/paper-styles#^2.0.0"
+    "paper-styles": "polymerelements/paper-styles#^2.0.0",
+    "paper-dialog": "polymerelements/paper-dialog#^2.0.0",
+    "paper-dialog-scrollable": "polymerelements/paper-dialog-scrollable#^2.1.0"
   }
 }

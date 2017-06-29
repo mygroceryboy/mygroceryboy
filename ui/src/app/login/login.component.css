@@ -1,12 +1,8 @@
-:host-context {
-    background-color: red;
-}
-
 .container {
     left: 50%;
     margin: auto;
     margin-bottom: 20px;
-    width: 500px;
+    /*width: 500px;*/
 }
 
 paper-input {

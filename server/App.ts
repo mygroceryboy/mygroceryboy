@@ -27,7 +27,7 @@ class App {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
         this.express.use('/', express.static(path.join(__dirname, "./public/")));
-        this.express.use('/bower', express.static(path.join(__dirname, "./bower_components/")));
+        // this.express.use('/bower', express.static(path.join(__dirname, "./bower_components/")));
 
         this.express.use(session({
             secret: "mygroceryboy",

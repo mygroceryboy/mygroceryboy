@@ -1,8 +1,8 @@
 <div class="container">
     <paper-toolbar>
-        <paper-icon-button (click)="home()" slot="top" icon="icons:home"></paper-icon-button>
+        <paper-icon-button id="home" tooltip="asd" (click)="home()" slot="top" icon="icons:home"></paper-icon-button>
         <span slot="top" class="title">My Grocery Boy</span>
-        <paper-icon-button (click)="login()" slot="top" icon="icons:account-circle"></paper-icon-button>
+        <paper-icon-button id="login" (click)="login()" slot="top" icon="icons:account-circle"></paper-icon-button>
     </paper-toolbar>
     <div class="body">
         <router-outlet></router-outlet>
