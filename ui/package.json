@@ -35,6 +35,7 @@
     "gulp": "^3.9.1",
     "gulp-htmlmin": "^3.0.0",
     "gulp-minify": "^1.0.0",
+    "gulp-minify-inline": "^1.0.0",
     "gulp-vulcanize": "^6.1.0",
     "jasmine-core": "^2.6.4",
     "jasmine-spec-reporter": "^4.1.1",
