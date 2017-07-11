@@ -9,8 +9,6 @@
             "outDir": "../dist/public",
             "assets": [
                 "assets",
-                "dist",
-                "polymer.json",
                 "favicon.ico"
             ],
             "index": "index.html",

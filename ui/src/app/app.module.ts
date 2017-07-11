@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from "@angular/router";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
+import 'hammerjs';
+
 
 import { LoginModule } from "./login/login.module";
 import { ErrorPageModule } from "./error-page/error-page.module";
@@ -21,10 +24,10 @@ import { AppComponent } from './app.component';
         ErrorPageModule,
         LoginModule,
         RegisterModule,
+        BrowserAnimationsModule,
         AppRouterModule
     ],
     providers: [],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
