@@ -1,0 +1,12 @@
+a {
+    color: white;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-item {
+    width: 200px;
+}

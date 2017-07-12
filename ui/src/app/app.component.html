@@ -1,5 +1,32 @@
-<div class="container">
-    <div class="body">
-        <router-outlet></router-outlet>
+<md-toolbar color="primary">
+    <div class="flex-container">
+        <div>
+            My Grocery Boy
+        </div>
+        <div class="flex-item">
+            <md-icon>home</md-icon>
+        </div>
+        <div class="flex-item">
+            <a [routerLink]="['login']">
+                <md-icon>person</md-icon>
+            </a>
+        </div>
+        <div class="flex-item">
+            <a [routerLink]="['register']">
+                <md-icon>person_add</md-icon>
+            </a>
+        </div>
+        <div class="flex-item">
+            <button md-icon-button [md-menu-trigger-for]="menu">
+            <md-icon>more_vert</md-icon>
+        </button>
+        </div>
     </div>
+</md-toolbar>
+<md-menu x-position="before" #menu="mdMenu">
+    <button md-menu-item>Option 1</button>
+    <button md-menu-item>Option 2</button>
+</md-menu>
+<div class="body">
+    <router-outlet></router-outlet>
 </div>
