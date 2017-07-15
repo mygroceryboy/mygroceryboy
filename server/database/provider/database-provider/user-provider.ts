@@ -2,9 +2,8 @@ import * as mongoose from "mongoose";
 import { BaseProvider } from "../base-provider";
 import { ObjectId } from "bson";
 import { UserModel } from "../../model/user-model";
-import { IUserProvider } from "../interface/i-user-provider";
 
-export class UserProvider extends BaseProvider implements IUserProvider {
+export class UserProvider extends BaseProvider {
 
     getAllUsers(): Promise<any> {
         return new Promise((resolve, reject) => {

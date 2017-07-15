@@ -2,9 +2,8 @@ import * as mongoose from "mongoose";
 import { BaseProvider } from "../base-provider";
 import { ObjectId } from "bson";
 import { PersonalInfo } from "../../model/personal-info.model";
-import { IPersonalInfoProvider } from "../interface/i-personal-info-provider";
 
-export class PersonalInfoProvider extends BaseProvider implements IPersonalInfoProvider {
+export class PersonalInfoProvider extends BaseProvider {
 
     getPersonalInfo(id: ObjectId): Promise<any> {
         return new Promise((resolve, reject) => {

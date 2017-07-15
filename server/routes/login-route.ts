@@ -12,9 +12,9 @@ router.post('', (req: Request, res: Response, next: NextFunction) => {
         req.session.user = req.body;
         req.session.save(err => {
             if (err) {
-                response.Status.IsSuccessful = false;
-                response.Status.Message = "falied to store user information in session!";
-                response.Data = null;
+                response.isSuccessful = false;
+                response.message = "falied to store user information in session!";
+                response.data = null;
                 res.json(response);
             }
             res.json(response);

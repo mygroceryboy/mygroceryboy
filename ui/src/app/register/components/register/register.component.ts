@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ValidationService } from "../../..//utils/validation/validation.service";
-import { Register } from "../../../models/register.model";
+import { User } from "../../../models/user.model";
+import { RegisterUserService } from "../../services/register-user/register-user.service";
 
 // validations
 import * as validations from "../../form-validations.json";
@@ -13,19 +14,22 @@ import * as validations from "../../form-validations.json";
 export class RegisterComponent implements OnInit {
 
     @Input("model")
-    public model: Register = new Register();
+    public user: User = new User();
     
     private errorMessages: Array<string> = [];
 
-    constructor(private _ValidationService: ValidationService) {
+    constructor(private _ValidationService: ValidationService,
+        private _RegisterUserService: RegisterUserService) {
     }
 
     public ngOnInit(): void {
     }
 
     private register(dialog): void {
-        this._ValidationService.validate(this.model, validations)
-        this.errorMessages = this._ValidationService.errorMessages;
-        dialog.open();
+        if (this._ValidationService.validate(this.user, validations)) {
+            this.errorMessages = this._ValidationService.errorMessages;
+            dialog.open();
+        }
+        this._RegisterUserService.register(this.user);
     }
 }
