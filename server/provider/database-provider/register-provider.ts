@@ -1,10 +1,9 @@
 import * as mongoose from "mongoose";
-import { BaseProvider } from "../base-provider";
 import { ObjectId } from "bson";
-import { UserModel } from "../../model/user-model";
-import { Response } from "../../model/Response";
+import { UserModel } from "../../database/model/user-model";
+import { Response } from "../../database/model/Response";
 
-export class RegisterProvider extends BaseProvider {
+export class RegisterProvider {
 
     register(user: any): Promise<Response<any>> {
         return new Promise((resolve, reject) => {

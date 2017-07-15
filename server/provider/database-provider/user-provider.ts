@@ -1,9 +1,8 @@
 import * as mongoose from "mongoose";
-import { BaseProvider } from "../base-provider";
 import { ObjectId } from "bson";
-import { UserModel } from "../../model/user-model";
+import { UserModel } from "../../database/model/user-model";
 
-export class UserProvider extends BaseProvider {
+export class UserProvider {
 
     getAllUsers(): Promise<any> {
         return new Promise((resolve, reject) => {

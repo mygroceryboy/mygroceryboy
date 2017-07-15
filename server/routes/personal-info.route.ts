@@ -1,6 +1,6 @@
 import * as express from "express";
 import { Request, Response, NextFunction } from "express";
-import { PersonalInfoProvider } from "../database/provider/database-provider/personal-info-provider";
+import { PersonalInfoProvider } from "../provider/database-provider/personal-info-provider";
 import { ObjectId } from "bson";
 import { authenticate } from "./validate-session"; 
 

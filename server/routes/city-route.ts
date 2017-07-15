@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import * as express from "express";
-import { CityProvider } from "../database/provider/database-provider/city-provider";
+import { CityProvider } from "../provider/database-provider/city-provider";
 import { authenticate } from "./validate-session";
 
 let router = express.Router();

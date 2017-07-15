@@ -1,10 +1,9 @@
 import * as mongoose from "mongoose";
-import { BaseProvider } from "../base-provider";
 import { ObjectId } from "bson";
-import { CityModel } from "../../model/city.model";
-import { Response } from "../../model/Response";
+import { CityModel } from "../../database/model/city.model";
+import { Response } from "../../database/model/Response";
 
-export class CityProvider extends BaseProvider {
+export class CityProvider {
 
     insertCities(cities: Object[]): Promise<Response<any>> {
         return new Promise((resolve, reject) => {
