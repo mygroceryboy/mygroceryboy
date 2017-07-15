@@ -1,28 +1,29 @@
 {
-    "name": "mygroceryboy",
-    "description": "An application to sell & buy grocery online.",
-    "main": "server.js",
-    "authors": [
-        "Manoj Chalode <chalodem@gmail.com>"
-    ],
-    "license": "ISC",
-    "homepage": "https://github.com/ManojC/mygroceryboy",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "paper-input": "polymerelements/paper-input#^2.0.1",
-        "paper-toolbar": "polymerelements/paper-toolbar#^2.0.0",
-        "paper-icon-button": "polymerelements/paper-icon-button#^2.0.0",
-        "iron-icons": "polymerelements/iron-icons#^2.0.1",
-        "paper-tooltip": "polymerelements/paper-tooltip#^2.0.0",
-        "paper-button": "polymerelements/paper-button#^2.0.0",
-        "paper-styles": "polymerelements/paper-styles#^2.0.0",
-        "paper-dialog": "polymerelements/paper-dialog#^2.0.0",
-        "paper-dialog-scrollable": "polymerelements/paper-dialog-scrollable#^2.1.0"
-    }
+  "name": "mygroceryboy",
+  "description": "An application to sell & buy grocery online.",
+  "main": "server.js",
+  "authors": [
+    "Manoj Chalode <chalodem@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ManojC/mygroceryboy",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-input": "polymerelements/paper-input#^2.0.1",
+    "paper-toolbar": "polymerelements/paper-toolbar#^2.0.0",
+    "paper-icon-button": "polymerelements/paper-icon-button#^2.0.0",
+    "iron-icons": "polymerelements/iron-icons#^2.0.1",
+    "paper-tooltip": "polymerelements/paper-tooltip#^2.0.0",
+    "paper-button": "polymerelements/paper-button#^2.0.0",
+    "paper-styles": "polymerelements/paper-styles#^2.0.0",
+    "paper-dialog": "polymerelements/paper-dialog#^2.0.0",
+    "paper-dialog-scrollable": "polymerelements/paper-dialog-scrollable#^2.1.0",
+    "app-layout": "PolymerElements/app-layout#^2.0.1"
+  }
 }

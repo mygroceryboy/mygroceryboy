@@ -7,6 +7,7 @@ gulp.task("copy", function () {
     return gulp.src([
         "src/bower_components/webcomponentsjs/webcomponents-lite.js",
         "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "node_modules/bootstrap/dist/css/bootstrap.min.css.map",
     ])
     .pipe(gulp.dest("src/dist"));
 });
