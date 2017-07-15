@@ -5,14 +5,14 @@ import { Response } from "../../../models/base/response.model";
 import { StorageService } from "../../../utils/storage/storage.service";
 
 @Injectable()
-export class RegisterUserService {
+export class LoginUserService {
 
     constructor(private _Http: Http, private _StorageService: StorageService) { }
 
-    public register(user: User): Promise<User> {
+    public login(user: User): Promise<User> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
-                .post('/api/register', user)
+                .post('/api/login', user)
                 .subscribe((httpResponse: HttpResponse) => {
                     let response: Response<User> = httpResponse.json();
                     if (!response || !response.isSuccessful) {

@@ -1,0 +1,20 @@
+{
+    "username": {
+        "required": {
+            "message": "user name is required"
+        },
+        "min": {
+            "key": "5",
+            "message": "username should be minimum 5 letters."
+        }
+    },
+    "password": {
+        "required": {
+            "message": "password is required"
+        },
+        "min": {
+            "key": "5",
+            "message": "password should be minimum 5 letters."
+        }
+    }
+}

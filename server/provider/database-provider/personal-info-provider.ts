@@ -5,7 +5,7 @@ import { PersonalInfo } from "../../database/model/personal-info.model";
 export class PersonalInfoProvider {
 
     getPersonalInfo(id: ObjectId): Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve: Function, reject: Function) => {
             PersonalInfo
                 .findById({ _id: id })
                 .then(response => {
@@ -18,7 +18,7 @@ export class PersonalInfoProvider {
     }
 
     getFullPersonalInfo(id: ObjectId): Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve: Function, reject: Function) => {
             PersonalInfo
                 .findById({ _id: id })
                 .populate("_user")
@@ -32,7 +32,7 @@ export class PersonalInfoProvider {
     }
 
     savePersonalInfo(personalInfo: any): Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve: Function, reject: Function) => {
             PersonalInfo
                 .create(personalInfo)
                 .then(response => {
@@ -45,7 +45,7 @@ export class PersonalInfoProvider {
     }
 
     updatePersonalInfo(personalInfo: any): Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve: Function, reject: Function) => {
             PersonalInfo
                 .findOneAndUpdate({ _id: personalInfo._id }, personalInfo)
                 .then(response => {
@@ -58,7 +58,7 @@ export class PersonalInfoProvider {
     }
 
     deletePersonalInfo(id: ObjectId): Promise<boolean> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve: Function, reject: Function) => {
             PersonalInfo
                 .findOneAndRemove({ _id: id })
                 .then(response => {

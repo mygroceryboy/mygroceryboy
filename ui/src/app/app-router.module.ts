@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeComponent } from "./home/home.component";
 import { ErrorPageComponent } from "./error-page/error-page.component";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./login/components/login/login.component";
 import { RegisterComponent } from "./register/components/register/register.component";
 
 const appRoutes: Routes = [
