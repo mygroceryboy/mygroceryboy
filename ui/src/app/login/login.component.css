@@ -2,7 +2,6 @@
     left: 50%;
     margin: auto;
     margin-bottom: 20px;
-    /*width: 500px;*/
 }
 
 paper-input {
@@ -13,4 +12,7 @@ paper-button {
     background-color: var(--google-blue-700);
     display: flex;
     margin-top: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
 }

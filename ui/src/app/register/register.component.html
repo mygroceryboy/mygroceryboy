@@ -1,7 +1,47 @@
 <div class="container">
-    <h1>Register Here!</h1>
-    <br>
-    <br>
-    <br>
-    <paper-input label="Floating label"></paper-input>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-2">
+            <paper-dialog id="dialog" #dialog class="col-lg-6" with-backdrop>
+                <h2 class="text-center">Form Errors</h2>
+                <ul *ngIf="errorMessages && errorMessages.length">
+                    <li *ngFor="let message of errorMessages">
+                        {{message}}
+                    </li>
+                </ul>
+            </paper-dialog>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="email" [(ngModel)]="model.email" ngDefaultControl>
+                <iron-icon icon="mail" slot="prefix"></iron-icon>
+            </paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="username (email by default)" [(ngModel)]="model.username" ngDefaultControl>
+            </paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="password" [(ngModel)]="model.password" ngDefaultControl></paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="repeat password" [(ngModel)]="model.repeatPassword" ngDefaultControl></paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-button (click)="register(dialog)" raised>Register</paper-button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 text-right">
+            <span>Already a member? <a [routerLink]="['/login']">login</a> here.</span>
+        </div>
+    </div>
 </div>

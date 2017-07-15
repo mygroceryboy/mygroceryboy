@@ -1,12 +1,12 @@
 var gulp = require("gulp");
 var vulcanize = require("gulp-vulcanize");
-var htmlmin = require('gulp-htmlmin');
 var minify = require('gulp-minify');
 var minifyInline = require('gulp-minify-inline');
 
 gulp.task("copy", function () {
     return gulp.src([
-        "src/bower_components/webcomponentsjs/webcomponents-lite.js"
+        "src/bower_components/webcomponentsjs/webcomponents-lite.js",
+        "node_modules/bootstrap/dist/css/bootstrap.min.css",
     ])
     .pipe(gulp.dest("src/dist"));
 });

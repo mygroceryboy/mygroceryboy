@@ -1,5 +1,22 @@
 <div class="container">
-    <paper-input label="username / email"></paper-input>
-    <paper-input label="password"></paper-input>
-    <paper-button raised class="indigo">Login</paper-button>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="username / email"></paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="password"></paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-button raised class="indigo">Login</paper-button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 text-right">
+            <span>Not a member yet? <a [routerLink]="['/register']">regisrer</a> here.</span>
+        </div>
+    </div>
 </div>
