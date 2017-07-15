@@ -25,13 +25,13 @@ export class ValidationService {
         }
 
         modelProperties.forEach((property: string) => {
-            this.validateProperty(model[property], validations[property]);
+            this.validateProperty(model, property, validations[property]);
         });
 
         return this._errorMessages.length === 0;
     }
 
-    private validateProperty(model: string, validations: any): void {
+    private validateProperty(model: any, property: string, validations: any): void {
 
         if (!validations) {
             return;
@@ -47,23 +47,23 @@ export class ValidationService {
             switch (key.toLowerCase()) {
 
                 case "required":
-                    this.required(model, validations[key].message);
+                    this.required(model[property], validations[key].message);
                     break;
 
                 case "min":
-                    this.minLength(model, validations[key].key, validations[key].message);
+                    this.minLength(model[property], validations[key].key, validations[key].message);
                     break;
 
                 case "max":
-                    this.maxLength(model, validations[key].key, validations[key].message);
+                    this.maxLength(model[property], validations[key].key, validations[key].message);
                     break;
 
                 case "pattern":
-                    this.pattern(model, validations[key].key, validations[key].message);
+                    this.pattern(model[property], validations[key].key, validations[key].message);
                     break;
 
                 case "compare":
-                    this.compare(model, validations[key].key, validations[key].message);
+                    this.compare(model[property], model[validations[key].key], validations[key].message);
                     break;
 
                 default:

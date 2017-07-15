@@ -13,6 +13,12 @@
     </div>
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="name" [(ngModel)]="model.name" ngDefaultControl>
+            </paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
             <paper-input label="email" [(ngModel)]="model.email" ngDefaultControl>
                 <iron-icon icon="mail" slot="prefix"></iron-icon>
             </paper-input>
