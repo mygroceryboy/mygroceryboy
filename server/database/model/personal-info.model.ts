@@ -34,6 +34,6 @@ let PersonalInfoSchema = new mongoose.Schema({
     description: {
         type: String
     }
-});
+}, { timestamps: true, versionKey: false});
 
 export let PersonalInfo = mongoose.model(APP_CONSTANTS.DB.COLLECTIONS.PERSONALINFO, PersonalInfoSchema);

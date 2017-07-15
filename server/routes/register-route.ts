@@ -8,12 +8,12 @@ let router = express.Router();
 let provider: RegisterProvider = new RegisterProvider();
 
 router.post('', (req: Request, res: Response, next: NextFunction) => {
-    req.body._id = new ObjectId()
+    req.body.id = new ObjectId();
     provider.register(req.body).then(response => {
         res.json(response);
     }).catch(err => {
         res.json(err);
-    })
+    });
 });
 
 export let registerRoutes: express.Router = router;

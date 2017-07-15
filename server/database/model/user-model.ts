@@ -2,7 +2,7 @@ import * as mongoose from "mongoose";
 import { APP_CONSTANTS } from "../../shared/app-constants"
 
 let UserSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
         required: [true, 'name is required']
@@ -18,8 +18,7 @@ let UserSchema = new mongoose.Schema({
                 let type = value.trim().toLowerCase();
                 return type === "shopkeeper" || type === "customer";
             }
-        },
-        required: [true, 'user type is required']
+        }
     },
     email: {
         type: String,
@@ -36,6 +35,6 @@ let UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'password is required']
     },
-});
+}, { timestamps: true, versionKey: false});
 
 export let UserModel = mongoose.model(APP_CONSTANTS.DB.COLLECTIONS.USERS, UserSchema);

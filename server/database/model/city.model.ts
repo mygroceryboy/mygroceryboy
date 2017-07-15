@@ -11,6 +11,6 @@ let CitySchema = new mongoose.Schema({
         type: String,
         required: [true, 'state is required']
     }
-});
+}, { timestamps: true, versionKey: false});
 
 export let CityModel = mongoose.model(APP_CONSTANTS.DB.COLLECTIONS.CITY, CitySchema);

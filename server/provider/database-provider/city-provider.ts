@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 import { ObjectId } from "bson";
 import { CityModel } from "../../database/model/city.model";
-import { Response } from "../../database/model/Response";
+import { Response } from "../../models/base/response.model";
 
 export class CityProvider {
 

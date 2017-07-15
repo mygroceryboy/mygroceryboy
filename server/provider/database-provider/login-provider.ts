@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 import { ObjectId } from "bson";
 import { UserModel } from "../../database/model/user-model";
-import { Response } from "../../database/model/Response";
+import { Response } from "../../models/base/response.model";
 
 export class LoginProvider {
 
