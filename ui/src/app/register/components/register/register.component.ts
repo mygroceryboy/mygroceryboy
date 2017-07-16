@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
             dialog.open();
             return;
         }
+        if (!this.model.username) {
+            this.model.username = this.model.email;
+        }
         this._RegisterUserService
             .register(this.model)
             .then((response: User) => {

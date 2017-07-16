@@ -1,11 +1,7 @@
 {
-    "username": {
+    "name": {
         "required": {
-            "message": "user name is required"
-        },
-        "min": {
-            "key": "5",
-            "message": "username should be minimum 5 letters."
+            "message": "name is required"
         }
     },
     "email": {

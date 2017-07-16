@@ -24,6 +24,7 @@
     "paper-styles": "polymerelements/paper-styles#^2.0.0",
     "paper-dialog": "polymerelements/paper-dialog#^2.0.0",
     "paper-dialog-scrollable": "polymerelements/paper-dialog-scrollable#^2.1.0",
-    "app-layout": "PolymerElements/app-layout#^2.0.1"
+    "app-layout": "PolymerElements/app-layout#^2.0.1",
+    "paper-card": "PolymerElements/paper-card#^2.0.0"
   }
 }
