@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { UtilsModule } from "../utils/utils.module";
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserInfoService } from "app/user-info/services/user-info/user-info.service";
+import { AccountInfoComponent } from './components/account-info/account-info.component';
+import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 
 @NgModule({
     imports: [
@@ -18,7 +20,11 @@ import { UserInfoService } from "app/user-info/services/user-info/user-info.serv
         RouterModule
     ],
     providers: [UserInfoService],
-    declarations: [UserInfoComponent],
+    declarations: [
+        UserInfoComponent,
+        AccountInfoComponent,
+        PersonalInfoComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserInfoModule { }

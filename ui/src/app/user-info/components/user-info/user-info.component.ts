@@ -1,15 +1,9 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from "@angular/router";
-import { ValidationService } from "../../..//utils/validation/validation.service";
 import { UserInfo } from "../../../models/user-info.model";
 import { User } from "../../../models/user.model";
 import { UserInfoService } from "../../services/user-info/user-info.service";
-import { LocationService } from "../../../utils/services/location/location.service";
 import { StorageService } from "../../../utils/storage/storage.service";
-import { City } from "../../../models/city.model";
-
-// validations
-import * as validations from "../../form-validations.json";
 
 @Component({
     selector: 'app-user-info',
@@ -18,19 +12,13 @@ import * as validations from "../../form-validations.json";
 })
 export class UserInfoComponent implements OnInit {
 
-    @Input("model")
-    public model: UserInfo = new UserInfo();
+    public userInfo: UserInfo = new UserInfo();
     private user: User;
-    private cityDropDownEl: any;
     private tabsEl: any;
     private tab: number = 0;
 
-    private errorMessages: Array<string> = [];
-
     constructor(private elementRef: ElementRef,
-        private _ValidationService: ValidationService,
         private _UserInfoService: UserInfoService,
-        private _LocationService: LocationService,
         private _StorageService: StorageService,
         private _Router: Router) {
     }
@@ -46,77 +34,27 @@ export class UserInfoComponent implements OnInit {
     }
 
     private bindEvents(): void {
-        this.cityDropDownEl = this.elementRef.nativeElement.querySelector('paper-autocomplete');
-        if (this.cityDropDownEl) {
-            this.cityDropDownEl.addEventListener('text-changed', this.getCities.bind(this));
-            this.cityDropDownEl.addEventListener('autocomplete-selected', this.updateLocation.bind(this));
-            this.cityDropDownEl.addEventListener('autocomplete-reset', this.resetLocation.bind(this));
+        if (!this.tabsEl) {
+            this.tabsEl = this.elementRef.nativeElement.querySelector('paper-tabs');
+            if (this.tabsEl) {
+                this.tabsEl.addEventListener('selected-changed', this.onTabChanged.bind(this));
+            }
         }
-        this.tabsEl = this.elementRef.nativeElement.querySelector('paper-tabs');
-        if (this.tabsEl) {
-            this.tabsEl.addEventListener('selected-changed', this.onTabChanged.bind(this));
-        }
-    }
-
-    private getCities(event: any) {
-        if (!event.detail.value || event.detail.value.length < 2) {
-            return;
-        }
-        this._LocationService.getCities(event.detail.value)
-            .then((response: Array<City>) => {
-                this.cityDropDownEl.source = this._LocationService.getCityDropdownList(response);
-            })
-            .catch((error: any) => {
-                console.log(error);
-            });
-    }
-
-    private updateLocation(event: any) {
-        if(!event.detail.value) {
-            return;
-        }
-
-        this.model.city = event.detail.value.name;
-        this.model.state = event.detail.value.state;
-        this.model.country = event.detail.value.country;
-    }
-
-    private resetLocation(event: any) {
-        this.model.city = "";
     }
 
     private onTabChanged(event: any) {
         this.tab = event.detail.value;
+        this.bindEvents();
     }
- 
+
     private getUserInfo() {
         this._UserInfoService
             .getUserInfo(this.user.id)
             .then((response: UserInfo) => {
-                this.model = response || this.model;
+                this.userInfo = response || this.userInfo;
             })
             .catch((error: any) => {
                 console.log(error);
             });
-    }
-
-    private updateUserInfo(dialog): void {
-        if (!this._ValidationService.validate(this.model, validations)) {
-            this.errorMessages = this._ValidationService.errorMessages;
-            dialog.open();
-            return;
-        }
-
-        this.model.userId = this.user.id;
-
-        let promise: Promise<UserInfo> = this.model.id ?
-            this._UserInfoService.updateUserInfo(this.model) :
-            this._UserInfoService.addUserInfo(this.model);
-
-        promise.then((response: UserInfo) => {
-            this._Router.navigate(['home']);
-        }).catch((error: any) => {
-            console.log(error);
-        });
     }
 }

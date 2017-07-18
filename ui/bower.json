@@ -27,6 +27,7 @@
     "app-layout": "PolymerElements/app-layout#^2.0.1",
     "paper-card": "PolymerElements/paper-card#^2.0.0",
     "paper-autocomplete": "^3.0.0",
-    "paper-tabs": "PolymerElements/paper-tabs#^2.0.0"
+    "paper-tabs": "PolymerElements/paper-tabs#^2.0.0",
+    "paper-toast": "PolymerElements/paper-toast#^2.0.0"
   }
 }
