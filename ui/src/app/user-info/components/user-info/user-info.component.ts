@@ -22,6 +22,8 @@ export class UserInfoComponent implements OnInit {
     public model: UserInfo = new UserInfo();
     private user: User;
     private cityDropDownEl: any;
+    private tabsEl: any;
+    private tab: number = 0;
 
     private errorMessages: Array<string> = [];
 
@@ -50,6 +52,10 @@ export class UserInfoComponent implements OnInit {
             this.cityDropDownEl.addEventListener('autocomplete-selected', this.updateLocation.bind(this));
             this.cityDropDownEl.addEventListener('autocomplete-reset', this.resetLocation.bind(this));
         }
+        this.tabsEl = this.elementRef.nativeElement.querySelector('paper-tabs');
+        if (this.tabsEl) {
+            this.tabsEl.addEventListener('selected-changed', this.onTabChanged.bind(this));
+        }
     }
 
     private getCities(event: any) {
@@ -65,7 +71,7 @@ export class UserInfoComponent implements OnInit {
             });
     }
 
-    private updateLocation(event) {
+    private updateLocation(event: any) {
         if(!event.detail.value) {
             return;
         }
@@ -75,8 +81,12 @@ export class UserInfoComponent implements OnInit {
         this.model.country = event.detail.value.country;
     }
 
-    private resetLocation(event) {
-        console.log(event.detail.value);
+    private resetLocation(event: any) {
+        this.model.city = "";
+    }
+
+    private onTabChanged(event: any) {
+        this.tab = event.detail.value;
     }
  
     private getUserInfo() {

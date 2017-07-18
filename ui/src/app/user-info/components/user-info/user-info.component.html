@@ -1,5 +1,13 @@
 <div class="container">
     <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-tabs selected="0" scrollable>
+                <paper-tab>Personal Info</paper-tab>
+                <paper-tab>Account Info</paper-tab>
+            </paper-tabs>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-6 col-lg-offset-2">
             <paper-dialog id="dialog" #dialog class="col-lg-6" with-backdrop>
                 <h2>Form Errors</h2>
@@ -11,46 +19,72 @@
             </paper-dialog>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-input class="form-input" label="address1" [(ngModel)]="model.address1" ngDefaultControl>
-            </paper-input>
+    <ng-container *ngIf="tab === 0">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="username" [(ngModel)]="user.username" ngDefaultControl>
+                </paper-input>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-input class="form-input" label="address2" [(ngModel)]="model.address2" ngDefaultControl>
-            </paper-input>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="email" [(ngModel)]="user.email" ngDefaultControl>
+                </paper-input>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-autocomplete min-length="2" class="form-input" [(text)]="model.city" placeholder="type city name" label="city"></paper-autocomplete>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="name" [(ngModel)]="user.name" ngDefaultControl></paper-input>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-input class="form-input" label="state" [(ngModel)]="model.state" ngDefaultControl></paper-input>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="user type" [(ngModel)]="user.type" ngDefaultControl></paper-input>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-input class="form-input" label="country" [(ngModel)]="model.country" ngDefaultControl></paper-input>
+    </ng-container>
+    <ng-container *ngIf="tab === 1">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="address1" [(ngModel)]="model.address1" ngDefaultControl>
+                </paper-input>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-input class="form-input" label="contact number" [(ngModel)]="model.phone" ngDefaultControl></paper-input>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="address2" [(ngModel)]="model.address2" ngDefaultControl>
+                </paper-input>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-input class="form-input" label="description" [(ngModel)]="model.description" ngDefaultControl></paper-input>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-autocomplete min-length="2" class="form-input" [(text)]="model.city" placeholder="type city name" label="city"></paper-autocomplete>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-button (click)="updateUserInfo(dialog)" raised>Update Info</paper-button>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="state" [(ngModel)]="model.state" ngDefaultControl></paper-input>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="country" [(ngModel)]="model.country" ngDefaultControl></paper-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="contact number" [(ngModel)]="model.phone" ngDefaultControl></paper-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-input class="form-input" label="description" [(ngModel)]="model.description" ngDefaultControl></paper-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <paper-button (click)="updateUserInfo(dialog)" raised>Update Info</paper-button>
+            </div>
+        </div>
+    </ng-container>
 </div>
