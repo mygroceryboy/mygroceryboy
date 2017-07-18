@@ -2,7 +2,7 @@ import * as mongoose from "mongoose";
 import { APP_CONSTANTS } from "../../shared/app-constants"
 
 let PersonalInfoSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    id: mongoose.Schema.Types.ObjectId,
     _user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',

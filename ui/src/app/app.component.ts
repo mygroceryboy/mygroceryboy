@@ -11,11 +11,33 @@ export class AppComponent {
     constructor(private router: Router) {
     }
 
-    login() {
+    logIn(menu) {
+        menu.close();
         this.router.navigate(['login']);
     }
 
-    home() {
+    register(menu) {
+        menu.close();
+        this.router.navigate(['register']);
+    }
+
+    home(menu) {
+        menu.close();
         this.router.navigate(['home']);
+    }
+
+    aboutUs(menu) {
+        menu.close();
+        this.router.navigate(['about-us']);
+    }
+
+    contactUs(menu) {
+        menu.close();
+        this.router.navigate(['contact-us']);
+    }
+
+    showProfile(menu) {
+        menu.close();
+        this.router.navigate(['user-info']);
     }
 }

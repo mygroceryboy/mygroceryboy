@@ -5,8 +5,8 @@ import { FormsModule } from "@angular/forms";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UtilsModule } from "../utils/utils.module";
-import { RegisterComponent } from './components/register/register.component';
-import { RegisterUserService } from "./services/register-user/register-user.service";
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { UserInfoService } from "app/user-info/services/user-info/user-info.service";
 
 @NgModule({
     imports: [
@@ -17,8 +17,8 @@ import { RegisterUserService } from "./services/register-user/register-user.serv
         UtilsModule,
         RouterModule
     ],
-    providers: [RegisterUserService],
-    declarations: [RegisterComponent],
+    providers: [UserInfoService],
+    declarations: [UserInfoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class RegisterModule { }
+export class UserInfoModule { }

@@ -7,8 +7,8 @@ import { authenticate } from "./validate-session";
 let router = express.Router();
 let provider: PersonalInfoProvider = new PersonalInfoProvider();
 
-router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    provider.getPersonalInfo(new ObjectId(req.params.id))
+router.get('/:userId', authenticate, (req: Request, res: Response, next: NextFunction) => {
+    provider.getPersonalInfo(new ObjectId(req.params.userId))
         .then((response) => {
             res.json(response);
         })
@@ -17,8 +17,8 @@ router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunctio
         });
 });
 
-router.get('/:id/full', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    provider.getFullPersonalInfo(new ObjectId(req.params.id))
+router.get('/:userId/full', authenticate, (req: Request, res: Response, next: NextFunction) => {
+    provider.getFullPersonalInfo(new ObjectId(req.params.userId))
         .then((response) => {
             res.json(response);
         })
@@ -28,8 +28,8 @@ router.get('/:id/full', authenticate, (req: Request, res: Response, next: NextFu
 });
 
 router.put('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body._id = new ObjectId();
-    req.body._user = new ObjectId(req.body._user);
+    req.body.id = new ObjectId();
+    req.body._user = new ObjectId(req.body.userId);
     provider.savePersonalInfo(req.body)
         .then((response) => {
             res.json(response);
@@ -40,8 +40,8 @@ router.put('', authenticate, (req: Request, res: Response, next: NextFunction) =
 });
 
 router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body._id = new ObjectId(req.body._id);
-    req.body._user = new ObjectId(req.body._user);
+    req.body.id = new ObjectId(req.body.id);
+    req.body._user = new ObjectId(req.body.userId);
     provider.updatePersonalInfo(req.body)
         .then((response) => {
             res.json(response);

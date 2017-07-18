@@ -3,21 +3,21 @@
     <span slot="top" class="title">My Grocery Boy</span>
 </paper-toolbar>
 <app-drawer-layout>
-    <app-drawer id="menu" swipe-open class="text-center">
+    <app-drawer id="menu" #menu swipe-open class="text-center">
         <paper-card>
             <div class="card-content">
                 <img src="https://avatars6.githubusercontent.com/u/6076850?v=4&s=460" alt="image">
                 <h3>Manoj Chalode</h3>
             </div>
             <div class="card-actions">
-                <paper-button class="profile">Update Profile</paper-button>
+                <paper-button class="profile" (click)="showProfile(menu)">Update Profile</paper-button>
             </div>
         </paper-card>
-        <paper-button class="menu-item">Home</paper-button>
-        <paper-button class="menu-item">Login</paper-button>
-        <paper-button class="menu-item">Register</paper-button>
-        <paper-button class="menu-item">About Us</paper-button>
-        <paper-button class="menu-item">Contact Us</paper-button>
+        <paper-button class="menu-item" (click)="home(menu)">Home</paper-button>
+        <paper-button class="menu-item" (click)="logIn(menu)">Login</paper-button>
+        <paper-button class="menu-item" (click)="register(menu)">Register</paper-button>
+        <paper-button class="menu-item" (click)="aboutUs(menu)">About Us</paper-button>
+        <paper-button class="menu-item" (click)="contactUs(menu)">Contact Us</paper-button>
     </app-drawer>
     <div>
         <router-outlet></router-outlet>

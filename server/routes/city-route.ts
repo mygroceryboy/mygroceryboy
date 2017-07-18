@@ -6,13 +6,15 @@ import { authenticate } from "./validate-session";
 let router = express.Router();
 let provider: CityProvider = new CityProvider();
 
-// router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
 router.post('', (req: Request, res: Response, next: NextFunction) => {
-    provider.getCities(req.body.name.trim()).then(response => {
+});
+
+router.get('/:text', (req: Request, res: Response, next: NextFunction) => {
+    provider.getCities(req.params.text.trim()).then(response => {
         res.json(response);
     }).catch(err => {
         res.json(err);
-    })
+    });
 });
 
 export let cityRoutes: express.Router = router;

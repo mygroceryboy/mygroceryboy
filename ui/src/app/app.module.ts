@@ -6,7 +6,9 @@ import { LoginModule } from "./login/login.module";
 import { ErrorPageModule } from "./error-page/error-page.module";
 import { AppRouterModule } from "./app-router.module";
 import { RegisterModule } from "./register/register.module";
+import { UserInfoModule } from "./user-info/user-info.module";
 import { HomeModule } from "./home/home.module";
+import { LocationService } from "./utils/services/location/location.service";
 
 import { AppComponent } from './app.component';
 
@@ -21,9 +23,10 @@ import { AppComponent } from './app.component';
         ErrorPageModule,
         LoginModule,
         RegisterModule,
+        UserInfoModule,
         AppRouterModule
     ],
-    providers: [],
+    providers: [LocationService],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
