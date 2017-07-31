@@ -1,4 +1,16 @@
 <div class="row">
+    <div class="col-lg-6 col-lg-offset-2">
+        <paper-dialog id="dialog" #dialog class="col-lg-6" with-backdrop>
+            <h2>Form Errors</h2>
+            <ul *ngIf="errorMessages && errorMessages.length">
+                <li *ngFor="let message of errorMessages">
+                    {{message}}
+                </li>
+            </ul>
+        </paper-dialog>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-6 col-lg-offset-3">
         <paper-input class="form-input" label="username" [(ngModel)]="model.username" ngDefaultControl>
         </paper-input>
@@ -17,6 +29,16 @@
 </div>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-        <paper-input class="form-input" label="user type" [(ngModel)]="model.type" ngDefaultControl></paper-input>
+        <paper-dropdown-menu class="col-lg-12" label="User Type" ngDefaultControl [(ngModel)]="model.userType">
+            <paper-listbox slot="dropdown-content" tabindex="1">
+                <paper-item>SHOPKEEPER</paper-item>
+                <paper-item>CUSTOMER</paper-item>
+            </paper-listbox>
+        </paper-dropdown-menu>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-button (click)="updatePersonalInfo(dialog)" raised>Update Info</paper-button>
     </div>
 </div>

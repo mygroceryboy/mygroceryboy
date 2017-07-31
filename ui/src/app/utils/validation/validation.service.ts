@@ -66,6 +66,10 @@ export class ValidationService {
                     this.compare(model[property], model[validations[key].key], validations[key].message);
                     break;
 
+                case "contains":
+                    this.contains(model[property], validations[key].key, validations[key].message);
+                    break;
+
                 default:
                     break;
             }
@@ -124,6 +128,18 @@ export class ValidationService {
         }
 
         if (model1 !== model2) {
+            this._errorMessages.push(message);
+        }
+    }
+
+    private contains(value: string, collection: string, message: string) {
+        if (!message || !message.length) {
+            return;
+        }
+        
+        let values = collection.split('|');
+
+        if (values.indexOf(value) < 0) {
             this._errorMessages.push(message);
         }
     }

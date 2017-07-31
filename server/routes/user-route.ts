@@ -28,7 +28,7 @@ router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunctio
 });
 
 router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body._id = new ObjectId(req.body._id);
+    req.body.id = new ObjectId(req.body.id);
     provider.updateUser(req.body)
         .then((response) => {
             res.json(response);
@@ -39,7 +39,7 @@ router.post('', authenticate, (req: Request, res: Response, next: NextFunction) 
 });
 
 router.put('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body._id = new ObjectId();
+    req.body.id = new ObjectId();
     provider.saveUser(req.body)
         .then((response) => {
             res.json(response);

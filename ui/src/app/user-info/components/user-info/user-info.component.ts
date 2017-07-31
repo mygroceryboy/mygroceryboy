@@ -34,20 +34,17 @@ export class UserInfoComponent implements OnInit {
     }
 
     private bindEvents(): void {
-        if (!this.tabsEl) {
-            this.tabsEl = this.elementRef.nativeElement.querySelector('paper-tabs');
-            if (this.tabsEl) {
-                this.tabsEl.addEventListener('selected-changed', this.onTabChanged.bind(this));
-            }
+        this.tabsEl = this.elementRef.nativeElement.querySelector('paper-tabs');
+        if (this.tabsEl) {
+            this.tabsEl.addEventListener('selected-changed', this.onTabChanged.bind(this));
         }
     }
 
-    private onTabChanged(event: any) {
+    private onTabChanged(event: any): void {
         this.tab = event.detail.value;
-        this.bindEvents();
     }
 
-    private getUserInfo() {
+    private getUserInfo(): void {
         this._UserInfoService
             .getUserInfo(this.user.id)
             .then((response: UserInfo) => {

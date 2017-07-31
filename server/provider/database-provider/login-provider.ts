@@ -12,13 +12,14 @@ export class LoginProvider {
             UserModel.findOne({
                 $or: [{ email: user.username }, { username: user.username }],
                 password: user.password
-            },"id name username email", function (err: any, dbRes: User) {
+            },"id name username email userType", function (err: any, dbRes: User) {
                 if (err) {
                     console.log(err);
                     response.message = "error occured while getting user data!";
                     reject(response);
                     return;
                 }
+                console.log(dbRes);
                 response.isSuccessful = true;
                 response.data = dbRes;
                 resolve(response);

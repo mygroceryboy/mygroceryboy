@@ -11,12 +11,13 @@ let UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'user name is required']
     },
-    usertype: {
+    userType: {
         type: String,
+        required: [true, 'user type is required'],
         validate: {
             validator: function (value: string) {
-                let type = value.trim().toLowerCase();
-                return type === "shopkeeper" || type === "customer";
+                let type = value.trim();
+                return type === "SHOPKEEPER" || type === "CUSTOMER";
             }
         }
     },

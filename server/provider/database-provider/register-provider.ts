@@ -34,6 +34,7 @@ export class RegisterProvider {
             username: user.username,
             email: user.email,
             password: user.password,
+            userType: user.userType
         }
     }
 }

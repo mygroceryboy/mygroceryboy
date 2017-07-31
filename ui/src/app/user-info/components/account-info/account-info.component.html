@@ -23,8 +23,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
-        <paper-autocomplete min-length="2" class="form-input" [(text)]="model.city" placeholder="type city name" label="city"></paper-autocomplete>
+    <div class="col-lg-2 col-lg-offset-3">
+        <paper-input class="form-input" label="city" [(ngModel)]="model.city" ngDefaultControl></paper-input>
+    </div>
+    <div class="col-lg-4">
+        <paper-autocomplete min-length="2" class="form-input" label="or search city"></paper-autocomplete>
     </div>
 </div>
 <div class="row">

@@ -34,7 +34,7 @@ export class StorageService {
             value = isLocalStorage
                 ? localStorage.getItem(key.trim())
                 : sessionStorage.getItem(key.trim());
-            return JSON.parse(value);
+            return value ? JSON.parse(value) : value;
         } catch (error) {
             console.log(error);
             return null;

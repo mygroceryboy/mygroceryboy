@@ -9,7 +9,7 @@ import { StorageService } from "../../../utils/storage/storage.service";
 import { City } from "../../../models/city.model";
 
 // validations
-import * as validations from "../../form-validations.json";
+import * as validations from "./form-validations.json";
 
 @Component({
     selector: 'app-account-info',
@@ -18,10 +18,8 @@ import * as validations from "../../form-validations.json";
 })
 export class AccountInfoComponent implements OnInit {
 
-    @Input()
-    public model: UserInfo = new UserInfo();
-    @Input()
-    public user: User;
+    @Input() public model: UserInfo = new UserInfo();
+    @Input() public user: User;
     private cityDropDownEl: any;
     private errorMessages: Array<string> = [];
 
@@ -38,17 +36,15 @@ export class AccountInfoComponent implements OnInit {
     }
 
     private bindEvents(): void {
+        this.cityDropDownEl = this.elementRef.nativeElement.querySelector('paper-autocomplete');
         if (!this.cityDropDownEl) {
-            this.cityDropDownEl = this.elementRef.nativeElement.querySelector('paper-autocomplete');
-            if (this.cityDropDownEl) {
-                this.cityDropDownEl.addEventListener('text-changed', this.getCities.bind(this));
-                this.cityDropDownEl.addEventListener('autocomplete-selected', this.updateLocation.bind(this));
-                this.cityDropDownEl.addEventListener('autocomplete-reset', this.resetLocation.bind(this));
-            }
+            return;
         }
+        this.cityDropDownEl.addEventListener('text-changed', this.getCities.bind(this));
+        this.cityDropDownEl.addEventListener('autocomplete-selected', this.updateLocation.bind(this));
     }
 
-    private getCities(event: any) {
+    private getCities(event: any): void {
         if (!event.detail.value || event.detail.value.length < 2) {
             return;
         }
@@ -61,18 +57,13 @@ export class AccountInfoComponent implements OnInit {
             });
     }
 
-    private updateLocation(event: any) {
+    private updateLocation(event: any): void {
         if(!event.detail.value) {
             return;
         }
-
         this.model.city = event.detail.value.name;
         this.model.state = event.detail.value.state;
         this.model.country = event.detail.value.country;
-    }
-
-    private resetLocation(event: any) {
-        this.model.city = "";
     }
 
     private updateUserInfo(dialog): void {
