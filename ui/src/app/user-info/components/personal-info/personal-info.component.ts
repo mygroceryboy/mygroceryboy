@@ -45,4 +45,8 @@ export class PersonalInfoComponent implements OnInit {
                 console.log(error);
             });
     }
+
+    private userTypeChanged(value: string): void {
+        this.model.userType = value === 'SHOPKEEPER' ? 'SHOPKEEPER' : 'CUSTOMER';
+    }
 }

@@ -29,10 +29,10 @@
 </div>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-        <paper-dropdown-menu class="col-lg-12" label="User Type" ngDefaultControl [(ngModel)]="model.userType">
-            <paper-listbox slot="dropdown-content" tabindex="1">
-                <paper-item>SHOPKEEPER</paper-item>
-                <paper-item>CUSTOMER</paper-item>
+        <paper-dropdown-menu #userType class="col-lg-12" label="User Type" (value-changed)="userTypeChanged(userType.value)">
+            <paper-listbox slot="dropdown-content" [selected]="model.userType === 'SHOPKEEPER' ? '0' : '1'">
+                <paper-item class="paper-item" role="option">SHOPKEEPER</paper-item>
+                <paper-item class="paper-item" role="option">CUSTOMER</paper-item>
             </paper-listbox>
         </paper-dropdown-menu>
     </div>

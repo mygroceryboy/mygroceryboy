@@ -51,7 +51,7 @@ export class UserProvider {
         let self = this;
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<User>();
-            UserModel.findOneAndUpdate({ id: user.id }, user, function (err: any, dbRes: any) {
+            UserModel.findOneAndUpdate({ id: user.id }, user, { new: true }, function (err: any, dbRes: any) {
                 if (err) {
                     console.log(err);
                     response.message = "error occured while creating new user!";
