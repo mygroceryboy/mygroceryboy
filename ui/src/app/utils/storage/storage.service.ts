@@ -7,7 +7,7 @@ export class StorageService {
     constructor() { }
 
     public addItem(key: string, value: any, isLocalStorage: boolean = true): boolean {
-        if (!this.checkStorageSupport()) {
+        if (!this.checkStorageSupport) {
             this.appStorage[key.trim()] = value;
             console.warn("no browser storage support found, app storage is being used");
             return true;
@@ -24,7 +24,7 @@ export class StorageService {
     }
 
     public getItem(key: string, isLocalStorage: boolean = true): any {
-        if (!this.checkStorageSupport()) {
+        if (!this.checkStorageSupport) {
             return this.appStorage[key.trim()];
         }
 
@@ -42,7 +42,7 @@ export class StorageService {
     }
 
     public removeItem(key: string, isLocalStorage: boolean = true): boolean {
-        if (!this.checkStorageSupport()) {
+        if (!this.checkStorageSupport) {
             return this.appStorage[key.trim()];
         }
 
@@ -59,7 +59,7 @@ export class StorageService {
         }
     }
 
-    private checkStorageSupport(): boolean {
+    private get checkStorageSupport(): boolean {
         return !!typeof Storage;
     }
 }
