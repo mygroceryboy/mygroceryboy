@@ -46,7 +46,7 @@ export class PersonalInfoComponent implements OnInit {
             .then((response: User) => {
                 let toast: ToastModel = {
                     text: "personal information updated successfully",
-                    duration: 2000,
+                    duration: 5000,
                     type: "success"
                 };
                 this._Store.dispatch({type: ReducerActions.Toast.Update, payload: toast});
