@@ -1,43 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Subscription } from "rxjs/Subscription";
+import { ToastModel } from "./utils/redux/app-reducers";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
-    constructor(private router: Router) {
+    private toastModel: ToastModel = new ToastModel();
+    private toastSubscription: Subscription;
+
+    constructor(private router: Router, private _Store: Store<ToastModel>) {
     }
 
-    logIn(menu) {
-        menu.close();
-        this.router.navigate(['login']);
+    public ngOnInit(): void {
+        this.toastSubscription = this._Store.select('Toast').subscribe((toast: ToastModel) => {
+            this.toastModel = toast || this.toastModel;
+            setTimeout(function () {
+                this.toastModel.text = "";
+            }.bind(this), this.toastModel.duration);
+        });
     }
 
-    register(menu) {
-        menu.close();
-        this.router.navigate(['register']);
+    public ngOnDestroy(): void {
+        this.toastSubscription.unsubscribe();
     }
 
-    home(menu) {
-        menu.close();
-        this.router.navigate(['home']);
+    private hideToast() {
+        this.toastModel.text = "";
     }
 
-    aboutUs(menu) {
+    private redirect(menu: any, path: string): void {
         menu.close();
-        this.router.navigate(['about-us']);
-    }
-
-    contactUs(menu) {
-        menu.close();
-        this.router.navigate(['contact-us']);
-    }
-
-    showProfile(menu) {
-        menu.close();
-        this.router.navigate(['user-info']);
+        this.router.navigate([path]);
     }
 }

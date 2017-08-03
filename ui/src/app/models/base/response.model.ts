@@ -14,3 +14,5 @@ export class Response<T> {
         this.isSuccessful = false;
     }
 }
+
+export type Status = "success" | "info" | "warning" | "danger";

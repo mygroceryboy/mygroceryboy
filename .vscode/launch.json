@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug Program",
+            "name": "Node Debug",
             "program": "${workspaceRoot}/server/server.ts",
             "cwd": "${workspaceRoot}",
             "env": {

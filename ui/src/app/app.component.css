@@ -39,3 +39,10 @@ paper-button.menu-item {
     background-color: var(--paper-grey-300);
     color: black;
 }
+
+.toast-close {
+    text-transform: none;
+    color: var(--paper-lime-a200);
+    float: right;
+    padding: 0;
+}

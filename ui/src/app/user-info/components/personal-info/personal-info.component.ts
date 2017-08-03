@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { ValidationService } from "../../..//utils/validation/validation.service";
 import { UserInfo } from "../../../models/user-info.model";
@@ -7,6 +8,8 @@ import { UserInfoService } from "../../services/user-info/user-info.service";
 import { LocationService } from "../../../utils/services/location/location.service";
 import { StorageService } from "../../../utils/storage/storage.service";
 import { City } from "../../../models/city.model";
+import { ToastModel } from "../../../utils/redux/app-reducers";
+import { ReducerActions } from "../../../utils/redux/reducer-actions";
 
 // validations
 import * as validations from "./form-validations.json";
@@ -27,7 +30,8 @@ export class PersonalInfoComponent implements OnInit {
         private _UserInfoService: UserInfoService,
         private _LocationService: LocationService,
         private _StorageService: StorageService,
-        private _Router: Router) { }
+        private _Router: Router,
+        private _Store: Store<ToastModel>) { }
 
     public ngOnInit(): void {
     }
@@ -40,7 +44,12 @@ export class PersonalInfoComponent implements OnInit {
         }
         this._UserInfoService.updateUser(this.model)
             .then((response: User) => {
-                // this._Router.navigate(['home']);
+                let toast: ToastModel = {
+                    text: "personal information updated successfully",
+                    duration: 2000,
+                    type: "success"
+                };
+                this._Store.dispatch({type: ReducerActions.Toast.Update, payload: toast});
             }).catch((error: any) => {
                 console.log(error);
             });

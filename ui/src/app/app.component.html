@@ -1,7 +1,12 @@
+<paper-toast [opened]="!!toastModel.text" [text]="toastModel.text">
+    <paper-button (click)="hideToast()" class="toast-close">close</paper-button>
+</paper-toast>
+
 <paper-toolbar>
     <paper-icon-button slot="top" icon="menu" onclick="menu.toggle()"></paper-icon-button>
     <span slot="top" class="title">My Grocery Boy</span>
 </paper-toolbar>
+
 <app-drawer-layout>
     <app-drawer id="menu" #menu swipe-open class="text-center">
         <paper-card>
@@ -10,14 +15,14 @@
                 <h3>Manoj Chalode</h3>
             </div>
             <div class="card-actions">
-                <paper-button class="profile" (click)="showProfile(menu)">Update Profile</paper-button>
+                <paper-button class="profile" (click)="redirect(menu, 'user-info')">Update Profile</paper-button>
             </div>
         </paper-card>
-        <paper-button class="menu-item" (click)="home(menu)">Home</paper-button>
-        <paper-button class="menu-item" (click)="logIn(menu)">Login</paper-button>
-        <paper-button class="menu-item" (click)="register(menu)">Register</paper-button>
-        <paper-button class="menu-item" (click)="aboutUs(menu)">About Us</paper-button>
-        <paper-button class="menu-item" (click)="contactUs(menu)">Contact Us</paper-button>
+        <paper-button class="menu-item" (click)="redirect(menu, 'home')">Home</paper-button>
+        <paper-button class="menu-item" (click)="redirect(menu, 'login')">Login</paper-button>
+        <paper-button class="menu-item" (click)="redirect(menu, 'register')">Register</paper-button>
+        <paper-button class="menu-item" (click)="redirect(menu, 'about-us')">About Us</paper-button>
+        <paper-button class="menu-item" (click)="redirect(menu, 'contact-us')">Contact Us</paper-button>
     </app-drawer>
     <div>
         <router-outlet></router-outlet>
