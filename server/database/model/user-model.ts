@@ -1,8 +1,9 @@
-import * as mongoose from "mongoose";
+// import * as mongoose from "mongoose";
 import { APP_CONSTANTS } from "../../shared/app-constants"
+import { Schema, model } from "mongoose";
 
-let UserSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
+let UserSchema = new Schema({
+    id: Schema.Types.ObjectId,
     name: {
         type: String,
         required: [true, 'name is required']
@@ -38,4 +39,4 @@ let UserSchema = new mongoose.Schema({
     },
 }, { timestamps: true, versionKey: false});
 
-export let UserModel = mongoose.model(APP_CONSTANTS.DB.COLLECTIONS.USERS, UserSchema);
+export let UserModel = model(APP_CONSTANTS.DB.COLLECTIONS.USERS, UserSchema);
