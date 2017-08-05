@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response as HttpResponse } from "@angular/http";
-import { UserInfo } from "../../../models/user-info.model";
+import { PersonalInfo } from "../../../models/user-info.model";
 import { Response } from "../../../models/base/response.model";
 import { StorageService } from "../../../utils/storage/storage.service";
 import { User } from "../../../models/user.model";
@@ -55,12 +55,12 @@ export class UserInfoService {
         });
     }
 
-    public getUserInfo(userId: string): Promise<UserInfo> {
+    public getUserInfo(userId: string): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .get('/api/personal-info/' + userId)
                 .subscribe((httpResponse: HttpResponse) => {
-                    let response: Response<UserInfo> = httpResponse.json();
+                    let response: Response<PersonalInfo> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
                         reject(null);
                     }
@@ -70,12 +70,12 @@ export class UserInfoService {
         });
     }
 
-    public addUserInfo(userInfo: UserInfo): Promise<UserInfo> {
+    public addUserInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .put('/api/personal-info', userInfo)
                 .subscribe((httpResponse: HttpResponse) => {
-                    let response: Response<UserInfo> = httpResponse.json();
+                    let response: Response<PersonalInfo> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
                         reject(null);
                     }
@@ -85,12 +85,12 @@ export class UserInfoService {
         });
     }
 
-    public updateUserInfo(userInfo: UserInfo): Promise<UserInfo> {
+    public updateUserInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .post('/api/personal-info', userInfo)
                 .subscribe((httpResponse: HttpResponse) => {
-                    let response: Response<UserInfo> = httpResponse.json();
+                    let response: Response<PersonalInfo> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
                         reject(null);
                     }

@@ -3,7 +3,7 @@ import { APP_CONSTANTS } from "../../shared/app-constants";
 
 let StoreSchema = new Schema({
     id: Schema.Types.ObjectId,
-    _personalinfo: {
+    _personalInfo: {
         type: Schema.Types.ObjectId,
         ref: 'personal.info',
         required: [true, 'personal info id is required']
@@ -11,10 +11,6 @@ let StoreSchema = new Schema({
     name: {
         type: String,
         required: [true, 'store name is required']
-    },
-    address: {
-        type: Number,
-        required: [true, 'store price is required']
     },
     phone: {
         type: String,
@@ -45,4 +41,4 @@ let StoreSchema = new Schema({
 
 }, { timestamps: true, versionKey: false });
 
-export let StoreModel = model(APP_CONSTANTS.DB.COLLECTIONS.STORE, StoreSchema);
+export let DbStore = model(APP_CONSTANTS.DB.COLLECTIONS.STORE, StoreSchema);

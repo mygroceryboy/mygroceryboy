@@ -7,14 +7,16 @@ import { AppComponent } from './app.component';
 
 import { LoginModule } from "./login/login.module";
 import { ErrorPageModule } from "./error-page/error-page.module";
-import { AppRouterModule } from "./app-router.module";
+import { AppRoutes } from "./app-routes";
 import { RegisterModule } from "./register/register.module";
 import { UserInfoModule } from "./user-info/user-info.module";
 import { HomeModule } from "./home/home.module";
+import { StoreModule as ShopModule } from "./store/store.module"
 
 import { LocationService } from "./utils/services/location/location.service";
 
 import { ToastReducer } from "./utils/redux/app-reducers";
+import { StoreProviders } from "./utils/redux/store.providers";
 
 @NgModule({
     declarations: [
@@ -28,10 +30,9 @@ import { ToastReducer } from "./utils/redux/app-reducers";
         LoginModule,
         RegisterModule,
         UserInfoModule,
-        StoreModule.provideStore({
-            Toast: ToastReducer
-        }),
-        AppRouterModule
+        ShopModule,
+        StoreModule.provideStore(StoreProviders),
+        RouterModule.forRoot(AppRoutes)
     ],
     providers: [LocationService],
     bootstrap: [AppComponent],

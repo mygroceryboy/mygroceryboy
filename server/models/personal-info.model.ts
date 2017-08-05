@@ -3,7 +3,6 @@ import { User } from "../models/user.model";
 export class PersonalInfo {
     public id: string;
     public userId: string;
-    public user: User;
     public address1: string;
     public address2: string;
     public city: string;
@@ -11,11 +10,11 @@ export class PersonalInfo {
     public country: string;
     public description: string;
     public phone: string;
+    public user: User;
 
     constructor() {
         this.id = "";
         this.userId = "";
-        this.user = new User();
         this.address1 = "";
         this.address2 = "";
         this.city = "";
@@ -23,5 +22,6 @@ export class PersonalInfo {
         this.country = "";
         this.description = "";
         this.phone = "";
+        this.user = new User();
     }
 }

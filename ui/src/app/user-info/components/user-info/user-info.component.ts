@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from "@angular/router";
-import { UserInfo } from "../../../models/user-info.model";
+import { PersonalInfo } from "../../../models/user-info.model";
 import { User } from "../../../models/user.model";
 import { UserInfoService } from "../../services/user-info/user-info.service";
 import { StorageService } from "../../../utils/storage/storage.service";
@@ -12,7 +12,7 @@ import { StorageService } from "../../../utils/storage/storage.service";
 })
 export class UserInfoComponent implements OnInit {
 
-    public userInfo: UserInfo = new UserInfo();
+    public userInfo: PersonalInfo = new PersonalInfo();
     private user: User;
     private tabsEl: any;
     private tab: number = 0;
@@ -47,7 +47,7 @@ export class UserInfoComponent implements OnInit {
     private getUserInfo(): void {
         this._UserInfoService
             .getUserInfo(this.user.id)
-            .then((response: UserInfo) => {
+            .then((response: PersonalInfo) => {
                 this.userInfo = response || this.userInfo;
             })
             .catch((error: any) => {

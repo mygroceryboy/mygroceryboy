@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-2">
+            <paper-dialog id="dialog" #dialog class="col-lg-6" with-backdrop>
+                <h2 class="text-center">Form Errors</h2>
+                <ul *ngIf="errorMessages && errorMessages.length">
+                    <li *ngFor="let message of errorMessages">
+                        {{message}}
+                    </li>
+                </ul>
+            </paper-dialog>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input label="store name" [(ngModel)]="model.name" ngDefaultControl>
+            </paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input class="form-input" label="address1" [(ngModel)]="model.address1" ngDefaultControl>
+            </paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input class="form-input" label="address2" [(ngModel)]="model.address2" ngDefaultControl>
+            </paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-3">
+            <paper-input class="form-input" label="city" [(ngModel)]="model.city" ngDefaultControl></paper-input>
+        </div>
+        <div class="col-lg-2">
+            <paper-input class="form-input" label="state" [(ngModel)]="model.state" ngDefaultControl></paper-input>
+        </div>
+        <div class="col-lg-2">
+            <paper-input class="form-input" label="country" [(ngModel)]="model.country" ngDefaultControl></paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input class="form-input" label="contact number" [(ngModel)]="model.phone" ngDefaultControl></paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-input class="form-input" label="description" [(ngModel)]="model.description" ngDefaultControl></paper-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-button (click)="createStore(dialog)" raised>Register</paper-button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 text-right">
+            <span>Already a member? <a [routerLink]="['/login']">login</a> here.</span>
+        </div>
+    </div>
+</div>

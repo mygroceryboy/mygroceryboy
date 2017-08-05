@@ -1,104 +1,107 @@
 import * as mongoose from "mongoose";
 import { ObjectId } from "bson";
 import { Response } from "../../models/base/response.model";
-import { PersonalInfo } from "../../database/model/personal-info.model";
-import { UserInfo } from "../../models/user-info.model";
+import { DbPersonalInfo } from "../../database/model/personal-info.model";
+import { PersonalInfo } from "../../models/personal-info.model";
 
-export class PersonalInfoProvider {
+export namespace PersonalInfoProvider {
 
-    getPersonalInfo(id: ObjectId): Promise<any> {
-        let self = this;
+    export function getPersonalInfo(id: ObjectId): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response();
-            PersonalInfo
-                .findOne({ _user: id }, function (err: any, dbRes: any) {
-                    if (err) {
-                        console.log(err);
-                        response.message = "error occured while creating new user!";
-                        reject(response);
-                    } else {
-                        response.isSuccessful = true;
-                        response.data = self.translateUser(dbRes);
-                        resolve(response);
-                    }
+            let response = new Response<PersonalInfo>();
+            DbPersonalInfo
+                .findOne({ _user: id })
+                .then((dbRes: any) => {
+                    response.isSuccessful = true;
+                    response.data = translateUser(dbRes);
+                    resolve(response);
+                })
+                .catch((err: any) => {
+                    console.log(err);
+                    response.message = "error occured while getting personal information!";
+                    reject(response);
                 });
         });
     }
 
-    getFullPersonalInfo(id: ObjectId): Promise<any> {
+    export function getFullPersonalInfo(id: ObjectId): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
-            PersonalInfo
+            let response = new Response<PersonalInfo>();
+            DbPersonalInfo
                 .findById({ _user: id })
                 .populate("_user")
-                .then(response => {
+                .then((dbRes: any) => {
+                    response.isSuccessful = true;
+                    response.data = translateUser(dbRes);
                     resolve(response);
                 })
                 .catch(err => {
-                    reject(err);
+                    console.log(err);
+                    response.message = "error occured while getting full personal information!";
+                    reject(response);
                 });
         });
     }
 
-    savePersonalInfo(personalInfo: any): Promise<any> {
+    export function createPersonalInfo(personalInfo: PersonalInfo): Promise<PersonalInfo> {
         let self = this;
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response();
-            PersonalInfo
-                .create(personalInfo, function (err: any, dbRes: any) {
-                    if (err) {
-                        console.log(err);
-                        response.message = "error occured while creating new user!";
-                        reject(response);
-                    } else if (!dbRes) {
-                        response.message = "failed to create user!";
-                        reject(response);
-                    } else {
-                        response.isSuccessful = true;
-                        response.data = self.translateUser(dbRes);
-                        resolve(response);
-                    }
+            let response = new Response<PersonalInfo>();
+            DbPersonalInfo
+                .create(personalInfo)
+                .then((dbRes: any) => {
+                    response.isSuccessful = true;
+                    response.data = translateUser(dbRes);
+                    resolve(response);
+                })
+                .catch(err => {
+                    console.log(err);
+                    response.message = "error occured while saving personal information!";
+                    reject(response);
                 });
         });
     }
 
-    updatePersonalInfo(personalInfo: any): Promise<any> {
+    export function updatePersonalInfo(personalInfo: PersonalInfo): Promise<PersonalInfo> {
         let self = this;
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response();
-            PersonalInfo
-                .findOneAndUpdate({ id: personalInfo.id }, personalInfo, function (err: any, dbRes: any) {
-                    if (err) {
-                        console.log(err);
-                        response.message = "error occured while creating new user!";
-                        reject(response);
-                    } else if (!dbRes) {
-                        response.message = "failed to create user!";
-                        reject(response);
-                    } else {
-                        response.isSuccessful = true;
-                        response.data = self.translateUser(dbRes);
-                        resolve(response);
-                    }
+            let response = new Response<PersonalInfo>();
+            DbPersonalInfo
+                .findOneAndUpdate({ id: personalInfo.id }, personalInfo)
+                .then((dbRes: any) => {
+                    response.isSuccessful = true;
+                    response.data = translateUser(dbRes);
+                    resolve(response);
+                })
+                .catch(err => {
+                    console.log(err);
+                    response.message = "error occured while saving personal information!";
+                    reject(response);
                 });
         });
     }
 
-    deletePersonalInfo(id: ObjectId): Promise<boolean> {
+    export function deletePersonalInfo(id: ObjectId): Promise<boolean> {
         return new Promise((resolve: Function, reject: Function) => {
-            PersonalInfo
+            let response = new Response<PersonalInfo>();
+            DbPersonalInfo
                 .findOneAndRemove({ _id: id })
-                .then(response => {
+                .then((dbRes: any) => {
+                    response.isSuccessful = true;
+                    response.data = null; //translateUser(dbRes);
                     resolve(response);
                 })
                 .catch(err => {
-                    reject(err);
+                    console.log(err);
+                    response.message = "error occured while saving personal information!";
+                    reject(response);
                 });
         });
     }
 
-    private translateUser(userInfo: any): UserInfo {
+    function translateUser(userInfo: any): PersonalInfo {
         if (!userInfo) {
-            let info = new UserInfo();
+            let info = new PersonalInfo();
             info.user = null;
             return info;
         }
@@ -115,4 +118,5 @@ export class PersonalInfoProvider {
             phone: userInfo.phone
         };
     }
+
 }

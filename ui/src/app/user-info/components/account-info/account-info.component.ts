@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { ValidationService } from "../../..//utils/validation/validation.service";
-import { UserInfo } from "../../../models/user-info.model";
+import { PersonalInfo } from "../../../models/user-info.model";
 import { User } from "../../../models/user.model";
 import { UserInfoService } from "../../services/user-info/user-info.service";
 import { LocationService } from "../../../utils/services/location/location.service";
@@ -21,7 +21,7 @@ import * as validations from "./form-validations.json";
 })
 export class AccountInfoComponent implements OnInit {
 
-    @Input() public model: UserInfo = new UserInfo();
+    @Input() public model: PersonalInfo = new PersonalInfo();
     @Input() public user: User;
     private cityDropDownEl: any;
     private errorMessages: Array<string> = [];
@@ -79,11 +79,11 @@ export class AccountInfoComponent implements OnInit {
 
         this.model.userId = this.user.id;
 
-        let promise: Promise<UserInfo> = this.model.id ?
+        let promise: Promise<PersonalInfo> = this.model.id ?
             this._UserInfoService.updateUserInfo(this.model) :
             this._UserInfoService.addUserInfo(this.model);
 
-        promise.then((response: UserInfo) => {
+        promise.then((response: PersonalInfo) => {
                 let toast: ToastModel = {
                     text: "account information updated successfully",
                     duration: 5000,

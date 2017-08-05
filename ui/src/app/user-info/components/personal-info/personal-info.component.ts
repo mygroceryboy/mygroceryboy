@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { ValidationService } from "../../..//utils/validation/validation.service";
-import { UserInfo } from "../../../models/user-info.model";
+import { PersonalInfo } from "../../../models/user-info.model";
 import { User } from "../../../models/user.model";
 import { UserInfoService } from "../../services/user-info/user-info.service";
 import { LocationService } from "../../../utils/services/location/location.service";

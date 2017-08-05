@@ -23,4 +23,4 @@ let GroceryItemSchema = new Schema({
 
 }, { timestamps: true, versionKey: false });
 
-export let GroceryItemModel = model(APP_CONSTANTS.DB.COLLECTIONS.GROCERY_ITEM, GroceryItemSchema);
+export let DbGroceryItem = model(APP_CONSTANTS.DB.COLLECTIONS.GROCERY_ITEM, GroceryItemSchema);

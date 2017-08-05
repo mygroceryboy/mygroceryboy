@@ -1,0 +1,32 @@
+{
+    "name": {
+        "required": {
+            "message": "name is required"
+        }
+    },
+    "address1": {
+        "required": {
+            "message": "address line 1 is required"
+        }
+    },
+    "city": {
+        "required": {
+            "message": "city is required"
+        }
+    },
+    "state": {
+        "required": {
+            "message": "state is required"
+        }
+    },
+    "country": {
+        "required": {
+            "message": "country is required"
+        }
+    },
+    "phone": {
+        "required": {
+            "message": "phone number is required"
+        }
+    }
+}

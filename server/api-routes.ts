@@ -5,6 +5,8 @@ import { personalInfoRoutes } from "./routes/personal-info.route";
 import { loginRoutes } from "./routes/login-route";
 import { registerRoutes } from "./routes/register-route";
 import { cityRoutes } from "./routes/city-route";
+import { storeRoutes } from "./routes/store-route";
+import { groceryRoutes } from "./routes/grocery-route";
 
 class ApiRoutes {
 
@@ -14,6 +16,8 @@ class ApiRoutes {
         app.use('/api/login', loginRoutes);
         app.use('/api/register', registerRoutes);
         app.use('/api/cities', cityRoutes);
+        app.use('/api/store', storeRoutes);
+        app.use('/api/grocery-item', groceryRoutes);
         // app.use('/api/cities', cityRoutes);
         //always register this route in the end
         app.use('/', indexRoute);
