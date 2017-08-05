@@ -1,24 +1,20 @@
-import * as mongoose from "mongoose";
 import { MongoError } from "mongodb";
+import { disconnect, connection, connect as connectDb } from "mongoose";
 
-export class DbInitializer {
-
-    public url: string = "mongodb://localhost:27017/mygroceryboy";
-
-    public connect(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            mongoose.connect(this.url);
-            var db = mongoose.connection;
-            db.on('error', () => {
-                console.log("arguments for db error");
-                console.log(arguments);
-                return reject();
-            });
-            db.once('open', function () {
-                console.log("arguments for db success");
-                console.log(arguments);
-                return resolve();
-            });
-        });
-    }
+export function connect(url: string = "mongodb://localhost/mygroceryboy"): Promise<any> {
+    return new Promise((resolve: Function, reject: Function) => {
+        connectDb(url, ((err: MongoError) => {
+            if (err) {
+                reject(err);
+            }
+            connection.
+                on('error', (err: any) => {
+                    console.log(err);
+                    return reject();
+                }).
+                once('open', function () {
+                    return resolve();
+                });
+        }));
+    });
 }

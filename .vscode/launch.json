@@ -19,7 +19,6 @@
             "outFiles": [
                 "${workspaceRoot}/dist/**/*.js"
             ],
-            "stopOnEntry": true,
             "console": "internalConsole"
         },
         {

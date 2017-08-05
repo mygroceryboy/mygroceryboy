@@ -6,7 +6,7 @@ import * as session from 'express-session';
 import * as connectMongo from 'connect-mongo';
 import * as mongoose from "mongoose";
 import { apiRoutes } from './api-routes';
-import { DbInitializer } from "./database/db-initializer";
+import { connect } from "./database/db-initializer";
 
 class App {
 
@@ -36,7 +36,7 @@ class App {
     }
 
     private connectDatabase() {
-        new DbInitializer().connect()
+        connect()
             .then(() => {
                 console.log("database connection successful");
             })
