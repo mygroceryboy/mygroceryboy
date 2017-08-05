@@ -19,8 +19,14 @@ export class LoginProvider {
                     reject(response);
                     return;
                 }
-                console.log(dbRes);
+                if (!dbRes) {
+                    console.log(err);
+                    response.message = "user does not exist!";
+                    reject(response);
+                    return;
+                }
                 response.isSuccessful = true;
+                response.message = "Successfully logged in as " + dbRes.name;
                 response.data = dbRes;
                 resolve(response);
             });

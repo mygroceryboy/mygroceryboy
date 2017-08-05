@@ -1,15 +1,11 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
-import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { ValidationService } from "../../..//utils/validation/validation.service";
 import { PersonalInfo } from "../../../models/user-info.model";
 import { User } from "../../../models/user.model";
-import { UserInfoService } from "../../services/user-info/user-info.service";
-import { LocationService } from "../../../utils/services/location/location.service";
+import { UserService } from "../../services/user/user.service";
 import { StorageService } from "../../../utils/storage/storage.service";
 import { City } from "../../../models/city.model";
-import { ToastModel } from "../../../utils/redux/app-reducers";
-import { ReducerActions } from "../../../utils/redux/reducer-actions";
 
 // validations
 import * as validations from "./form-validations.json";
@@ -27,11 +23,9 @@ export class PersonalInfoComponent implements OnInit {
 
     constructor(private elementRef: ElementRef,
         private _ValidationService: ValidationService,
-        private _UserInfoService: UserInfoService,
-        private _LocationService: LocationService,
+        private _UserInfoService: UserService,
         private _StorageService: StorageService,
-        private _Router: Router,
-        private _Store: Store<ToastModel>) { }
+        private _Router: Router) { }
 
     public ngOnInit(): void {
     }
@@ -42,17 +36,9 @@ export class PersonalInfoComponent implements OnInit {
             dialog.open();
             return;
         }
-        this._UserInfoService.updateUser(this.model)
-            .then((response: User) => {
-                let toast: ToastModel = {
-                    text: "personal information updated successfully",
-                    duration: 5000,
-                    type: "success"
-                };
-                this._Store.dispatch({type: ReducerActions.Toast.Update, payload: toast});
-            }).catch((error: any) => {
-                console.log(error);
-            });
+        this._UserInfoService.updateUser(this.model).catch((error: any) => {
+            console.log(error);
+        });
     }
 
     private userTypeChanged(value: string): void {

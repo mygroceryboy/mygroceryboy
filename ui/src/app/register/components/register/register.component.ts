@@ -1,11 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { ValidationService } from "../../..//utils/validation/validation.service";
 import { User } from "../../../models/user.model";
 import { RegisterUserService } from "../../services/register-user/register-user.service";
-import { ToastModel } from "../../../utils/redux/app-reducers";
-import { ReducerActions } from "../../../utils/redux/reducer-actions";
 
 // validations
 import * as validations from "../../form-validations.json";
@@ -24,8 +21,7 @@ export class RegisterComponent implements OnInit {
 
     constructor(private _ValidationService: ValidationService,
         private _RegisterUserService: RegisterUserService,
-        private _Router: Router,
-        private _Store: Store<ToastModel>) {
+        private _Router: Router) {
     }
 
     public ngOnInit(): void {
@@ -43,12 +39,6 @@ export class RegisterComponent implements OnInit {
         this._RegisterUserService
             .register(this.model)
             .then((response: User) => {
-                let toast: ToastModel = {
-                    text: "registration successful!",
-                    duration: 5000,
-                    type: "success"
-                };
-                this._Store.dispatch({type: ReducerActions.Toast.Update, payload: toast});
                 this._Router.navigate(['home']);
             })
             .catch((error: any) => {

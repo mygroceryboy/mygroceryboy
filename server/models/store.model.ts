@@ -2,7 +2,7 @@ import { PersonalInfo } from "./personal-info.model";
 
 export class Store {
     public id: string;
-    public personalInfoId: string;
+    public _personalInfo: string;
     public name: string;
     public phone: string;
     public address1: string;
@@ -11,11 +11,11 @@ export class Store {
     public state: string;
     public country: string;
     public description: string;
-    public account: PersonalInfo
+    public personalInfo: PersonalInfo
 
     public constructor() {
         this.id = "";
-        this.personalInfoId = "";
+        this._personalInfo = "";
         this.name = "";
         this.phone = "";
         this.address1 = "";
@@ -24,6 +24,6 @@ export class Store {
         this.state = "";
         this.country = "";
         this.description = "";
-        this.account = null;
+        this.personalInfo = null;
     }
 }

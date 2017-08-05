@@ -15,4 +15,4 @@ export class Response<T> {
     }
 }
 
-export type Status = "success" | "info" | "warning" | "danger";
+export type Status = "success" | "info" | "warning" | "failure";

@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from "@angular/router";
 import { PersonalInfo } from "../../../models/user-info.model";
 import { User } from "../../../models/user.model";
-import { UserInfoService } from "../../services/user-info/user-info.service";
+import { UserService } from "../../services/user/user.service";
 import { StorageService } from "../../../utils/storage/storage.service";
 
 @Component({
@@ -18,7 +18,7 @@ export class UserInfoComponent implements OnInit {
     private tab: number = 0;
 
     constructor(private elementRef: ElementRef,
-        private _UserInfoService: UserInfoService,
+        private _UserInfoService: UserService,
         private _StorageService: StorageService,
         private _Router: Router) {
     }
@@ -46,7 +46,7 @@ export class UserInfoComponent implements OnInit {
 
     private getUserInfo(): void {
         this._UserInfoService
-            .getUserInfo(this.user.id)
+            .getPersonalInfo(this.user.id)
             .then((response: PersonalInfo) => {
                 this.userInfo = response || this.userInfo;
             })

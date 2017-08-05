@@ -2,11 +2,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="flex-box">
-                <paper-card elevation="5" class="flex-item">
-                    <div class="new-content text-center">
-                        <paper-button (click)="createStore()">Create New Store</paper-button>
-                    </div>
-                </paper-card>
                 <div *ngFor="let item of items" class="flex-item">
                     <paper-card elevation="5">
                         <div class="card-heading">

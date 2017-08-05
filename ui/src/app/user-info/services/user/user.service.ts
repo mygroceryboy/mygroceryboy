@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Response as HttpResponse } from "@angular/http";
 import { PersonalInfo } from "../../../models/user-info.model";
 import { Response } from "../../../models/base/response.model";
 import { StorageService } from "../../../utils/storage/storage.service";
 import { User } from "../../../models/user.model";
+import { HttpInterceptor as Http } from "app/utils/providers/http-interceptor.service";
 
 @Injectable()
-export class UserInfoService {
+export class UserService {
 
     constructor(private _Http: Http, private _StorageService: StorageService) { }
 
@@ -14,10 +14,10 @@ export class UserInfoService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .get('/api/user/' + userId)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<User> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     this._StorageService.addItem("user", response.data, false);
                     resolve(response.data);
@@ -29,10 +29,10 @@ export class UserInfoService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .put('/api/user', userInfo)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<User> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     this._StorageService.addItem("user", response.data, false);
                     resolve(response.data);
@@ -44,10 +44,10 @@ export class UserInfoService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .post('/api/user', userInfo)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<User> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     this._StorageService.addItem("user", response.data, false);
                     resolve(response.data);
@@ -55,14 +55,14 @@ export class UserInfoService {
         });
     }
 
-    public getUserInfo(userId: string): Promise<PersonalInfo> {
+    public getPersonalInfo(userId: string): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .get('/api/personal-info/' + userId)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<PersonalInfo> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     this._StorageService.addItem("user-info", response.data, false);
                     resolve(response.data);
@@ -70,14 +70,14 @@ export class UserInfoService {
         });
     }
 
-    public addUserInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
+    public addPersonalInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .put('/api/personal-info', userInfo)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<PersonalInfo> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     this._StorageService.addItem("user-info", response.data, false);
                     resolve(response.data);
@@ -85,14 +85,14 @@ export class UserInfoService {
         });
     }
 
-    public updateUserInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
+    public updatePersonalInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .post('/api/personal-info', userInfo)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<PersonalInfo> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     this._StorageService.addItem("user-info", response.data, false);
                     resolve(response.data);

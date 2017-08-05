@@ -1,13 +1,30 @@
-<paper-toast [opened]="!!toastModel.text" [text]="toastModel.text">
-    <paper-button (click)="hideToast()" class="toast-close">close</paper-button>
+<paper-toast [opened]="!!toastModel.text" duration="0">
+    <span [class]="toastModel.type" class="toast-text">{{toastModel.text}}</span>
+    <a (click)="hideToast()" class="toast-close">
+        <strong>close</strong>
+    </a>
 </paper-toast>
 
 <paper-toolbar>
     <paper-icon-button slot="top" icon="menu" onclick="menu.toggle()"></paper-icon-button>
-    <span slot="top" class="title">My Grocery Boy</span>
+    <div slot="top">
+        <paper-button>
+            <h3 class="title">My Grocery Boy</h3>
+        </paper-button>
+    </div>
+    <div class="route-links" slot="top">
+        <!-- {{links|json}} -->
+        <!-- <div *ngFor="let item of items" class="flex-item"> -->
+        <ng-container *ngFor="let link of links">
+            <paper-button>
+                <a class="router-link" [routerLink]="link.path">{{link.label}}</a>
+            </paper-button>
+        </ng-container>
+    </div>
 </paper-toolbar>
+<paper-progress [disabled]="!isActive" indeterminate></paper-progress>
 
-<app-drawer-layout>
+<app-drawer-layout has-scrolling-region>
     <app-drawer id="menu" #menu swipe-open class="text-center">
         <paper-card>
             <div class="card-content">

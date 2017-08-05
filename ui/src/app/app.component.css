@@ -1,5 +1,6 @@
-paper-toolbar span.title {
-    margin-left: 0;
+paper-toolbar h3.title {
+    margin: 0;
+    padding: 0;
 }
 
 paper-card {
@@ -42,7 +43,44 @@ paper-button.menu-item {
 
 .toast-close {
     text-transform: none;
+    margin-left: 10px;
     color: var(--paper-lime-a200);
     float: right;
+    cursor: pointer;
     padding: 0;
+}
+
+paper-toast {
+    font-weight: bold;
+    max-width: none !important;
+    width: inherit !important;
+}
+
+.success {
+    color: var(--paper-green-500);
+}
+
+.info {
+    color: var(--paper-blue-500);
+}
+
+.warning {
+    color: var(--paper-orange-500);
+}
+
+.failure {
+    color: var(--paper-red-a400);
+}
+
+paper-progress {
+    display: block;
+    width: 100%;
+}
+
+.route-links {
+    margin-left: 30px;
+}
+
+.router-link {
+    color: white;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response as HttpResponse } from "@angular/http";
 import { Store } from "../../../models/store.model";
 import { Response } from "../../../models/base/response.model";
+import { HttpInterceptor as Http } from "app/utils/providers/http-interceptor.service";
 
 @Injectable()
 export class StoreService {
@@ -12,10 +12,10 @@ export class StoreService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .get('/api/store')
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<Store[]> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     resolve(response.data);
                 });
@@ -26,10 +26,10 @@ export class StoreService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .get('/api/store/' + storeId)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<Store> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     resolve(response.data);
                 });
@@ -40,10 +40,10 @@ export class StoreService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .put('/api/store/', store)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<Store> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     resolve(response.data);
                 });
@@ -54,10 +54,10 @@ export class StoreService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .post('/api/store/', store)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<Store> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     resolve(response.data);
                 });
@@ -68,10 +68,10 @@ export class StoreService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .delete('/api/store/' + storeId)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<any> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     resolve(response.data);
                 });

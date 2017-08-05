@@ -41,7 +41,7 @@ router.put('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 //update grocery item
-router.post('/:id', (req: Request, res: Response, next: NextFunction) => {
+router.post('/', (req: Request, res: Response, next: NextFunction) => {
     req.body.id = new ObjectId(req.body.id);
     req.body._personalInfo = new ObjectId(req.body.personalInfoId);
     StoreProvider.updateStore(req.body)

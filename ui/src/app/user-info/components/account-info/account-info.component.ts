@@ -1,15 +1,11 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
-import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { ValidationService } from "../../..//utils/validation/validation.service";
 import { PersonalInfo } from "../../../models/user-info.model";
 import { User } from "../../../models/user.model";
-import { UserInfoService } from "../../services/user-info/user-info.service";
-import { LocationService } from "../../../utils/services/location/location.service";
+import { UserService } from "../../services/user/user.service";
 import { StorageService } from "../../../utils/storage/storage.service";
 import { City } from "../../../models/city.model";
-import { ToastModel } from "../../../utils/redux/app-reducers";
-import { ReducerActions } from "../../../utils/redux/reducer-actions";
 
 // validations
 import * as validations from "./form-validations.json";
@@ -28,11 +24,9 @@ export class AccountInfoComponent implements OnInit {
 
     constructor(private elementRef: ElementRef,
         private _ValidationService: ValidationService,
-        private _UserInfoService: UserInfoService,
-        private _LocationService: LocationService,
+        private _UserInfoService: UserService,
         private _StorageService: StorageService,
-        private _Router: Router,
-        private _Store: Store<ToastModel>) { }
+        private _Router: Router) { }
 
 
     public ngOnInit(): void {
@@ -40,29 +34,16 @@ export class AccountInfoComponent implements OnInit {
     }
 
     private bindEvents(): void {
-        this.cityDropDownEl = this.elementRef.nativeElement.querySelector('paper-autocomplete');
-        if (!this.cityDropDownEl) {
-            return;
-        }
-        this.cityDropDownEl.addEventListener('text-changed', this.getCities.bind(this));
-        this.cityDropDownEl.addEventListener('autocomplete-selected', this.updateLocation.bind(this));
-    }
-
-    private getCities(event: any): void {
-        if (!event.detail.value || event.detail.value.length < 2) {
-            return;
-        }
-        this._LocationService.getCities(event.detail.value)
-            .then((response: Array<City>) => {
-                this.cityDropDownEl.source = this._LocationService.getCityDropdownList(response);
-            })
-            .catch((error: any) => {
-                console.log(error);
-            });
+        // this.cityDropDownEl = this.elementRef.nativeElement.querySelector('paper-autocomplete');
+        // if (!this.cityDropDownEl) {
+        //     return;
+        // }
+        // this.cityDropDownEl.addEventListener('text-changed', this.getCities.bind(this));
+        // this.cityDropDownEl.addEventListener('autocomplete-selected', this.updateLocation.bind(this));
     }
 
     private updateLocation(event: any): void {
-        if(!event.detail.value) {
+        if (!event.detail.value) {
             return;
         }
         this.model.city = event.detail.value.name;
@@ -80,18 +61,11 @@ export class AccountInfoComponent implements OnInit {
         this.model.userId = this.user.id;
 
         let promise: Promise<PersonalInfo> = this.model.id ?
-            this._UserInfoService.updateUserInfo(this.model) :
-            this._UserInfoService.addUserInfo(this.model);
+            this._UserInfoService.updatePersonalInfo(this.model) :
+            this._UserInfoService.addPersonalInfo(this.model);
 
-        promise.then((response: PersonalInfo) => {
-                let toast: ToastModel = {
-                    text: "account information updated successfully",
-                    duration: 5000,
-                    type: "success"
-                };
-                this._Store.dispatch({type: ReducerActions.Toast.Update, payload: toast});
-        }).catch((error: any) => {
+        promise.catch((error: any) => {
             console.log(error);
         });
     }
-}
+}   

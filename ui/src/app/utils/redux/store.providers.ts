@@ -1,5 +1,7 @@
-import { ToastReducer } from "./app-reducers";
+import { ToastReducer, LoaderReducer, MenuLinksReducer } from "./app-reducers";
 
 export const StoreProviders = {
-    Toast: ToastReducer
+    Toast: ToastReducer,
+    Loader: LoaderReducer,
+    MenuLinks: MenuLinksReducer
 };

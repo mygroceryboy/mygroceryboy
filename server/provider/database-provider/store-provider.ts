@@ -19,7 +19,7 @@ export namespace StoreProvider {
                 })
                 .catch((err: any) => {
                     console.log(err);
-                    response.message = "error occured while saving personal information!";
+                    response.message = "error occured while geetting store listing!";
                     reject(response);
                 });
         });
@@ -37,7 +37,7 @@ export namespace StoreProvider {
                 })
                 .catch((err: any) => {
                     console.log(err);
-                    response.message = "error occured while saving personal information!";
+                    response.message = "error occured while getting store details!";
                     reject(response);
                 });
         });
@@ -49,13 +49,20 @@ export namespace StoreProvider {
             DbStore
                 .create(store)
                 .then((dbRes: any) => {
+                    if (!dbRes) {
+                        response.isSuccessful = false;
+                        response.data = null;
+                        response.message = "error occured while saving store details!";
+                        return resolve(response);
+                    }
                     response.isSuccessful = true;
+                    response.message = "store created successfully!";
                     response.data = translate(dbRes);
-                    resolve(response);
+                    return resolve(response);
                 })
                 .catch((err: any) => {
                     console.log(err);
-                    response.message = "error occured while saving personal information!";
+                    response.message = "error occured while saving store details!";
                     reject(response);
                 });
         });
@@ -65,15 +72,22 @@ export namespace StoreProvider {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
-                .findOneAndUpdate({_id: store.id}, store)
+                .findOneAndUpdate({id: store.id}, store)
                 .then((dbRes: any) => {
+                    if (!dbRes) {
+                        response.isSuccessful = false;
+                        response.data = null;
+                        response.message = "error occured while updating store details!";
+                        return resolve(response);
+                    }
                     response.isSuccessful = true;
+                    response.message = "store updated successfully!";
                     response.data = translate(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
                     console.log(err);
-                    response.message = "error occured while saving personal information!";
+                    response.message = "error occured while updating store details!";
                     reject(response);
                 });
         });
@@ -83,7 +97,7 @@ export namespace StoreProvider {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
-                .findOneAndRemove({_id: id})
+                .findOneAndRemove({id: id})
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
                     response.data = translate(dbRes);
@@ -91,7 +105,7 @@ export namespace StoreProvider {
                 })
                 .catch((err: any) => {
                     console.log(err);
-                    response.message = "error occured while saving personal information!";
+                    response.message = "error occured while saving store details!";
                     reject(response);
                 });
         });
@@ -103,7 +117,7 @@ export namespace StoreProvider {
         }
         return {
             id: dbStore.id,
-            personalInfoId: dbStore._personalInfo,
+            _personalInfo: dbStore._personalInfo,
             name: dbStore.name,
             phone: dbStore.phone,
             address1: dbStore.address1,
@@ -112,7 +126,7 @@ export namespace StoreProvider {
             state: dbStore.state,
             country: dbStore.country,
             description: dbStore.description,
-            account: null,
+            personalInfo: null,
         };
     }
 }

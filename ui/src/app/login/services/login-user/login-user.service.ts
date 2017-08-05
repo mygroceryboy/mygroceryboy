@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response as HttpResponse } from "@angular/http";
 import { User } from "../../../models/user.model";
 import { Response } from "../../../models/base/response.model";
 import { StorageService } from "../../../utils/storage/storage.service";
+import { HttpInterceptor as Http } from "app/utils/providers/http-interceptor.service";
 
 @Injectable()
 export class LoginUserService {
@@ -13,10 +13,10 @@ export class LoginUserService {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
                 .post('/api/login', user)
-                .subscribe((httpResponse: HttpResponse) => {
+                .subscribe((httpResponse: any) => {
                     let response: Response<User> = httpResponse.json();
                     if (!response || !response.isSuccessful) {
-                        reject(null);
+                        return reject(null);
                     }
                     this._StorageService.addItem("user", response.data, false);
                     resolve(response.data);

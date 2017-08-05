@@ -45,7 +45,7 @@ export class StoreUpdateComponent implements OnInit {
             return;
         }
         this._StoreService
-            .createStore(this.model)
+            .updateStore(this.model)
             .then((response: Store) => {
                 this._Router.navigate(['store']);
             })

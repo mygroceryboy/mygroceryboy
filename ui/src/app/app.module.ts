@@ -13,7 +13,7 @@ import { UserInfoModule } from "./user-info/user-info.module";
 import { HomeModule } from "./home/home.module";
 import { StoreModule as ShopModule } from "./store/store.module"
 
-import { LocationService } from "./utils/services/location/location.service";
+import { LocationService } from "./utils/providers/location/location.service";
 
 import { ToastReducer } from "./utils/redux/app-reducers";
 import { StoreProviders } from "./utils/redux/store.providers";

@@ -6,7 +6,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UtilsModule } from "../utils/utils.module";
 import { UserInfoComponent } from './components/user-info/user-info.component';
-import { UserInfoService } from "app/user-info/services/user-info/user-info.service";
+import { UserService } from "app/user-info/services/user/user.service";
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 
@@ -19,7 +19,7 @@ import { PersonalInfoComponent } from './components/personal-info/personal-info.
         UtilsModule,
         RouterModule
     ],
-    providers: [UserInfoService],
+    providers: [UserService],
     declarations: [
         UserInfoComponent,
         AccountInfoComponent,
