@@ -12,7 +12,7 @@ import { ToastModel, MenuLink } from "./utils/redux/app-reducers";
 export class AppComponent implements OnInit, OnDestroy {
 
     private toastModel: ToastModel = new ToastModel();
-    private isActive: boolean = true;
+    private isActive: boolean = false;
     private links: MenuLink[] = [];
     private toastSubscription: Subscription;
     private loaderSubscription: Subscription;
@@ -61,7 +61,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     private redirect(menu: any, path: string): void {
-        menu.close();
+        if (menu) {
+            menu.close();
+        }
         this.router.navigate([path]);
     }
 }

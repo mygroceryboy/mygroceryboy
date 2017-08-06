@@ -30,14 +30,14 @@ paper-card {
 div.card-new  paper-button {
     top: 50%;  
     transform: translateY(-50%); 
-    background-color: var(--paper-blue-500);
+    background-color: var(--paper-blue-700);
     font-weight: bold;
     color: white;
 }
 
 .card-heading {
     height: 50px;
-    background-color: var(--paper-lime-a100);
+    background-color: var(--paper-blue-700);
     text-align: center;
 }
 
@@ -49,6 +49,6 @@ div.card-new  paper-button {
 }
 
 paper-button {
-    color: var(--paper-blue-500);
+    color: var(--paper-blue-700);
     font-weight: bold;
 }

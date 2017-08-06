@@ -17,7 +17,7 @@ paper-dialog {
 }
 
 paper-button {
-    background-color: var(--paper-blue-500);
+    background-color: var(--paper-blue-700);
     border-radius: 5px;
     display: flex;
     margin-top: 20px;
