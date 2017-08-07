@@ -1,3 +1,7 @@
+.title{
+    margin-left: 0;
+}
+
 paper-toolbar h3.title {
     margin: 0;
     padding: 0;
@@ -79,8 +83,23 @@ paper-progress {
 
 .route-links {
     margin-left: 30px;
+    margin-right: 30px;
 }
 
 .router-link {
     color: white;
+    text-decoration: none;
+}
+
+.router-link:hover {
+    border-bottom: 3px solid #fff;
+    padding-bottom: 1px;
+}
+
+.is-active {
+    /* color: black; */
+    text-decoration: none;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 1px;
+    font-weight: bold;
 }
