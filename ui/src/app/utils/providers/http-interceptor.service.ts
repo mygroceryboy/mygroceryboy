@@ -9,7 +9,7 @@ import { ReducerActions } from "../redux/reducer-actions";
 
 @Injectable()
 export class HttpInterceptor extends Http {
-    constructor(private _XHRBackend: XHRBackend, 
+    constructor(private _XHRBackend: XHRBackend,
         private _RequestOptions: RequestOptions,
         private _ToastStore: Store<ToastModel>,
         private _LoaderStore: Store<boolean>) {
@@ -60,13 +60,11 @@ export class HttpInterceptor extends Http {
     }
 
     private beforeRequest(url: string, body?: string): void {
-        this._LoaderStore.dispatch({type: ReducerActions.Loader.Set, payload: true});
+        this._LoaderStore.dispatch({ type: ReducerActions.Loader.Set, payload: true });
     }
 
     private afterResponse(): void {
-        setTimeout(function() {
-            this._LoaderStore.dispatch({type: ReducerActions.Loader.Set, payload: false});
-        }.bind(this), 2000);
+        this._LoaderStore.dispatch({ type: ReducerActions.Loader.Set, payload: false });
     }
 
     private onCatch(error: any, caught: Observable<Response>): Observable<Response> {
@@ -84,7 +82,7 @@ export class HttpInterceptor extends Http {
             duration: 5000,
             type: "success"
         };
-        this._ToastStore.dispatch({type: ReducerActions.Toast.Update, payload: toast});
+        this._ToastStore.dispatch({ type: ReducerActions.Toast.Update, payload: toast });
     }
 
     private onError(error: any): void {
@@ -93,6 +91,6 @@ export class HttpInterceptor extends Http {
             duration: 5000,
             type: "failure"
         };
-        this._ToastStore.dispatch({type: ReducerActions.Toast.Update, payload: toast});
+        this._ToastStore.dispatch({ type: ReducerActions.Toast.Update, payload: toast });
     }
 }

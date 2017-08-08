@@ -20,7 +20,14 @@
         </ng-container>
     </div>
     <div slot="top" class="title"></div>
-    <paper-icon-button class="pull-right" slot="top" icon="icons:account-circle" onclick="menu.toggle()"></paper-icon-button>
+    <paper-menu-button slot="top">
+        <paper-icon-button icon="icons:account-circle" slot="dropdown-trigger"></paper-icon-button>
+        <paper-listbox slot="dropdown-content">
+            <paper-item (click)="redirect(null, 'user-info')">Profile</paper-item>
+            <paper-item (click)="redirect(null, 'settings')">Settings</paper-item>
+            <paper-item (click)="logout()">Logout</paper-item>
+        </paper-listbox>
+    </paper-menu-button>
     <paper-progress slot="bottom" class="fit" [disabled]="!isActive" indeterminate></paper-progress>
 </paper-toolbar>
 

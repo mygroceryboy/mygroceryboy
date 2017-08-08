@@ -1,8 +1,4 @@
 .title{
-    margin-left: 0;
-}
-
-paper-toolbar h3.title {
     margin: 0;
     padding: 0;
 }
@@ -102,4 +98,12 @@ paper-progress {
     border-bottom: 3px solid #fff;
     padding-bottom: 1px;
     font-weight: bold;
+}
+
+paper-menu-button {
+    margin-right: 25px;
+}
+
+paper-listbox {
+    cursor: pointer;
 }

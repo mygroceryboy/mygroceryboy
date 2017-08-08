@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs/Subscription";
 import { ToastModel, MenuLink } from "./utils/redux/app-reducers";
+import { AuthService } from "./utils/providers/auth/auth.service";
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private loaderSubscription: Subscription;
     private menuLinksSubscription: Subscription;
 
-    constructor(private router: Router, private _Store: Store<any>) {
+    constructor(private _Router: Router,
+        private _Store: Store<any>,
+        private _AuthService: AuthService) {
     }
 
     public ngOnInit(): void {
@@ -64,6 +67,11 @@ export class AppComponent implements OnInit, OnDestroy {
         if (menu) {
             menu.close();
         }
-        this.router.navigate([path]);
+        this._Router.navigate([path]);
+    }
+
+    public logout() {
+        this._AuthService.clearSession();
+        this._Router.navigate(['login']);
     }
 }
