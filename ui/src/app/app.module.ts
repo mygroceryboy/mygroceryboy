@@ -12,6 +12,7 @@ import { RegisterModule } from "./register/register.module";
 import { UserInfoModule } from "./user-info/user-info.module";
 import { HomeModule } from "./home/home.module";
 import { StoreModule as ShopModule } from "./store/store.module"
+import { GroceryModule } from "./grocery/grocery.module"
 
 import { LocationService } from "./utils/providers/location/location.service";
 
@@ -31,6 +32,7 @@ import { StoreProviders } from "./utils/redux/store.providers";
         RegisterModule,
         UserInfoModule,
         ShopModule,
+        GroceryModule,
         StoreModule.provideStore(StoreProviders),
         RouterModule.forRoot(AppRoutes)
     ],

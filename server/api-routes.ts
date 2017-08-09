@@ -17,7 +17,7 @@ class ApiRoutes {
         app.use('/api/register', registerRoutes);
         app.use('/api/cities', cityRoutes);
         app.use('/api/store', storeRoutes);
-        app.use('/api/grocery-item', groceryRoutes);
+        app.use('/api/grocery', groceryRoutes);
         // app.use('/api/cities', cityRoutes);
         //always register this route in the end
         app.use('/', indexRoute);

@@ -3,6 +3,7 @@ import { StoreListComponent } from "./components/store-list/store-list.component
 import { StoreUpdateComponent } from "./components/store-update/store-update.component";
 import { StoreCreateComponent } from "./components/store-create/store-create.component";
 import { AuthGuard } from "../utils/guards/auth-guard";
+import { GroceryRoute } from "../grocery/grocery-routes";
 
 export const StoreRoute: Route = {
     path: "store",
@@ -18,11 +19,6 @@ export const StoreRoute: Route = {
             component: StoreListComponent
         },
         {
-            path: "list/:storeId",
-            canActivate: [AuthGuard],
-            component: StoreUpdateComponent
-        },
-        {
             path: "list/filter/:query",
             canActivate: [AuthGuard],
             component: StoreListComponent
@@ -32,5 +28,13 @@ export const StoreRoute: Route = {
             canActivate: [AuthGuard],
             component: StoreCreateComponent
         },
+        {
+            path: ":storeId",
+            children: [{
+                path: "",
+                canActivate: [AuthGuard],
+                component: StoreUpdateComponent,
+            }, GroceryRoute]
+        }
     ]
 };

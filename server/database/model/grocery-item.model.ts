@@ -6,7 +6,7 @@ let GroceryItemSchema = new Schema({
     _store: {
         type: Schema.Types.ObjectId,
         ref: 'store',
-        required: [true, 'personal info id is required']
+        required: [true, 'store id is required']
     },
     name: {
         type: String,

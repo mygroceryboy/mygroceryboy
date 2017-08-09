@@ -98,7 +98,7 @@ export namespace GroceryProvider {
     }
 
     function translate(dbGroceryItem: any): GroceryItem {
-        if (dbGroceryItem) {
+        if (!dbGroceryItem) {
             return null;
         }
         return {

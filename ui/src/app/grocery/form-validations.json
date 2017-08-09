@@ -1,0 +1,17 @@
+{
+    "name": {
+        "required": {
+            "message": "name is required"
+        }
+    },
+    "price": {
+        "required": {
+            "message": "price is required"
+        }
+    },
+    "description": {
+        "required": {
+            "message": "description is required"
+        }
+    }
+}

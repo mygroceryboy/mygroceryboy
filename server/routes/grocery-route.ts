@@ -30,7 +30,7 @@ router.get('/:groceryItemId', (req: Request, res: Response, next: NextFunction) 
 //create new grocery item
 router.put('/', (req: Request, res: Response, next: NextFunction) => {
     req.body.id = new ObjectId();
-    req.body._personalInfo = new ObjectId(req.body.personalInfoId);
+    req.body._store = new ObjectId(req.body.storeId);
     GroceryProvider.createGroceryItem(req.body)
         .then((response: GroceryItem) => {
             res.json(response);
@@ -43,7 +43,7 @@ router.put('/', (req: Request, res: Response, next: NextFunction) => {
 //update grocery item
 router.post('/:id', (req: Request, res: Response, next: NextFunction) => {
     req.body.id = new ObjectId(req.body.id);
-    req.body._personalInfo = new ObjectId(req.body.personalInfoId);
+    req.body._store = new ObjectId(req.body.personalInfoId);
     GroceryProvider.updateGroceryItem(req.body)
         .then((response: GroceryItem) => {
             res.json(response);
