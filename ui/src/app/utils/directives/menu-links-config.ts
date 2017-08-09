@@ -1,24 +1,47 @@
 export const MenuLinksConfig = {
     StoreList: [{
-        path: "home",
-        label: "Home"
+        label: "Home",
+        path: "home"
+    }, {
+        label: "My Stores",
+        path: "store/list"
+    }, {
+        label: "Add Store",
+        path: "store/new"
+    }],
+    NewStore: [{
+        label: "Home",
+        path: "Home"
+    }, {
+        label: "My Stores",
+        path: "store/list"
+    }, {
+        label: "Store Details",
+        path: "store/new"
+    }],
+    StoreDetails: [{
+        label: "Store Details",
+        path: "store/:storeId"
     },{
         label: "My Stores",
         path: "store/list"
     },{
-        label: "Add Store",
-        path: "store/new"
+        label: "Grocery List",
+        path: "store/grocery/list"
+    }, {
+        label: "Add Grocery",
+        path: "store/grocery/new"
     }],
     Home: [{
         path: "home",
         label: "Home"
-    },{
+    }, {
         label: "My Stores",
         path: "store/list"
-    },{
+    }, {
         label: "About Us",
         path: "about-us"
-    },{
+    }, {
         label: "Contact Us",
         path: "contact-us"
     }]

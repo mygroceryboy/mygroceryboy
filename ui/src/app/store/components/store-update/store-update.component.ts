@@ -5,6 +5,7 @@ import { Store } from "../../../models/store.model";
 import { StoreService } from "../../services/store/store.service";
 import { StorageService } from "../../../utils/storage/storage.service";
 import { PersonalInfo } from "../../../models/user-info.model";
+import { MenuLink } from "../../../utils/redux/app-reducers";
 
 import * as validations from "../../form-validations.json";
 
@@ -17,6 +18,7 @@ export class StoreUpdateComponent implements OnInit {
 
     private model: Store = new Store();
     private errorMessages: Array<string> = [];
+    private links:Array<MenuLink>;
 
     constructor(private _ValidationService: ValidationService,
         private _StoreService: StoreService,
@@ -32,6 +34,7 @@ export class StoreUpdateComponent implements OnInit {
             .getStore(this._Route.snapshot.params.storeId)
             .then((response: Store) => {
                 this.model = response;
+                this.links = [{label: 'Store Details', path: "store/list/" + response.id}];
             })
             .catch((err: any) => {
                 console.log(err);

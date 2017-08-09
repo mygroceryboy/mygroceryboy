@@ -87,17 +87,14 @@ paper-progress {
     text-decoration: none;
 }
 
-.router-link:hover {
-    border-bottom: 3px solid #fff;
-    padding-bottom: 1px;
-}
-
-.is-active {
-    /* color: black; */
-    text-decoration: none;
-    border-bottom: 3px solid #fff;
-    padding-bottom: 1px;
-    font-weight: bold;
+.is-active:after {
+    content: '';
+    border-top: solid 5px #fff;
+    border-left: solid 5px transparent;
+    border-right: solid 5px transparent;
+    position: absolute;
+    left: 44%;
+    top: 80%;
 }
 
 paper-menu-button {
