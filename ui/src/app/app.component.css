@@ -87,7 +87,7 @@ paper-progress {
     text-decoration: none;
 }
 
-.is-active:after {
+.is-active:after, .router-link:hover::after {
     content: '';
     border-top: solid 5px #fff;
     border-left: solid 5px transparent;
