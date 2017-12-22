@@ -2,7 +2,7 @@ import { Address } from "./base/address.model";
 import { User } from "./user.model";
 
 export class Store {
-    public id: string;
+    public _id: string;
     public _user: string | User;
     public name: string;
     public phone: string;
@@ -10,7 +10,7 @@ export class Store {
     public description: string;
 
     public constructor() {
-        this.id = "";
+        this._id = "";
         this._user = "";
         this.name = "";
         this.phone = "";
@@ -23,13 +23,14 @@ export class Store {
         if (!dbStore) {
             return store;
         }
-        store._user = typeof dbStore._user === "string"
+        store._id = dbStore._id;
+        store._user =  dbStore._user && dbStore._user._bsontype
             ? dbStore._user
             : User.getUser(dbStore._user);
-        store.id = dbStore.id;
         store.name = dbStore.name;
         store.phone = dbStore.phone;
         store.address = Address.getAddress(dbStore.address);
         store.description = dbStore.description;
+        return store;
     }
 }

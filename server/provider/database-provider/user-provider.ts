@@ -53,9 +53,9 @@ export namespace UserProvider {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<User>();
             UserModel.findOneAndUpdate({ 
-                id: user.id 
+                id: user._id 
             }, {
-                id: user.id,
+                id: user._id,
                 username: user.username,
                 name: user.name,
                 userType: user.userType,

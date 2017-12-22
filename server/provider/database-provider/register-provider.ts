@@ -29,7 +29,7 @@ export class RegisterProvider {
 
     private translateUser(user: any): User {
         return {
-            id: user.id,
+            _id: user.id,
             name: user.name,
             username: user.username,
             email: user.email,

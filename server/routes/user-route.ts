@@ -27,7 +27,7 @@ router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunctio
 });
 
 router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body.id = new ObjectId(req.body.id);
+    req.body._id = new ObjectId(req.body._id);
     UserProvider.updateUser(req.body)
         .then((response) => {
             res.json(response);
@@ -38,7 +38,7 @@ router.post('', authenticate, (req: Request, res: Response, next: NextFunction) 
 });
 
 router.put('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    req.body.id = new ObjectId();
+    req.body._id = new ObjectId();
     UserProvider.saveUser(req.body)
         .then((response) => {
             res.json(response);
@@ -48,10 +48,8 @@ router.put('', authenticate, (req: Request, res: Response, next: NextFunction) =
         });
 });
 
-router.delete('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.query.id);
-
-    UserProvider.deleteUser(new ObjectId(req.query.id))
+router.delete(':/userId', authenticate, (req: Request, res: Response, next: NextFunction) => {
+    UserProvider.deleteUser(new ObjectId(req.body.userId))
         .then((response) => {
             res.json(response);
         })

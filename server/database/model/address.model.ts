@@ -22,4 +22,4 @@ export let AddressSchema = new Schema({
         required: [true, 'country is required']
     }
 
-});
+}, { id: false, _id: false });

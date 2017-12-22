@@ -27,11 +27,11 @@ export namespace StoreProvider {
         });
     }
 
-    export function getStore(id: ObjectId): Promise<Store> {
+    export function getStore(_id: ObjectId): Promise<Store> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
-                .findOne({ id: id })
+                .findOne({ _id: _id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
                     response.data = Store.getStore(dbRes);
@@ -74,7 +74,7 @@ export namespace StoreProvider {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
-                .findOneAndUpdate({ id: store.id }, store)
+                .findOneAndUpdate({ _id: store._id }, store)
                 .then((dbRes: any) => {
                     if (!dbRes) {
                         response.isSuccessful = false;
@@ -95,11 +95,11 @@ export namespace StoreProvider {
         });
     }
 
-    export function deleteStore(id: ObjectId): Promise<Store> {
+    export function deleteStore(_id: ObjectId): Promise<Store> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
-                .findOneAndRemove({ id: id })
+                .findOneAndRemove({ _id: _id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
                     response.data = Store.getStore(dbRes);

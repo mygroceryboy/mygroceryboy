@@ -3,7 +3,6 @@ import { APP_CONSTANTS } from "../../shared/app-constants";
 import { AddressSchema } from "./address.model";
 
 let StoreSchema = new Schema({
-    id: Schema.Types.ObjectId,
     _user: {
         type: Schema.Types.ObjectId,
         ref: 'user',

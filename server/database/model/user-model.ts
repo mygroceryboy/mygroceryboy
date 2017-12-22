@@ -4,11 +4,6 @@ import { Schema, model } from "mongoose";
 
 export let UserModel = model(APP_CONSTANTS.DB.COLLECTIONS.USERS, new Schema({
 
-    id: {
-        type: Schema.Types.ObjectId,
-        required: [true, 'identity is required']
-    },
-
     name: {
         type: String,
         required: [true, 'name is required']

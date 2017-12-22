@@ -29,8 +29,8 @@ router.get('/:storeId', (req: Request, res: Response, next: NextFunction) => {
 
 //create new grocery item
 router.put('/', (req: Request, res: Response, next: NextFunction) => {
-    req.body.id = new ObjectId();
-    req.body._personalInfo = new ObjectId(req.body.personalInfoId);
+    req.body._id = new ObjectId();
+    req.body._user = new ObjectId(req.body._user);
     StoreProvider.createStore(req.body)
         .then((response: Store) => {
             res.json(response);
@@ -42,8 +42,8 @@ router.put('/', (req: Request, res: Response, next: NextFunction) => {
 
 //update grocery item
 router.post('/', (req: Request, res: Response, next: NextFunction) => {
-    req.body.id = new ObjectId(req.body.id);
-    req.body._personalInfo = new ObjectId(req.body.personalInfoId);
+    req.body._id = new ObjectId(req.body._id);
+    req.body._user = new ObjectId(req.body._user);
     StoreProvider.updateStore(req.body)
         .then((response: Store) => {
             res.json(response);
