@@ -5,9 +5,9 @@ import { User } from "../../models/user.model";
 import { Response } from "../../models/base/response.model";
 import { PersonalInfo } from "../../models/personal-info.model";
 
-export class UserProvider {
+export namespace UserProvider {
 
-    public getAllUsers(): Promise<Response<User>> {
+    export function getAllUsers(): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
             UserModel.find(function (err: any, response: any) {
                 if (err) {
@@ -20,7 +20,7 @@ export class UserProvider {
         });
     }
 
-    public getUser(id: ObjectId): Promise<Response<User>> {
+    export function getUser(id: ObjectId): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
             UserModel.findById({
                 id: id
@@ -35,7 +35,7 @@ export class UserProvider {
         });
     }
 
-    public saveUser(user: User): Promise<Response<User>> {
+    export function saveUser(user: User): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
             UserModel.create(user, function (err: any, response: any) {
                 if (err) {
@@ -48,7 +48,7 @@ export class UserProvider {
         });
     }
 
-    public updateUser(user: User): Promise<Response<User>> {
+    export function updateUser(user: User): Promise<Response<User>> {
         let self = this;
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<User>();
@@ -80,7 +80,7 @@ export class UserProvider {
         });
     }
 
-    public deleteUser(id: ObjectId): Promise<boolean> {
+    export function deleteUser(id: ObjectId): Promise<boolean> {
         return new Promise((resolve: Function, reject: Function) => {
             UserModel.findOneAndRemove({
                 id: id

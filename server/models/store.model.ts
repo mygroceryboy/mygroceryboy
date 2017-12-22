@@ -17,4 +17,19 @@ export class Store {
         this.description = "";
         this.address = new Address();
     }
+
+    public static getStore(dbStore: any): Store {
+        let store: Store = new Store();
+        if (!dbStore) {
+            return store;
+        }
+        store._user = typeof dbStore._user === "string"
+            ? dbStore._user
+            : User.getUser(dbStore._user);
+        store.id = dbStore.id;
+        store.name = dbStore.name;
+        store.phone = dbStore.phone;
+        store.address = Address.getAddress(dbStore.address);
+        store.description = dbStore.description;
+    }
 }

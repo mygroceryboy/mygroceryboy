@@ -5,10 +5,9 @@ import { ObjectId } from "bson";
 import { authenticate } from "./validate-session";
 
 let router = express.Router();
-let provider: LoginProvider = new LoginProvider();
 
 router.post('', (req: Request, res: Response, next: NextFunction) => {
-    provider.login(req.body).then(response => {
+    LoginProvider.login(req.body).then(response => {
         req.session.user = req.body;
         req.session.save(err => {
             if (err) {

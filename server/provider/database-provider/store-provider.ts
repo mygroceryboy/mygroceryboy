@@ -15,7 +15,7 @@ export namespace StoreProvider {
                 .then((dbRes: any[]) => {
                     response.isSuccessful = true;
                     response.data = dbRes.map(function (item: any) {
-                        return translate(item);
+                        return Store.getStore(item);
                     });
                     resolve(response);
                 })
@@ -34,7 +34,7 @@ export namespace StoreProvider {
                 .findOne({ id: id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
-                    response.data = translate(dbRes);
+                    response.data = Store.getStore(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
@@ -59,7 +59,7 @@ export namespace StoreProvider {
                     }
                     response.isSuccessful = true;
                     response.message = "store created successfully!";
-                    response.data = translate(dbRes);
+                    response.data = Store.getStore(dbRes);
                     return resolve(response);
                 })
                 .catch((err: any) => {
@@ -84,7 +84,7 @@ export namespace StoreProvider {
                     }
                     response.isSuccessful = true;
                     response.message = "store updated successfully!";
-                    response.data = translate(dbRes);
+                    response.data = Store.getStore(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
@@ -102,7 +102,7 @@ export namespace StoreProvider {
                 .findOneAndRemove({ id: id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
-                    response.data = translate(dbRes);
+                    response.data = Store.getStore(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
@@ -111,20 +111,5 @@ export namespace StoreProvider {
                     reject(response);
                 });
         });
-    }
-
-    function translate(dbStore: any): Store {
-        let store: Store = new Store();
-        if (!dbStore) {
-            return store;
-        }
-        store._user = typeof dbStore._user === "string"
-            ? dbStore._user
-            : User.getUser(dbStore._user);
-        store.id = dbStore.id;
-        store.name = dbStore.name;
-        store.phone = dbStore.phone;
-        store.address = Address.getAddress(dbStore.address);
-        store.description = dbStore.description;
     }
 }

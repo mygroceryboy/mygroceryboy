@@ -5,16 +5,9 @@ import { Response } from "../../models/base/response.model";
 import { User } from "../../models/user.model";
 import { PersonalInfo } from "../../models/personal-info.model";
 
-export class LoginProvider {
+export namespace LoginProvider {
 
-    private self: LoginProvider;
-
-    constructor() {
-        this.self = this;
-    }
-
-    public login(user: any): Promise<Response<User>> {
-        let self: LoginProvider = this;
+    export function login(user: any): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response();
             UserModel.findOne({
@@ -35,42 +28,9 @@ export class LoginProvider {
                 }
                 response.isSuccessful = true;
                 response.message = "Successfully logged in as " + dbRes.name;
-                response.data = self.translateUser(dbRes);
+                response.data = User.getUser(dbRes);
                 resolve(response);
             });
         });
-    }
-    
-    private translateUser(dbUser: any): User {
-        if (!dbUser) {
-            let user = new User();
-            return user;
-        }
-        return {
-            id: dbUser.id,
-            username: dbUser.username,
-            name: dbUser.name,
-            userType: dbUser.userType,
-            email: dbUser.email,
-            password: null,
-            personalInfo: this.translatePersonalInfo(dbUser.personalInfo)
-        };
-    }
-
-    private translatePersonalInfo(personalInfo: any): PersonalInfo {
-        if (!personalInfo) {
-            let info = new PersonalInfo();
-            return info;
-        }
-        return {
-            address1: personalInfo.address1,
-            address2: personalInfo.address2,
-            city: personalInfo.city,
-            state: personalInfo.state,
-            country: personalInfo.country,
-            description: personalInfo.description,
-            phone: personalInfo.phone,
-            postCode: personalInfo.postCode
-        };
     }
 }

@@ -5,10 +5,9 @@ import { ObjectId } from "bson";
 import { authenticate } from "./validate-session"; 
 
 let router = express.Router();
-let provider: UserProvider = new UserProvider();
 
 router.get('', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    provider.getAllUsers()
+    UserProvider.getAllUsers()
         .then((response) => {
             res.json(response);
         })
@@ -18,7 +17,7 @@ router.get('', authenticate, (req: Request, res: Response, next: NextFunction) =
 });
 
 router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunction) => {
-    provider.getUser(new ObjectId(req.params.id))
+    UserProvider.getUser(new ObjectId(req.params.id))
         .then((response) => {
             res.json(response);
         })
@@ -29,7 +28,7 @@ router.get('/:id', authenticate, (req: Request, res: Response, next: NextFunctio
 
 router.post('', authenticate, (req: Request, res: Response, next: NextFunction) => {
     req.body.id = new ObjectId(req.body.id);
-    provider.updateUser(req.body)
+    UserProvider.updateUser(req.body)
         .then((response) => {
             res.json(response);
         })
@@ -40,7 +39,7 @@ router.post('', authenticate, (req: Request, res: Response, next: NextFunction) 
 
 router.put('', authenticate, (req: Request, res: Response, next: NextFunction) => {
     req.body.id = new ObjectId();
-    provider.saveUser(req.body)
+    UserProvider.saveUser(req.body)
         .then((response) => {
             res.json(response);
         })
@@ -52,7 +51,7 @@ router.put('', authenticate, (req: Request, res: Response, next: NextFunction) =
 router.delete('', authenticate, (req: Request, res: Response, next: NextFunction) => {
     console.log(req.query.id);
 
-    provider.deleteUser(new ObjectId(req.query.id))
+    UserProvider.deleteUser(new ObjectId(req.query.id))
         .then((response) => {
             res.json(response);
         })
