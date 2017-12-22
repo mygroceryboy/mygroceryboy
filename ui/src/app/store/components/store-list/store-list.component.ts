@@ -31,6 +31,6 @@ export class StoreListComponent implements OnInit {
     }
 
     private getStore(storeId: string): void {
-        this._Router.navigate(['store', 'list', storeId]);
+        this._Router.navigate(['store', storeId]);
     }
 }

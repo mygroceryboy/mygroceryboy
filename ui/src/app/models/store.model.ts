@@ -1,30 +1,20 @@
+import { Address } from "./base/address.model";
 import { User } from "./user.model";
 
-
 export class Store {
-    public id: string;
-    public personalInfoId: string;
+    public _id: string;
+    public _user: string | User;
     public name: string;
     public phone: string;
-    public address1: string;
-    public address2: string;
-    public city: string;
-    public state: string;
-    public country: string;
+    public address: Address;
     public description: string;
-    public account: User
 
     public constructor() {
-        this.id = "";
-        this.personalInfoId = "";
+        this._id = "";
+        this._user = "";
         this.name = "";
         this.phone = "";
-        this.address1 = "";
-        this.address2 = "";
-        this.city = "";
-        this.state = "";
-        this.country = "";
         this.description = "";
-        this.account = null;
+        this.address = new Address();
     }
 }

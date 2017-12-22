@@ -25,7 +25,7 @@ export class StoreCreateComponent implements OnInit {
 
     public ngOnInit(): void {
         let user: User = this._StorageService.getItem('user');
-        this.model.personalInfoId = user.id;
+        this.model._user = user.id;
     }
 
     private createStore(dialog: any): void {

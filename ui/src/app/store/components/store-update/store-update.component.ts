@@ -35,10 +35,10 @@ export class StoreUpdateComponent implements OnInit {
             .then((response: Store) => {
                 this.model = response;
                 this.links = [
-                    { label: 'Store Details', path: "store/" + response.id },
+                    { label: 'Store Details', path: "store/" + response._id },
                     {
                         label: 'Add Grocery',
-                        path: "store/" + response.id + "/grocery/new"
+                        path: "store/" + response._id + "/grocery/new"
                     }
                 ];
             })
