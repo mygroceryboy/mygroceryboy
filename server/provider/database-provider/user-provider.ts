@@ -73,7 +73,7 @@ export class UserProvider {
                     reject(response);
                 } else {
                     response.isSuccessful = true;
-                    response.data = self.translateUser(dbRes);
+                    response.data = User.getUser(dbRes);
                     resolve(response);
                 }
             });
@@ -93,38 +93,5 @@ export class UserProvider {
                 resolve(response);
             });
         });
-    }
-
-    private translateUser(dbUser: any): User {
-        if (!dbUser) {
-            let user = new User();
-            return user;
-        }
-        return {
-            id: dbUser.id,
-            username: dbUser.username,
-            name: dbUser.name,
-            userType: dbUser.userType,
-            email: dbUser.email,
-            password: null,
-            personalInfo: this.translatePersonalInfo(dbUser.personalInfo)
-        };
-    }
-
-    private translatePersonalInfo(personalInfo: any): PersonalInfo {
-        if (!personalInfo) {
-            let info = new PersonalInfo();
-            return info;
-        }
-        return {
-            address1: personalInfo.address1,
-            address2: personalInfo.address2,
-            city: personalInfo.city,
-            state: personalInfo.state,
-            country: personalInfo.country,
-            description: personalInfo.description,
-            phone: personalInfo.phone,
-            postCode: personalInfo.postCode
-        };
     }
 }

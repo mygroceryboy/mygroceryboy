@@ -1,4 +1,5 @@
-import { PersonalInfo } from "./personal-info.model";
+import { User } from "./user.model";
+
 
 export class Store {
     public id: string;
@@ -11,7 +12,7 @@ export class Store {
     public state: string;
     public country: string;
     public description: string;
-    public account: PersonalInfo
+    public account: User
 
     public constructor() {
         this.id = "";

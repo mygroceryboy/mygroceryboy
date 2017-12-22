@@ -1,12 +1,13 @@
 import { model, Schema } from "mongoose";
 import { APP_CONSTANTS } from "../../shared/app-constants";
+import { AddressSchema } from "./address.model";
 
 let StoreSchema = new Schema({
     id: Schema.Types.ObjectId,
-    _personalInfo: {
+    _user: {
         type: Schema.Types.ObjectId,
-        ref: 'personal.info',
-        required: [true, 'personal info id is required']
+        ref: 'user',
+        required: [true, 'user id is required']
     },
     name: {
         type: String,
@@ -16,24 +17,9 @@ let StoreSchema = new Schema({
         type: String,
         required: [true, 'phone is required']
     },
-    address1: {
-        type: String,
-        required: [true, 'address line 1 is required']
-    },
-    address2: {
-        type: String
-    },
-    city: {
-        type: String,
-        required: [true, 'city is required']
-    },
-    state: {
-        type: String,
-        required: [true, 'state is required']
-    },
-    country: {
-        type: String,
-        required: [true, 'country is required']
+    address: {
+        type: AddressSchema,
+        required: [true, 'address is required']
     },
     description: {
         type: String

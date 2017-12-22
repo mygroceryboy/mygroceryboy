@@ -2,6 +2,8 @@ import { DbStore } from "../../database/model/store.model";
 import { Response } from "../../models/base/response.model";
 import { Store } from "../../models/store.model";
 import { ObjectId } from "bson";
+import { Address } from "../../models/base/address.model";
+import { User } from "../../models/user.model";
 
 export namespace StoreProvider {
 
@@ -72,7 +74,7 @@ export namespace StoreProvider {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
-                .findOneAndUpdate({id: store.id}, store)
+                .findOneAndUpdate({ id: store.id }, store)
                 .then((dbRes: any) => {
                     if (!dbRes) {
                         response.isSuccessful = false;
@@ -97,7 +99,7 @@ export namespace StoreProvider {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
-                .findOneAndRemove({id: id})
+                .findOneAndRemove({ id: id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
                     response.data = translate(dbRes);
@@ -105,28 +107,24 @@ export namespace StoreProvider {
                 })
                 .catch((err: any) => {
                     console.log(err);
-                    response.message = "error occured while saving store details!";
+                    response.message = "error occured while deleting store details!";
                     reject(response);
                 });
         });
     }
 
     function translate(dbStore: any): Store {
+        let store: Store = new Store();
         if (!dbStore) {
-            return null;
+            return store;
         }
-        return {
-            id: dbStore.id,
-            _personalInfo: dbStore._personalInfo,
-            name: dbStore.name,
-            phone: dbStore.phone,
-            address1: dbStore.address1,
-            address2: dbStore.address2,
-            city: dbStore.city,
-            state: dbStore.state,
-            country: dbStore.country,
-            description: dbStore.description,
-            personalInfo: null,
-        };
+        store._user = typeof dbStore._user === "string"
+            ? dbStore._user
+            : User.getUser(dbStore._user);
+        store.id = dbStore.id;
+        store.name = dbStore.name;
+        store.phone = dbStore.phone;
+        store.address = Address.getAddress(dbStore.address);
+        store.description = dbStore.description;
     }
 }

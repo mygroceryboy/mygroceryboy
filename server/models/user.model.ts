@@ -20,4 +20,20 @@ export class User {
         this.password = "";
         this.personalInfo = new PersonalInfo();
     }
+
+    public static getUser(dbUser: any): User {
+        if (!dbUser) {
+            let user = new User();
+            return user;
+        }
+        return {
+            id: dbUser.id,
+            username: dbUser.username,
+            name: dbUser.name,
+            userType: dbUser.userType,
+            email: dbUser.email,
+            password: null,
+            personalInfo: PersonalInfo.getPersonalInfo(dbUser.personalInfo)
+        };
+    }
 }

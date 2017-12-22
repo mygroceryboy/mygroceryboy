@@ -8,7 +8,7 @@ export class PersonalInfo {
     public country: string;
     public description: string;
 
-    constructor() {
+    public constructor() {
         this.address1 = "";
         this.address2 = "";
         this.city = "";
@@ -17,5 +17,22 @@ export class PersonalInfo {
         this.country = "";
         this.description = "";
         this.phone = "";
+    }
+
+    public static getPersonalInfo(personalInfo: any): PersonalInfo {
+        if (!personalInfo) {
+            let info = new PersonalInfo();
+            return info;
+        }
+        return {
+            address1: personalInfo.address1,
+            address2: personalInfo.address2,
+            city: personalInfo.city,
+            state: personalInfo.state,
+            country: personalInfo.country,
+            description: personalInfo.description,
+            phone: personalInfo.phone,
+            postCode: personalInfo.postCode
+        };
     }
 }
