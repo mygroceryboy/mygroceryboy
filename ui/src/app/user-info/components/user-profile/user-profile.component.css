@@ -1,0 +1,15 @@
+.container {
+    left: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+paper-tabs {
+    background-color: var(--paper-blue-700);
+    display: flex;
+    margin-top: 20px;
+    padding: 0 10px 0 10px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+}

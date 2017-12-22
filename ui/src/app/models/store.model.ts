@@ -1,4 +1,4 @@
-import { PersonalInfo } from "./user-info.model";
+import { PersonalInfo } from "./personal-info.model";
 
 export class Store {
     public id: string;

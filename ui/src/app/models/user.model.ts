@@ -1,3 +1,4 @@
+import { PersonalInfo } from "./personal-info.model";
 export type USER_TYPE = "SHOPKEEPER" | "CUSTOMER";
 
 export class User {
@@ -8,6 +9,7 @@ export class User {
     public email: string;
     public password: string;
     public repeatPassword: string;
+    public personalInfo: PersonalInfo;
 
     constructor() {
         this.id = "";
@@ -17,5 +19,6 @@ export class User {
         this.email = "";
         this.password = "";
         this.repeatPassword = "";
+        this.personalInfo = new PersonalInfo();
     }
 }

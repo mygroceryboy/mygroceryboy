@@ -1,24 +1,44 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-2">
-            <paper-dialog id="dialog" #dialog class="col-lg-6" with-backdrop>
-                <h2>Form Errors</h2>
-                <ul *ngIf="errorMessages && errorMessages.length">
-                    <li *ngFor="let message of errorMessages">
-                        {{message}}
-                    </li>
-                </ul>
-            </paper-dialog>
-        </div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-2">
+        <paper-dialog id="dialog" #dialog class="col-lg-6" with-backdrop>
+            <h2>Form Errors</h2>
+            <ul *ngIf="errorMessages && errorMessages.length">
+                <li *ngFor="let message of errorMessages">
+                    {{message}}
+                </li>
+            </ul>
+        </paper-dialog>
     </div>
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-            <paper-tabs selected="0">
-                <paper-tab>Personal Info</paper-tab>
-                <paper-tab>Account Info</paper-tab>
-            </paper-tabs>
-        </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-input class="form-input" label="name" [(ngModel)]="model.name" ngDefaultControl></paper-input>
     </div>
-    <app-personal-info *ngIf="tab === 0"[model]="user"></app-personal-info>
-    <app-account-info *ngIf="tab === 1" [model]="userInfo" [user]="user"></app-account-info>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-input class="form-input" label="username" [(ngModel)]="model.username" ngDefaultControl>
+        </paper-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-input class="form-input" label="email" [(ngModel)]="model.email" ngDefaultControl>
+        </paper-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-dropdown-menu #userType class="col-lg-12" label="User Type" (value-changed)="userTypeChanged(userType.value)">
+            <paper-listbox slot="dropdown-content" [selected]="model.userType === 'SHOPKEEPER' ? '0' : '1'">
+                <paper-item class="paper-item" role="option">SHOPKEEPER</paper-item>
+                <paper-item class="paper-item" role="option">CUSTOMER</paper-item>
+            </paper-listbox>
+        </paper-dropdown-menu>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-button (click)="updateUsereInfo(dialog)" raised>Update User Info</paper-button>
+    </div>
 </div>

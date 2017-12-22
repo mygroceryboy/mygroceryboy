@@ -1,24 +1,18 @@
-import { User } from "../models/user.model";
-
 export class PersonalInfo {
-    public id: string;
-    public userId: string;
-    public user: User;
+    public phone: string;
     public address1: string;
     public address2: string;
     public city: string;
+    public postCode: string;
     public state: string;
     public country: string;
     public description: string;
-    public phone: string;
 
     constructor() {
-        this.id = "";
-        this.userId = "";
-        this.user = new User();
         this.address1 = "";
         this.address2 = "";
         this.city = "";
+        this.postCode = "";
         this.state = "";
         this.country = "";
         this.description = "";

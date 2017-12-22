@@ -1,15 +1,21 @@
-.container {
-    left: 50%;
-    margin: auto;
-    margin-bottom: 20px;
+.form-input {
+    padding: 0 10px 0 10px;
 }
 
-paper-tabs {
+paper-dialog {
+    position: fixed;
+    top: 70px;
+    border: 2px solid;
+    border-color: var(--paper-red-500);
+    background-color: var(--paper-red-100);
+}
+
+paper-button {
     background-color: var(--paper-blue-700);
     display: flex;
     margin-top: 20px;
-    padding: 0 10px 0 10px;
     font-weight: bold;
     color: white;
+    margin-bottom: 5px;
     border-radius: 5px;
 }

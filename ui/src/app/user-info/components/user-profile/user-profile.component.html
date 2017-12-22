@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-2">
+            <paper-dialog id="dialog" #dialog class="col-lg-6" with-backdrop>
+                <h2>Form Errors</h2>
+                <ul *ngIf="errorMessages && errorMessages.length">
+                    <li *ngFor="let message of errorMessages">
+                        {{message}}
+                    </li>
+                </ul>
+            </paper-dialog>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+            <paper-tabs selected="0">
+                <paper-tab>User Info</paper-tab>
+                <paper-tab>Personal Info</paper-tab>
+            </paper-tabs>
+        </div>
+    </div>
+    <app-user-info *ngIf="tab === 0"[model]="user"></app-user-info>
+    <app-personal-info *ngIf="tab === 1" [model]="user"></app-personal-info>
+</div>

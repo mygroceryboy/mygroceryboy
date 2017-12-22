@@ -5,10 +5,10 @@ import { FormsModule } from "@angular/forms";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UtilsModule } from "../utils/utils.module";
-import { UserInfoComponent } from './components/user-info/user-info.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserService } from "app/user-info/services/user/user.service";
-import { AccountInfoComponent } from './components/account-info/account-info.component';
-import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
+import { UserInfoComponent } from 'app/user-info/components/user-info/user-info.component';
+import { PersonalInfoComponent } from 'app/user-info/components/personal-info/personal-info.component';
 
 @NgModule({
     imports: [
@@ -22,8 +22,8 @@ import { PersonalInfoComponent } from './components/personal-info/personal-info.
     providers: [UserService],
     declarations: [
         UserInfoComponent,
-        AccountInfoComponent,
-        PersonalInfoComponent
+        PersonalInfoComponent,
+        UserProfileComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

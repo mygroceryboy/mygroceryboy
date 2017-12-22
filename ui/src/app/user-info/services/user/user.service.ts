@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PersonalInfo } from "../../../models/user-info.model";
+import { PersonalInfo } from "../../../models/personal-info.model";
 import { Response } from "../../../models/base/response.model";
 import { StorageService } from "../../../utils/storage/storage.service";
 import { User } from "../../../models/user.model";
@@ -50,51 +50,6 @@ export class UserService {
                         return reject(null);
                     }
                     this._StorageService.addItem("user", response.data, false);
-                    resolve(response.data);
-                });
-        });
-    }
-
-    public getPersonalInfo(userId: string): Promise<PersonalInfo> {
-        return new Promise((resolve: Function, reject: Function) => {
-            return this._Http
-                .get('/api/personal-info/' + userId)
-                .subscribe((httpResponse: any) => {
-                    let response: Response<PersonalInfo> = httpResponse.json();
-                    if (!response || !response.isSuccessful) {
-                        return reject(null);
-                    }
-                    this._StorageService.addItem("user-info", response.data, false);
-                    resolve(response.data);
-                });
-        });
-    }
-
-    public addPersonalInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
-        return new Promise((resolve: Function, reject: Function) => {
-            return this._Http
-                .put('/api/personal-info', userInfo)
-                .subscribe((httpResponse: any) => {
-                    let response: Response<PersonalInfo> = httpResponse.json();
-                    if (!response || !response.isSuccessful) {
-                        return reject(null);
-                    }
-                    this._StorageService.addItem("user-info", response.data, false);
-                    resolve(response.data);
-                });
-        });
-    }
-
-    public updatePersonalInfo(userInfo: PersonalInfo): Promise<PersonalInfo> {
-        return new Promise((resolve: Function, reject: Function) => {
-            return this._Http
-                .post('/api/personal-info', userInfo)
-                .subscribe((httpResponse: any) => {
-                    let response: Response<PersonalInfo> = httpResponse.json();
-                    if (!response || !response.isSuccessful) {
-                        return reject(null);
-                    }
-                    this._StorageService.addItem("user-info", response.data, false);
                     resolve(response.data);
                 });
         });

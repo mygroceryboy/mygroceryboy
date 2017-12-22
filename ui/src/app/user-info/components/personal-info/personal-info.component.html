@@ -12,33 +12,39 @@
 </div>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-        <paper-input class="form-input" label="username" [(ngModel)]="model.username" ngDefaultControl>
+        <paper-input class="form-input" label="address1" [(ngModel)]="model.personalInfo.address1" ngDefaultControl>
         </paper-input>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-        <paper-input class="form-input" label="name" [(ngModel)]="model.name" ngDefaultControl></paper-input>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
-        <paper-input class="form-input" label="email" [(ngModel)]="model.email" ngDefaultControl>
+        <paper-input class="form-input" label="address2" [(ngModel)]="model.personalInfo.address2" ngDefaultControl>
         </paper-input>
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
-        <paper-dropdown-menu #userType class="col-lg-12" label="User Type" (value-changed)="userTypeChanged(userType.value)">
-            <paper-listbox slot="dropdown-content" [selected]="model.userType === 'SHOPKEEPER' ? '0' : '1'">
-                <paper-item class="paper-item" role="option">SHOPKEEPER</paper-item>
-                <paper-item class="paper-item" role="option">CUSTOMER</paper-item>
-            </paper-listbox>
-        </paper-dropdown-menu>
+    <div class="col-lg-2 col-lg-offset-3">
+        <paper-input class="form-input" label="city" [(ngModel)]="model.personalInfo.city" ngDefaultControl></paper-input>
+    </div>
+    <div class="col-lg-2">
+        <paper-input class="form-input" label="state" [(ngModel)]="model.personalInfo.state" ngDefaultControl></paper-input>
+    </div>
+    <div class="col-lg-2">
+        <paper-input class="form-input" label="country" [(ngModel)]="model.personalInfo.country" ngDefaultControl></paper-input>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-        <paper-button (click)="updatePersonalInfo(dialog)" raised>Update Personal Info</paper-button>
+        <paper-input class="form-input" label="contact number" [(ngModel)]="model.personalInfo.phone" ngDefaultControl></paper-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-input class="form-input" label="description" [(ngModel)]="model.personalInfo.description" ngDefaultControl></paper-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <paper-button (click)="updateUserInfo(dialog)" raised>Update Personal Info</paper-button>
     </div>
 </div>

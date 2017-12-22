@@ -1,17 +1,24 @@
-// import * as mongoose from "mongoose";
+import * as mongoose from "mongoose";
 import { APP_CONSTANTS } from "../../shared/app-constants"
 import { Schema, model } from "mongoose";
 
-let UserSchema = new Schema({
-    id: Schema.Types.ObjectId,
+export let UserModel = model(APP_CONSTANTS.DB.COLLECTIONS.USERS, new Schema({
+
+    id: {
+        type: Schema.Types.ObjectId,
+        required: [true, 'identity is required']
+    },
+
     name: {
         type: String,
         required: [true, 'name is required']
     },
+
     username: {
         type: String,
         required: [true, 'user name is required']
     },
+
     userType: {
         type: String,
         required: [true, 'user type is required'],
@@ -22,6 +29,7 @@ let UserSchema = new Schema({
             }
         }
     },
+
     email: {
         type: String,
         validate: {
@@ -33,10 +41,50 @@ let UserSchema = new Schema({
         },
         required: [true, 'email id is required']
     },
+
     password: {
         type: String,
         required: [true, 'password is required']
     },
-}, { timestamps: true, versionKey: false});
 
-export let UserModel = model(APP_CONSTANTS.DB.COLLECTIONS.USERS, UserSchema);
+    personalInfo: {
+
+        phone: {
+            type: String,
+            required: [true, 'phone is required']
+        },
+
+        address1: {
+            type: String,
+            required: [true, 'address line 1 is required']
+        },
+
+        address2: {
+            type: String
+        },
+
+        city: {
+            type: String,
+            required: [true, 'city is required']
+        },
+        
+        postCode: {
+            type: String,
+            required: [true, 'post code is required']
+        },
+
+        state: {
+            type: String,
+            required: [true, 'state is required']
+        },
+
+        country: {
+            type: String,
+            required: [true, 'country is required']
+        },
+
+        description: {
+            type: String
+        }
+    }
+}, { timestamps: true, versionKey: false }));

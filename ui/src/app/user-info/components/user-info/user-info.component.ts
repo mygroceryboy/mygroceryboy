@@ -1,9 +1,13 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { PersonalInfo } from "../../../models/user-info.model";
+import { ValidationService } from "../../..//utils/validation/validation.service";
 import { User } from "../../../models/user.model";
 import { UserService } from "../../services/user/user.service";
 import { StorageService } from "../../../utils/storage/storage.service";
+import { City } from "../../../models/city.model";
+
+// validations
+import * as validations from "./form-validations.json";
 
 @Component({
     selector: 'app-user-info',
@@ -12,46 +16,31 @@ import { StorageService } from "../../../utils/storage/storage.service";
 })
 export class UserInfoComponent implements OnInit {
 
-    public userInfo: PersonalInfo = new PersonalInfo();
-    private user: User;
-    private tabsEl: any;
-    private tab: number = 0;
+    @Input()
+    public model: User;
+    private errorMessages: Array<string> = [];
 
     constructor(private elementRef: ElementRef,
+        private _ValidationService: ValidationService,
         private _UserInfoService: UserService,
         private _StorageService: StorageService,
-        private _Router: Router) {
-    }
+        private _Router: Router) { }
 
     public ngOnInit(): void {
-        this.user = this._StorageService.getItem('user', false);
-        if (!this.user) {
-            this._Router.navigate(['login']);
+    }
+
+    public updateUsereInfo(dialog: any) {
+        if (!this._ValidationService.validate(this.model, validations)) {
+            this.errorMessages = this._ValidationService.errorMessages;
+            dialog.open();
             return;
         }
-        this.bindEvents();
-        this.getUserInfo();
+        this._UserInfoService.updateUser(this.model).catch((error: any) => {
+            console.log(error);
+        });
     }
 
-    private bindEvents(): void {
-        this.tabsEl = this.elementRef.nativeElement.querySelector('paper-tabs');
-        if (this.tabsEl) {
-            this.tabsEl.addEventListener('selected-changed', this.onTabChanged.bind(this));
-        }
-    }
-
-    private onTabChanged(event: any): void {
-        this.tab = event.detail.value;
-    }
-
-    private getUserInfo(): void {
-        this._UserInfoService
-            .getPersonalInfo(this.user.id)
-            .then((response: PersonalInfo) => {
-                this.userInfo = response || this.userInfo;
-            })
-            .catch((error: any) => {
-                console.log(error);
-            });
+    private userTypeChanged(value: string): void {
+        this.model.userType = value === 'SHOPKEEPER' ? 'SHOPKEEPER' : 'CUSTOMER';
     }
 }

@@ -4,7 +4,7 @@ import { ValidationService } from "../../../utils/validation/validation.service"
 import { Store } from "../../../models/store.model";
 import { StoreService } from "../../services/store/store.service";
 import { StorageService } from "../../../utils/storage/storage.service";
-import { PersonalInfo } from "../../../models/user-info.model";
+import { User } from 'app/models/user.model';
 
 import * as validations from "../../form-validations.json";
 
@@ -24,8 +24,8 @@ export class StoreCreateComponent implements OnInit {
         private _Router: Router) { }
 
     public ngOnInit(): void {
-        let personalInfo: PersonalInfo = this._StorageService.getItem('user-info');
-        this.model.personalInfoId = personalInfo.id;
+        let user: User = this._StorageService.getItem('user');
+        this.model.personalInfoId = user.id;
     }
 
     private createStore(dialog: any): void {

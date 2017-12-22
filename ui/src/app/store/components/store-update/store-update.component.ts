@@ -4,7 +4,7 @@ import { ValidationService } from "../../../utils/validation/validation.service"
 import { Store } from "../../../models/store.model";
 import { StoreService } from "../../services/store/store.service";
 import { StorageService } from "../../../utils/storage/storage.service";
-import { PersonalInfo } from "../../../models/user-info.model";
+import { PersonalInfo } from "../../../models/personal-info.model";
 import { MenuLink } from "../../../utils/redux/app-reducers";
 
 import * as validations from "../../form-validations.json";
