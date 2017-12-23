@@ -2,7 +2,7 @@ import { PersonalInfo } from "./personal-info.model";
 export type USER_TYPE = "SHOPKEEPER" | "CUSTOMER";
 
 export class User {
-    public id: string;
+    public _id: string;
     public username: string;
     public name: string;
     public userType: USER_TYPE;
@@ -12,7 +12,7 @@ export class User {
     public personalInfo: PersonalInfo;
 
     constructor() {
-        this.id = "";
+        this._id = "";
         this.username = "";
         this.userType = "SHOPKEEPER";
         this.name = "";
