@@ -30,12 +30,4 @@ export class StoreListComponent implements OnInit {
     private getAddress(address: Address): string {
         return Address.buildAddress(address);
     }
-
-    private createStore(): void {
-        this._Router.navigate(['store', 'new']);
-    }
-
-    private getStore(storeId: string): void {
-        this._Router.navigate(['store', storeId]);
-    }
 }

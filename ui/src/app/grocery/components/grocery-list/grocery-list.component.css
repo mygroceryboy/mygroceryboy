@@ -25,6 +25,11 @@
     width: 100%;
 }
 
+.storeName {
+    color: var(--paper-blue-700);
+    margin: 0;
+}
+
 paper-button {
     color: var(--paper-blue-700);
     font-weight: bold;

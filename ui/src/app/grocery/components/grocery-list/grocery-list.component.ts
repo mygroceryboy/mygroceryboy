@@ -11,7 +11,7 @@ import { MenuLink } from '../../../utils/redux/app-reducers';
 })
 export class GroceryListComponent implements OnInit {
 
-    private items: Array<Grocery> = [];
+    private groceries: Array<Grocery> = [];
     private links: Array<MenuLink>;
     private storeId: string;
 
@@ -24,7 +24,7 @@ export class GroceryListComponent implements OnInit {
         this._GroceryService
             .getGrocerys(this.storeId)
             .then((response: Array<Grocery>) => {
-                this.items = response;
+                this.groceries = response;
                 this.links = [{
                     label: 'Store Details',
                     path: `store/${this.storeId}`

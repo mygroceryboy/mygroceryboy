@@ -10,6 +10,18 @@ export const MenuLinksConfig = {
     AboutUs: [...DefaultLinks],
     ContactUs: [...DefaultLinks],
     UserProfile: [...DefaultLinks],
+    Login: [
+        { label: "Home", path: "home" },
+        { label: "Login", path: "login" },
+        { label: "Register", path: "register" },
+        { label: "About Us", path: "about-us" },
+        { label: "Contact Us", path: "contact-us" }],
+    Register: [
+        { label: "Home", path: "home" },
+        { label: "Login", path: "login" },
+        { label: "Register", path: "register" },
+        { label: "About Us", path: "about-us" },
+        { label: "Contact Us", path: "contact-us" }],
     StoreList: [
         { label: "Home", path: "home" },
         { label: "My Stores", path: "store/list" },

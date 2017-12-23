@@ -31,7 +31,12 @@
                             </div>
                         </div>
                         <div class="card-actions">
-                            <paper-button (click)="getStore(store._id)" class="pull-right">Details</paper-button>
+                            <paper-button (click)="detailsAnchor.click()" class="pull-right">
+                                    <a #detailsAnchor routerLink="/store/{{store._id}}">Details</a>
+                            </paper-button>
+                            <paper-button (click)="groceriesAnchor.click()" class="pull-right">
+                                <a #detailsAnchor routerLink="/store/{{store._id}}/grocery/list">Groceries</a>
+                            </paper-button>
                         </div>
                     </paper-card>
                 </div>

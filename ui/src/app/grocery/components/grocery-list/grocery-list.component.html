@@ -3,14 +3,30 @@
         <div *ngFor="let grocery of groceries">
             <div class="row mtl">
                 <div class="col-lg-12">
-                    <paper-card elevation="5">
+                    <paper-card class="col-lg-12" elevation="5">
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-lg-2">
                                     <img [src]="grocery.images[0]" alt="">
                                 </div>
                                 <div class="col-lg-10">
-                                    {{grocery | json}}
+                                    <div class="row mts">
+                                        <div class="col-lg-12">
+                                            <h3 class="storeName">{{grocery.name}}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row mtm">
+                                        <div class="col-lg-12">
+                                            <span class="storeName">Price : </span>
+                                            <span>{{grocery.price}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mts">
+                                        <div class="col-lg-12">
+                                            <span class="storeName">Description : </span>
+                                            <span>{{grocery.description}}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
