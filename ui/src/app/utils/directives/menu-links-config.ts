@@ -16,6 +16,7 @@ export const MenuLinksConfig = {
         { label: "Add Store", path: "store/new" }
     ],
     StoreDetails: [
+        { label: "Home", path: "home" },
         { label: "My Stores", path: "store/list" },
         { label: "Store Details", path: "store/:storeId" },
         { label: "Grocery List", path: "store/:storeId/grocery/list" },
@@ -24,19 +25,19 @@ export const MenuLinksConfig = {
     GroceryList: [
         { label: "Home", path: "home" },
         { label: "My Stores", path: "store/list" },
-        { label: "My Groceries", path: "store/:storeId/grocery/list" },
+        { label: "Grocery List", path: "store/:storeId/grocery/list" },
         { label: "Add Grocery", path: "store/:storeId/grocery/new" }
     ],
     NewGrocery: [
         { label: "Home", path: "home" },
         { label: "My Stores", path: "store/list" },
-        { label: "My Groceries", path: "store/:storeId/grocery/list" },
+        { label: "Grocery List", path: "store/:storeId/grocery/list" },
         { label: "Add Grocery", path: "store/:storeId/grocery/new" }
     ],
     GroceryDetails: [
+        { label: "Home", path: "home" },
+        { label: "My Stores", path: "store/list" },
+        { label: "Grocery List", path: "store/:storeId/grocery/list" },
         { label: "Grocery Details", path: "store/:storeId/grocery/:groceryId" },
-        { label: "My Groceries", path: "store/:storeId/grocery/list" },
-        { label: "Grocery List", path: ":storeId/grocery/list" },
-        { label: "Add Grocery", path: ":storeId/grocery/new" }
     ]
 }

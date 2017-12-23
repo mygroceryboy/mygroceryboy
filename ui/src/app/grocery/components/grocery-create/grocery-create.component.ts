@@ -3,9 +3,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ValidationService } from "../../../utils/validation/validation.service";
 import { Grocery } from "../../../models/grocery.model";
 import { GroceryService } from "../../services/grocery/grocery.service";
-import { StorageService } from "../../../utils/storage/storage.service";
-import { PersonalInfo } from "../../../models/personal-info.model";
 import { MenuLink } from "../../../utils/redux/app-reducers";
+import { AuthService } from "../../../utils/providers/auth/auth.service";
 
 import * as validations from "../../form-validations.json";
 
@@ -16,22 +15,22 @@ import * as validations from "../../form-validations.json";
 })
 export class GroceryCreateComponent implements OnInit {
 
-    private model: Grocery = new Grocery();
-    private links:Array<MenuLink>;
-    private errorMessages: Array<string> = [];
+    private model: Grocery;
+    private links: Array<MenuLink>;
+    private errorMessages: Array<string>;
 
     constructor(private _ValidationService: ValidationService,
         private _GroceryService: GroceryService,
-        private _StorageService: StorageService,
+        private _AuthService: AuthService,
         private _Router: Router,
         private _Route: ActivatedRoute) { }
 
     public ngOnInit(): void {
+        this.model = this.model || new Grocery();
+        this.model._user = this._AuthService.user._id;
         this.model._store = this._Route.snapshot.params.storeId;
-        this.links = [{ 
-            label: "Store Details", 
-            path: "store/" + this._Route.snapshot.params.storeId + "/grocery/new" 
-        }];
+        this.links = [{ label: 'Grocery List', path: `store/${this._Route.snapshot.params.storeId}/grocery/list` },
+            { label: 'Add Grocery', path: `store/${this._Route.snapshot.params.storeId}/grocery/new` }];
     }
 
     private createGrocery(dialog: any): void {

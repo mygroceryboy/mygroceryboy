@@ -31,7 +31,6 @@ export class MenuLinksDirective implements OnInit, OnChanges {
         if (!newLinks || !this.linkGroup || !MenuLinksConfig[this.linkGroup]) {
             return;
         }
-
         newLinks.forEach((newLink: MenuLink) => {
             let index = MenuLinksConfig[this.linkGroup].findIndex((link: MenuLink) => {
                 return newLink.label === link.label;

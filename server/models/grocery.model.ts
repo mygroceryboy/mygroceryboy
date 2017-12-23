@@ -7,6 +7,7 @@ export class Grocery {
     public _user: string | User;
     public name: string;
     public price: number;
+    public images: Array<string>;
     public description: string;
 
     public constructor() {
@@ -15,6 +16,7 @@ export class Grocery {
         this._user = "";
         this.name = "";
         this.price = 0;
+        this.images = [];
         this.description = "";
     }
 
@@ -31,7 +33,8 @@ export class Grocery {
             ? dbGrocery._user
             : User.getUser(dbGrocery._user);
         grocery.name = dbGrocery.name;
-        grocery.price = dbGrocery.name;
+        grocery.price = dbGrocery.price;
+        grocery.images = dbGrocery.images;
         grocery.description = dbGrocery.description;
         return grocery;
     }

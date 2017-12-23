@@ -81,7 +81,7 @@ export class ValidationService {
             return;
         }
 
-        if (!model || !model.length) {
+        if (!model) {
             this._errorMessages.push(message);
         }
     }

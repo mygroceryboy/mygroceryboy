@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Store } from "../../../models/store.model";
 import { Response } from "../../../models/base/response.model";
-import { HttpInterceptor as Http } from "app/utils/providers/http-interceptor.service";
+import { HttpInterceptor as Http } from "../../../utils/providers/http-interceptor.service";
+import { AuthService } from '../../../utils/providers/auth/auth.service';
 
 @Injectable()
 export class StoreService {
 
-    constructor(private _Http: Http) { }
+    constructor(private _Http: Http,
+        private _AuthService: AuthService) { }
 
     public getStores(): Promise<Store[]> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
-                .get('/api/store')
+                .get(`/api/store/all/${this._AuthService.user._id}`)
                 .subscribe((httpResponse: any) => {
                     let response: Response<Store[]> = httpResponse.json();
                     if (!response || !response.isSuccessful) {

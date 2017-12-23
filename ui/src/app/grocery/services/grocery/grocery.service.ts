@@ -8,10 +8,10 @@ export class GroceryService {
 
     constructor(private _Http: Http) { }
 
-    public getGrocerys(): Promise<Grocery[]> {
+    public getGrocerys(storeId: string): Promise<Grocery[]> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
-                .get('/api/grocery')
+                .get(`/api/grocery/all/${storeId}`)
                 .subscribe((httpResponse: any) => {
                     let response: Response<Grocery[]> = httpResponse.json();
                     if (!response || !response.isSuccessful) {

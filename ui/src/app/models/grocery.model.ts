@@ -7,6 +7,7 @@ export class Grocery {
     public _user: string | User;
     public name: string;
     public price: number;
+    public images: Array<string>;
     public description: string;
 
     public constructor() {
@@ -15,6 +16,7 @@ export class Grocery {
         this._user = "";
         this.name = "";
         this.price = 0;
+        this.images = [];
         this.description = "";
     }
 }

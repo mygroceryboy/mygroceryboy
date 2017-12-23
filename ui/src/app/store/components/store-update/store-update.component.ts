@@ -18,7 +18,7 @@ export class StoreUpdateComponent implements OnInit {
 
     private model: Store = new Store();
     private errorMessages: Array<string> = [];
-    private links:Array<MenuLink>;
+    private links: Array<MenuLink>;
 
     constructor(private _ValidationService: ValidationService,
         private _StoreService: StoreService,
@@ -34,13 +34,9 @@ export class StoreUpdateComponent implements OnInit {
             .getStore(this._Route.snapshot.params.storeId)
             .then((response: Store) => {
                 this.model = response;
-                this.links = [
-                    { label: 'Store Details', path: "store/" + response._id },
-                    {
-                        label: 'Add Grocery',
-                        path: "store/" + response._id + "/grocery/new"
-                    }
-                ];
+                this.links = [{ label: 'Store Details', path: "store/" + response._id },
+                { label: 'Grocery List', path: `store/${response._id}/grocery/list` },
+                { label: 'Add Grocery', path: `store/${response._id}/grocery/new` }];
             })
             .catch((err: any) => {
                 console.log(err);

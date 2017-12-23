@@ -6,7 +6,7 @@ import { GroceryProvider } from "../provider/database-provider/grocery-provider"
 let router: Router = Router();
 
 //get grocery list
-router.get('/:storeId', (req: Request, res: Response, next: NextFunction) => {
+router.get('/all/:storeId', (req: Request, res: Response, next: NextFunction) => {
     GroceryProvider.getStoreGrocery(new ObjectId(req.params.storeId))
         .then((response: Grocery[]) => {
             res.json(response);
@@ -29,8 +29,9 @@ router.get('/:groceryId', (req: Request, res: Response, next: NextFunction) => {
 
 //create new grocery item
 router.put('/', (req: Request, res: Response, next: NextFunction) => {
-    req.body.id = new ObjectId();
-    req.body._store = new ObjectId(req.body.storeId);
+    req.body._id = new ObjectId();
+    req.body._store = new ObjectId(req.body._store);
+    req.body._user = new ObjectId(req.body._user);
     GroceryProvider.createGroceryItem(req.body)
         .then((response: Grocery) => {
             res.json(response);
@@ -41,9 +42,10 @@ router.put('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 //update grocery item
-router.post('/:id', (req: Request, res: Response, next: NextFunction) => {
-    req.body.id = new ObjectId(req.body.id);
-    req.body._store = new ObjectId(req.body.personalInfoId);
+router.post('/', (req: Request, res: Response, next: NextFunction) => {
+    req.body._id = new ObjectId(req.body._id);
+    req.body._store = new ObjectId(req.body._store);
+    req.body._user = new ObjectId(req.body._user);
     GroceryProvider.updateGroceryItem(req.body)
         .then((response: Grocery) => {
             res.json(response);
@@ -55,7 +57,7 @@ router.post('/:id', (req: Request, res: Response, next: NextFunction) => {
 
 //delete grocery item
 router.delete('/:groceryId', (req: Request, res: Response, next: NextFunction) => {
-    GroceryProvider.deleteGroceryItem(new ObjectId(req.body.groceryId))
+    GroceryProvider.deleteGroceryItem(new ObjectId(req.params.groceryId))
         .then((response: Grocery) => {
             res.json(response);
         })

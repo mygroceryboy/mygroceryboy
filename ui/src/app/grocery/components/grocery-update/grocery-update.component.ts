@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ValidationService } from "../../../utils/validation/validation.service";
 import { Grocery } from "../../../models/grocery.model";
 import { GroceryService } from "../../services/grocery/grocery.service";
-import { StorageService } from "../../../utils/storage/storage.service";
-import { PersonalInfo } from "../../../models/personal-info.model";
 import { MenuLink } from "../../../utils/redux/app-reducers";
 
 import * as validations from "../../form-validations.json";
@@ -17,12 +15,11 @@ import * as validations from "../../form-validations.json";
 export class GroceryUpdateComponent implements OnInit {
 
     private model: Grocery = new Grocery();
-    private errorMessages: Array<string> = [];
-    private links:Array<MenuLink>;
+    private errorMessages: Array<string>;
+    private links: Array<MenuLink>;
 
     constructor(private _ValidationService: ValidationService,
         private _GroceryService: GroceryService,
-        private _StorageService: StorageService,
         private _Router: Router,
         private _Route: ActivatedRoute) { }
 
@@ -34,7 +31,8 @@ export class GroceryUpdateComponent implements OnInit {
             .getGrocery(this._Route.snapshot.params.groceryId)
             .then((response: Grocery) => {
                 this.model = response;
-                this.links = [{label: 'Grocery Details', path: "grocery/list/" + response.id}];
+                this.links = [{ label: 'Grocery List', path: `store/${response._store}/grocery/list` },
+                { label: 'Grocery Details', path: `store/${response._store}/grocery/${response._id}` }];
             })
             .catch((err: any) => {
                 console.log(err);
@@ -50,7 +48,7 @@ export class GroceryUpdateComponent implements OnInit {
         this._GroceryService
             .updateGrocery(this.model)
             .then((response: Grocery) => {
-                this._Router.navigate(['grocery']);
+                this._Router.navigate(['store', this.model._store, 'grocery', 'list']);
             })
             .catch((err: any) => {
                 console.log(err);

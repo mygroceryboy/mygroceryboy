@@ -20,6 +20,10 @@ let GrocerySchema = new Schema({
         type: Number,
         required: [true, 'grocery item price is required']
     },
+    images: {
+        type: [String],
+        required: [true, 'store name is required']
+    },
     description: {
         type: String,
         required: [true, 'grocery item description is required']

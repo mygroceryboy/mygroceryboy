@@ -43,11 +43,12 @@ export namespace GroceryProvider {
         });
     }
 
-    export function createGroceryItem(groceryItem: Grocery): Promise<Grocery> {
+    export function createGroceryItem(grocery: Grocery): Promise<Grocery> {
+        grocery.images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQImNrmb9FLej0Vk3ao3eniBeseBsPyedSDmoDwUNRpx3-ANGhG"];
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Grocery>();
             DbGrocery
-                .create(groceryItem)
+                .create(grocery)
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
                     response.data = Grocery.getGrocery(dbRes);
@@ -61,11 +62,12 @@ export namespace GroceryProvider {
         });
     }
 
-    export function updateGroceryItem(groceryItem: Grocery): Promise<Grocery> {
+    export function updateGroceryItem(grocery: Grocery): Promise<Grocery> {
+        grocery.images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQImNrmb9FLej0Vk3ao3eniBeseBsPyedSDmoDwUNRpx3-ANGhG"];
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Grocery>();
             DbGrocery
-                .findOneAndUpdate({ _id: groceryItem._id }, groceryItem)
+                .findOneAndUpdate({ _id: grocery._id }, grocery)
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
                     response.data = Grocery.getGrocery(dbRes);

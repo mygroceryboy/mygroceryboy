@@ -6,7 +6,7 @@ import { Store } from "../models/store.model";
 let router: Router = Router();
 
 //get store list
-router.get('/:userId', (req: Request, res: Response, next: NextFunction) => {
+router.get('/all/:userId', (req: Request, res: Response, next: NextFunction) => {
     StoreProvider.getUserStores(new ObjectId(req.params.userId))
         .then((response: Store[]) => {
             res.json(response);
