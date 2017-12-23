@@ -1,10 +1,15 @@
+const DefaultLinks = [
+    { label: "Home", path: "home" },
+    { label: "My Stores", path: "store/list" },
+    { label: "About Us", path: "about-us" },
+    { label: "Contact Us", path: "contact-us" }
+];
+
 export const MenuLinksConfig = {
-    Home: [
-        { label: "Home", path: "home" },
-        { label: "My Stores", path: "store/list" },
-        { label: "About Us", path: "about-us" },
-        { label: "Contact Us", path: "contact-us" }
-    ],
+    Home: [...DefaultLinks],
+    AboutUs: [...DefaultLinks],
+    ContactUs: [...DefaultLinks],
+    UserProfile: [...DefaultLinks],
     StoreList: [
         { label: "Home", path: "home" },
         { label: "My Stores", path: "store/list" },

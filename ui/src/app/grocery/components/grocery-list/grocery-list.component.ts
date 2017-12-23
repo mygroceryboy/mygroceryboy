@@ -13,28 +13,27 @@ export class GroceryListComponent implements OnInit {
 
     private items: Array<Grocery> = [];
     private links: Array<MenuLink>;
+    private storeId: string;
 
     constructor(private _Router: Router,
         private _GroceryService: GroceryService,
         private _Route: ActivatedRoute) { }
 
     public ngOnInit(): void {
-        if (!this._Route.snapshot.params || !this._Route.snapshot.params.storeId) {
-            return;
-        }
+        this.storeId = this._Route.snapshot.params.storeId;
         this._GroceryService
-            .getGrocerys(this._Route.snapshot.params.storeId)
+            .getGrocerys(this.storeId)
             .then((response: Array<Grocery>) => {
                 this.items = response;
                 this.links = [{
                     label: 'Store Details',
-                    path: `store/${this._Route.snapshot.params.storeId}`
+                    path: `store/${this.storeId}`
                 }, {
                     label: 'Grocery List',
-                    path: `store/${this._Route.snapshot.params.storeId}/grocery/list`
+                    path: `store/${this.storeId}/grocery/list`
                 }, {
                     label: 'Add Grocery',
-                    path: `store/${this._Route.snapshot.params.storeId}/grocery/new`
+                    path: `store/${this.storeId}/grocery/new`
                 }];
             })
             .catch((err: any) => {
@@ -43,10 +42,10 @@ export class GroceryListComponent implements OnInit {
     }
 
     private createGrocery(): void {
-        this._Router.navigate(['store', this._Route.snapshot.params.storeId, 'grocery', 'new']);
+        this._Router.navigate(['store', this.storeId, 'grocery', 'new']);
     }
 
     private getGrocery(groceryId: string): void {
-        this._Router.navigate(['store', this._Route.snapshot.params.storeId, 'grocery', groceryId]);
+        this._Router.navigate(['store', this.storeId, 'grocery', groceryId]);
     }
 }

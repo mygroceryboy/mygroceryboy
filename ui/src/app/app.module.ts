@@ -20,6 +20,7 @@ import { ToastReducer } from "./utils/redux/app-reducers";
 import { StoreProviders } from "./utils/redux/store.providers";
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { UtilsModule } from './utils/utils.module';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
         UserInfoModule,
         ShopModule,
         GroceryModule,
+        UtilsModule,
         StoreModule.provideStore(StoreProviders),
         RouterModule.forRoot(AppRoutes)
     ],

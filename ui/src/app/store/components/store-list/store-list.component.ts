@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Store } from "../../../models/store.model";
 import { StoreService } from "../../services/store/store.service";
+import { Address } from '../../../models/base/address.model';
 
 @Component({
     selector: 'app-store-list',
@@ -10,7 +11,7 @@ import { StoreService } from "../../services/store/store.service";
 })
 export class StoreListComponent implements OnInit {
 
-    private items: Array<Store> = [];
+    private stores: Array<Store> = [];
 
     constructor(private _Router: Router,
         private _StoreService: StoreService) { }
@@ -19,11 +20,15 @@ export class StoreListComponent implements OnInit {
         this._StoreService
             .getStores()
             .then((response: Array<Store>) => {
-                this.items = response;
+                this.stores = response;
             })
             .catch((err: any) => {
 
             });
+    }
+
+    private getAddress(address: Address): string {
+        return Address.buildAddress(address);
     }
 
     private createStore(): void {

@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+.mtxl {
+    margin-top: 50px;
+}
+
 .mtl {
     margin-top: 30px;
+}
+
+.mtm {
+    margin-top: 20px;
+}
+
+.mts {
+    margin-top: 10px;
 }

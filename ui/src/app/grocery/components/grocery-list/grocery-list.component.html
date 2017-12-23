@@ -1,23 +1,35 @@
 <div menu-links [overrides]="links" linkGroup="GroceryList" class="container">
-    <div *ngFor="let item of items">
-        <div class="row mtl">
-            <div class="col-lg-12">
-                <paper-card elevation="5">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <img [src]="item.images[0]" alt="">
-                            </div>
-                            <div class="col-lg-10">
-                                {{item | json}}
+    <ng-container *ngIf="groceries?.length;">
+        <div *ngFor="let grocery of groceries">
+            <div class="row mtl">
+                <div class="col-lg-12">
+                    <paper-card elevation="5">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img [src]="grocery.images[0]" alt="">
+                                </div>
+                                <div class="col-lg-10">
+                                    {{grocery | json}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-actions">
-                        <paper-button (click)="getGrocery(item._id)" class="pull-right">Details</paper-button>
-                    </div>
-                </paper-card>
+                        <div class="card-actions">
+                            <paper-button (click)="getGrocery(grocery._id)" class="pull-right">Details</paper-button>
+                        </div>
+                    </paper-card>
+                </div>
             </div>
         </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="!groceries?.length;">
+        <div class="row text-center mtxl">
+            <div class="col-lg-12">
+                <h2>No groceries added yet!</h2>
+                <span>Go to Add Grocery or click </span>
+                <a routerLink="/store/{{storeId}}/grocery/new">here</a>
+                <span> to add new grocery.</span>
+            </div>
+        </div>
+    </ng-container>
 </div>

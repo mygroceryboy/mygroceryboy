@@ -15,6 +15,14 @@ export class Address {
         this.country = "";
     }
 
+    public static buildAddress(address: Address): string {
+        return `${address.address1 || ""}, 
+            ${address.address2 || ""}, 
+            ${address.city || ""}, 
+            ${address.state || ""}, 
+            ${address.country || ""}.`;
+    }
+
     public static getAddress(address: any): Address {
         if (!address) {
             return new Address();

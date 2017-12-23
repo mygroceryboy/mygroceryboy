@@ -9,7 +9,7 @@
 <app-drawer-layout>
     
     <paper-toolbar>
-        <paper-icon-button slot="top" icon="menu" onclick="menu.toggle()"></paper-icon-button>
+        <!-- <paper-icon-button slot="top" icon="menu" onclick="menu.toggle()"></paper-icon-button> -->
         <div slot="top">
             <paper-button>
                 <h3 class="title" (click)="redirect(menu, 'home')">My Grocery Boy</h3>
@@ -34,11 +34,11 @@
         <paper-progress slot="bottom" class="fit" [disabled]="!isActive" indeterminate></paper-progress>
     </paper-toolbar>
 
-    <app-drawer id="menu" #menu swipe-open class="text-center">
+    <!-- <app-drawer id="menu" #menu swipe-open class="text-center">
         <paper-card>
             <div class="card-content">
                 <img src="https://avatars6.githubusercontent.com/u/6076850?v=4&s=460" alt="image">
-                <h3>Manoj Chalode</h3>
+                <h3>{{user.name}} {{user.surname}}</h3>
             </div>
             <div class="card-actions">
                 <paper-button class="profile" (click)="redirect(menu, 'user-info')">Update Profile</paper-button>
@@ -50,7 +50,7 @@
         <paper-button class="menu-item" (click)="redirect(menu, 'register')">Register</paper-button>
         <paper-button class="menu-item" (click)="redirect(menu, 'about-us')">About Us</paper-button>
         <paper-button class="menu-item" (click)="redirect(menu, 'contact-us')">Contact Us</paper-button>
-    </app-drawer>
+    </app-drawer> -->
     <div class="placeholder">
         <router-outlet></router-outlet>
     </div>

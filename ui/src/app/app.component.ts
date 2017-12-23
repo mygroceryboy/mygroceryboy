@@ -4,6 +4,7 @@ import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs/Subscription";
 import { ToastModel, MenuLink } from "./utils/redux/app-reducers";
 import { AuthService } from "./utils/providers/auth/auth.service";
+import { User } from "./models/user.model";
 
 @Component({
     selector: 'app-root',
@@ -13,6 +14,7 @@ import { AuthService } from "./utils/providers/auth/auth.service";
 export class AppComponent implements OnInit, OnDestroy {
 
     private toastModel: ToastModel = new ToastModel();
+    private user: User;
     private isActive: boolean = false;
     private links: MenuLink[] = [];
     private toastSubscription: Subscription;
@@ -25,6 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
+        this.user = this._AuthService.user;
         this.toastSubscription = this._Store.select('Toast').subscribe((toast: ToastModel) => {
             if (!toast) {
                 return;
