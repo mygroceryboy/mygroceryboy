@@ -18,10 +18,14 @@ import { LocationService } from "./utils/providers/location/location.service";
 
 import { ToastReducer } from "./utils/redux/app-reducers";
 import { StoreProviders } from "./utils/redux/store.providers";
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        AboutUsComponent,
+        ContactUsComponent
     ],
     imports: [
         BrowserModule,

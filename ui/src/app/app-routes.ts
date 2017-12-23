@@ -6,6 +6,8 @@ import { RegisterComponent } from "./register/components/register/register.compo
 import { UserProfileComponent } from "./user-info/components/user-profile/user-profile.component";
 import { StoreRoute } from "./store/store-routes";
 import { AuthGuard } from "./utils/guards/auth-guard";
+import { AboutUsComponent } from "./about-us/about-us.component";
+import { ContactUsComponent } from "./contact-us/contact-us.component";
 
 export const AppRoutes: Routes = [
     {
@@ -17,6 +19,14 @@ export const AppRoutes: Routes = [
         path: "home",
         canActivate: [AuthGuard],
         component: HomeComponent
+    },
+    {
+        path: "about-us",
+        component: AboutUsComponent
+    },
+    {
+        path: "contact-us",
+        component: ContactUsComponent
     },
     {
         path: "login",
