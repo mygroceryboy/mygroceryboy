@@ -7,11 +7,11 @@ import { User } from "../../models/user.model";
 
 export namespace StoreProvider {
 
-    export function getAllStores(): Promise<Store[]> {
+    export function getUserStores(_userId: ObjectId): Promise<Store[]> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store[]>();
             DbStore
-                .find()
+                .find({_user: _userId})
                 .then((dbRes: any[]) => {
                     response.isSuccessful = true;
                     response.data = dbRes.map(function (item: any) {

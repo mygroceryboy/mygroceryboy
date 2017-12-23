@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 import { ObjectId } from "bson";
-import { UserModel } from "../../database/model/user-model";
+import { DbUser } from "../../database/model/user-model";
 import { User } from "../../models/user.model";
 import { Response } from "../../models/base/response.model";
 import { PersonalInfo } from "../../models/personal-info.model";
@@ -9,7 +9,7 @@ export namespace UserProvider {
 
     export function getAllUsers(): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
-            UserModel.find(function (err: any, response: any) {
+            DbUser.find(function (err: any, response: any) {
                 if (err) {
                     console.error(err);
                     reject(err);
@@ -22,7 +22,7 @@ export namespace UserProvider {
 
     export function getUser(_id: ObjectId): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
-            UserModel.findById({
+            DbUser.findById({
                 _id: _id
             }, function (err: any, response: any) {
                 if (err) {
@@ -37,7 +37,7 @@ export namespace UserProvider {
 
     export function saveUser(user: User): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
-            UserModel.create(user, function (err: any, response: any) {
+            DbUser.create(user, function (err: any, response: any) {
                 if (err) {
                     console.log(err);
                     reject(err);
@@ -52,7 +52,7 @@ export namespace UserProvider {
         let self = this;
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<User>();
-            UserModel.findOneAndUpdate({ 
+            DbUser.findOneAndUpdate({ 
                 _id: user._id 
             }, {
                 _id: user._id,
@@ -82,7 +82,7 @@ export namespace UserProvider {
 
     export function deleteUser(_id: ObjectId): Promise<boolean> {
         return new Promise((resolve: Function, reject: Function) => {
-            UserModel.findOneAndRemove({
+            DbUser.findOneAndRemove({
                 _id: _id
             }, function (err: any, response: any) {
                 if (err) {

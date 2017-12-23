@@ -30,4 +30,4 @@ let StoreSchema = new Schema({
 
 }, { timestamps: true, versionKey: false });
 
-export let DbStore = model(APP_CONSTANTS.DB.COLLECTIONS.STORE, StoreSchema);
+export let DbStore = model(APP_CONSTANTS.DB.COLLECTIONS.STORES, StoreSchema);

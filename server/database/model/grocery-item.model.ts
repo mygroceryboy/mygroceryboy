@@ -1,11 +1,15 @@
 import { model, Schema } from "mongoose";
 import { APP_CONSTANTS } from "../../shared/app-constants";
 
-let GroceryItemSchema = new Schema({
-    id: Schema.Types.ObjectId,
+let GrocerySchema = new Schema({
+    _user: {
+        type: Schema.Types.ObjectId,
+        ref: APP_CONSTANTS.DB.COLLECTIONS.USERS,
+        required: [true, 'store id is required']
+    },
     _store: {
         type: Schema.Types.ObjectId,
-        ref: 'store',
+        ref: APP_CONSTANTS.DB.COLLECTIONS.STORES,
         required: [true, 'store id is required']
     },
     name: {
@@ -23,4 +27,4 @@ let GroceryItemSchema = new Schema({
 
 }, { timestamps: true, versionKey: false });
 
-export let DbGroceryItem = model(APP_CONSTANTS.DB.COLLECTIONS.GROCERY_ITEM, GroceryItemSchema);
+export let DbGrocery = model(APP_CONSTANTS.DB.COLLECTIONS.GROCERY, GrocerySchema);

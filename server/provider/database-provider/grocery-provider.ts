@@ -1,14 +1,14 @@
 import { Response } from "../../models/base/response.model";
 import { ObjectId } from "bson";
 import { GroceryItem } from "../../models/grocery.model";
-import { DbGroceryItem } from "../../database/model/grocery-item.model";
+import { DbGrocery } from "../../database/model/grocery-item.model";
 
 export namespace GroceryProvider {
 
     export function getAllGroceryItems(): Promise<GroceryItem[]> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<GroceryItem[]>();
-            DbGroceryItem
+            DbGrocery
                 .find()
                 .then((dbRes: any[]) => {
                     response.isSuccessful = true;
@@ -28,7 +28,7 @@ export namespace GroceryProvider {
     export function getGroceryItem(id: ObjectId): Promise<GroceryItem> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<GroceryItem>();
-            DbGroceryItem
+            DbGrocery
                 .findOne({ _id: id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
@@ -46,7 +46,7 @@ export namespace GroceryProvider {
     export function createGroceryItem(groceryItem: GroceryItem): Promise<GroceryItem> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<GroceryItem>();
-            DbGroceryItem
+            DbGrocery
                 .create(groceryItem)
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
@@ -64,7 +64,7 @@ export namespace GroceryProvider {
     export function updateGroceryItem(groceryItem: GroceryItem): Promise<GroceryItem> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<GroceryItem>();
-            DbGroceryItem
+            DbGrocery
                 .findOneAndUpdate({_id: groceryItem.id}, groceryItem)
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
@@ -82,7 +82,7 @@ export namespace GroceryProvider {
     export function deleteGroceryItem(id: ObjectId): Promise<GroceryItem> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<GroceryItem>();
-            DbGroceryItem
+            DbGrocery
                 .findOneAndRemove({_id: id})
                 .then((dbRes: any) => {
                     response.isSuccessful = true;

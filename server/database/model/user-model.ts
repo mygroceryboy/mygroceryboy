@@ -1,8 +1,9 @@
 import * as mongoose from "mongoose";
 import { APP_CONSTANTS } from "../../shared/app-constants"
 import { Schema, model } from "mongoose";
+import { PersonalInfoSchema } from "./personal-info.model";
 
-export let UserModel = model(APP_CONSTANTS.DB.COLLECTIONS.USERS, new Schema({
+export let DbUser = model(APP_CONSTANTS.DB.COLLECTIONS.USERS, new Schema({
 
     name: {
         type: String,
@@ -43,43 +44,6 @@ export let UserModel = model(APP_CONSTANTS.DB.COLLECTIONS.USERS, new Schema({
     },
 
     personalInfo: {
-
-        phone: {
-            type: String,
-            required: [true, 'phone is required']
-        },
-
-        address1: {
-            type: String,
-            required: [true, 'address line 1 is required']
-        },
-
-        address2: {
-            type: String
-        },
-
-        city: {
-            type: String,
-            required: [true, 'city is required']
-        },
-        
-        postCode: {
-            type: String,
-            required: [true, 'post code is required']
-        },
-
-        state: {
-            type: String,
-            required: [true, 'state is required']
-        },
-
-        country: {
-            type: String,
-            required: [true, 'country is required']
-        },
-
-        description: {
-            type: String
-        }
+        type: PersonalInfoSchema,
     }
 }, { timestamps: true, versionKey: false }));

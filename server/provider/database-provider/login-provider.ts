@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 import { ObjectId } from "bson";
-import { UserModel } from "../../database/model/user-model";
+import { DbUser } from "../../database/model/user-model";
 import { Response } from "../../models/base/response.model";
 import { User } from "../../models/user.model";
 import { PersonalInfo } from "../../models/personal-info.model";
@@ -10,7 +10,7 @@ export namespace LoginProvider {
     export function login(user: any): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response();
-            UserModel.findOne({
+            DbUser.findOne({
                 $or: [{ email: user.username }, { username: user.username }],
                 password: user.password
             }, function (err: any, dbRes: User) {

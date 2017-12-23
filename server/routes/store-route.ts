@@ -5,9 +5,9 @@ import { Store } from "../models/store.model";
 
 let router: Router = Router();
 
-//get grocery list
-router.get('/', (req: Request, res: Response, next: NextFunction) => {
-    StoreProvider.getAllStores()
+//get store list
+router.get('/:userId', (req: Request, res: Response, next: NextFunction) => {
+    StoreProvider.getUserStores(new ObjectId(req.params.userId))
         .then((response: Store[]) => {
             res.json(response);
         })
@@ -16,7 +16,7 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
         });
 });
 
-//get grocery details
+//get store details
 router.get('/:storeId', (req: Request, res: Response, next: NextFunction) => {
     StoreProvider.getStore(new ObjectId(req.params.storeId))
         .then((response: Store) => {
@@ -27,7 +27,7 @@ router.get('/:storeId', (req: Request, res: Response, next: NextFunction) => {
         });
 });
 
-//create new grocery item
+//create new store item
 router.put('/', (req: Request, res: Response, next: NextFunction) => {
     req.body._id = new ObjectId();
     req.body._user = new ObjectId(req.body._user);
@@ -40,7 +40,7 @@ router.put('/', (req: Request, res: Response, next: NextFunction) => {
         });
 });
 
-//update grocery item
+//update store item
 router.post('/', (req: Request, res: Response, next: NextFunction) => {
     req.body._id = new ObjectId(req.body._id);
     req.body._user = new ObjectId(req.body._user);
@@ -53,9 +53,9 @@ router.post('/', (req: Request, res: Response, next: NextFunction) => {
         });
 });
 
-//delete grocery item
+//delete store item
 router.delete('/:storeId', (req: Request, res: Response, next: NextFunction) => {
-    StoreProvider.deleteStore(new ObjectId(req.body.storeId))
+    StoreProvider.deleteStore(new ObjectId(req.params.storeId))
         .then((response: Store) => {
             res.json(response);
         })
