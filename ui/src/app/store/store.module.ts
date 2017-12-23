@@ -9,6 +9,7 @@ import { StoreCreateComponent } from './components/store-create/store-create.com
 import { StoreUpdateComponent } from './components/store-update/store-update.component';
 import { StoreListComponent } from './components/store-list/store-list.component';
 import { StoreService } from "./services/store/store.service";
+import { StoreItemComponent } from './components/store-item/store-item.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { StoreService } from "./services/store/store.service";
     declarations: [
         StoreCreateComponent,
         StoreUpdateComponent,
-        StoreListComponent
+        StoreListComponent,
+        StoreItemComponent
     ],
     providers: [StoreService],
     exports: [

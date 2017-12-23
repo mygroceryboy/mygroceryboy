@@ -12,6 +12,7 @@ import { Address } from '../../../models/base/address.model';
 export class StoreListComponent implements OnInit {
 
     private stores: Array<Store> = [];
+    private filterData: Map<string, Array<string>>;
 
     constructor(private _Router: Router,
         private _StoreService: StoreService) { }
@@ -27,7 +28,11 @@ export class StoreListComponent implements OnInit {
             });
     }
 
-    private getAddress(address: Address): string {
-        return Address.buildAddress(address);
+    private filter() {
+
+    }
+
+    private reset() {
+        
     }
 }
