@@ -1,19 +1,19 @@
 import { Response } from "../../models/base/response.model";
 import { ObjectId } from "bson";
-import { GroceryItem } from "../../models/grocery.model";
+import { Grocery } from "../../models/grocery.model";
 import { DbGrocery } from "../../database/model/grocery-item.model";
 
 export namespace GroceryProvider {
 
-    export function getAllGroceryItems(): Promise<GroceryItem[]> {
+    export function getStoreGrocery(_storeId: ObjectId): Promise<Grocery[]> {
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response<GroceryItem[]>();
+            let response = new Response<Grocery[]>();
             DbGrocery
-                .find()
+                .find({ _store: _storeId })
                 .then((dbRes: any[]) => {
                     response.isSuccessful = true;
                     response.data = dbRes.map(function (item: any) {
-                        return translate(item);
+                        return Grocery.getGrocery(item);
                     });
                     resolve(response);
                 })
@@ -25,14 +25,14 @@ export namespace GroceryProvider {
         });
     }
 
-    export function getGroceryItem(id: ObjectId): Promise<GroceryItem> {
+    export function getGroceryItem(_id: ObjectId): Promise<Grocery> {
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response<GroceryItem>();
+            let response = new Response<Grocery>();
             DbGrocery
-                .findOne({ _id: id })
+                .findOne({ _id: _id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
-                    response.data = translate(dbRes);
+                    response.data = Grocery.getGrocery(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
@@ -43,14 +43,14 @@ export namespace GroceryProvider {
         });
     }
 
-    export function createGroceryItem(groceryItem: GroceryItem): Promise<GroceryItem> {
+    export function createGroceryItem(groceryItem: Grocery): Promise<Grocery> {
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response<GroceryItem>();
+            let response = new Response<Grocery>();
             DbGrocery
                 .create(groceryItem)
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
-                    response.data = translate(dbRes);
+                    response.data = Grocery.getGrocery(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
@@ -61,14 +61,14 @@ export namespace GroceryProvider {
         });
     }
 
-    export function updateGroceryItem(groceryItem: GroceryItem): Promise<GroceryItem> {
+    export function updateGroceryItem(groceryItem: Grocery): Promise<Grocery> {
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response<GroceryItem>();
+            let response = new Response<Grocery>();
             DbGrocery
-                .findOneAndUpdate({_id: groceryItem.id}, groceryItem)
+                .findOneAndUpdate({ _id: groceryItem._id }, groceryItem)
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
-                    response.data = translate(dbRes);
+                    response.data = Grocery.getGrocery(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
@@ -79,14 +79,14 @@ export namespace GroceryProvider {
         });
     }
 
-    export function deleteGroceryItem(id: ObjectId): Promise<GroceryItem> {
+    export function deleteGroceryItem(_id: ObjectId): Promise<Grocery> {
         return new Promise((resolve: Function, reject: Function) => {
-            let response = new Response<GroceryItem>();
+            let response = new Response<Grocery>();
             DbGrocery
-                .findOneAndRemove({_id: id})
+                .findOneAndRemove({ _id: _id })
                 .then((dbRes: any) => {
                     response.isSuccessful = true;
-                    response.data = translate(dbRes);
+                    response.data = Grocery.getGrocery(dbRes);
                     resolve(response);
                 })
                 .catch((err: any) => {
@@ -95,19 +95,5 @@ export namespace GroceryProvider {
                     reject(response);
                 });
         });
-    }
-
-    function translate(dbGroceryItem: any): GroceryItem {
-        if (!dbGroceryItem) {
-            return null;
-        }
-        return {
-            id: dbGroceryItem.id,
-            storeId: dbGroceryItem._groceryItem,
-            name: dbGroceryItem.name,
-            price: dbGroceryItem.price,
-            description: dbGroceryItem.description,
-            store : null
-        };
     }
 }

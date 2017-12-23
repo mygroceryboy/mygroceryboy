@@ -1,19 +1,38 @@
 import { Store } from "./store.model";
+import { User } from "./user.model";
 
-export class GroceryItem {
-    public id: string;
-    public storeId: string;
+export class Grocery {
+    public _id: string;
+    public _store: string | Store;
+    public _user: string | User;
     public name: string;
     public price: number;
     public description: string;
-    public store: Store
 
     public constructor() {
-        this.id = "";
-        this.storeId = "";
+        this._id = "";
+        this._store = "";
+        this._user = "";
         this.name = "";
         this.price = 0;
         this.description = "";
-        this.store = null;
+    }
+
+    public static getGrocery(dbGrocery: any): Grocery {
+        let grocery: Grocery = new Grocery();
+        if (!dbGrocery) {
+            return grocery;
+        }
+        grocery._id = dbGrocery._id;
+        grocery._store = dbGrocery._store && dbGrocery._store._bsontype
+            ? dbGrocery._store
+            : Store.getStore(dbGrocery._store);
+        grocery._user = dbGrocery._user && dbGrocery._user._bsontype
+            ? dbGrocery._user
+            : User.getUser(dbGrocery._user);
+        grocery.name = dbGrocery.name;
+        grocery.price = dbGrocery.name;
+        grocery.description = dbGrocery.description;
+        return grocery;
     }
 }

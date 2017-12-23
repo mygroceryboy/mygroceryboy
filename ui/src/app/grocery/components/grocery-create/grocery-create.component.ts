@@ -27,7 +27,7 @@ export class GroceryCreateComponent implements OnInit {
         private _Route: ActivatedRoute) { }
 
     public ngOnInit(): void {
-        this.model.storeId = this._Route.snapshot.params.storeId;
+        this.model._store = this._Route.snapshot.params.storeId;
         this.links = [{ 
             label: "Store Details", 
             path: "store/" + this._Route.snapshot.params.storeId + "/grocery/new" 
@@ -43,7 +43,7 @@ export class GroceryCreateComponent implements OnInit {
         this._GroceryService
             .createGrocery(this.model)
             .then((response: Grocery) => {
-                this._Router.navigate(["store", this.model.storeId, "grocery", "list"]);
+                this._Router.navigate(["store", this.model._store, "grocery", "list"]);
             })
             .catch((err: any) => {
                 console.log(err);

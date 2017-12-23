@@ -1,19 +1,20 @@
 import { Store } from "./store.model";
+import { User } from "./user.model";
 
 export class Grocery {
-    public id: string;
-    public storeId: string;
+    public _id: string;
+    public _store: string | Store;
+    public _user: string | User;
     public name: string;
     public price: number;
     public description: string;
-    public store: Store
 
     public constructor() {
-        this.id = "";
-        this.storeId = "";
+        this._id = "";
+        this._store = "";
+        this._user = "";
         this.name = "";
         this.price = 0;
         this.description = "";
-        this.store = null;
     }
 }

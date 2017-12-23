@@ -1,14 +1,14 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { ObjectId } from "bson";
-import { GroceryItem } from "../models/grocery.model";
+import { Grocery } from "../models/grocery.model";
 import { GroceryProvider } from "../provider/database-provider/grocery-provider";
 
 let router: Router = Router();
 
 //get grocery list
-router.get('/', (req: Request, res: Response, next: NextFunction) => {
-    GroceryProvider.getAllGroceryItems()
-        .then((response: GroceryItem[]) => {
+router.get('/:storeId', (req: Request, res: Response, next: NextFunction) => {
+    GroceryProvider.getStoreGrocery(new ObjectId(req.params.storeId))
+        .then((response: Grocery[]) => {
             res.json(response);
         })
         .catch((err: any) => {
@@ -17,9 +17,9 @@ router.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 //get grocery details
-router.get('/:groceryItemId', (req: Request, res: Response, next: NextFunction) => {
-    GroceryProvider.getGroceryItem(new ObjectId(req.params.groceryItemId))
-        .then((response: GroceryItem) => {
+router.get('/:groceryId', (req: Request, res: Response, next: NextFunction) => {
+    GroceryProvider.getGroceryItem(new ObjectId(req.params.groceryId))
+        .then((response: Grocery) => {
             res.json(response);
         })
         .catch((err: any) => {
@@ -32,7 +32,7 @@ router.put('/', (req: Request, res: Response, next: NextFunction) => {
     req.body.id = new ObjectId();
     req.body._store = new ObjectId(req.body.storeId);
     GroceryProvider.createGroceryItem(req.body)
-        .then((response: GroceryItem) => {
+        .then((response: Grocery) => {
             res.json(response);
         })
         .catch((err: any) => {
@@ -45,7 +45,7 @@ router.post('/:id', (req: Request, res: Response, next: NextFunction) => {
     req.body.id = new ObjectId(req.body.id);
     req.body._store = new ObjectId(req.body.personalInfoId);
     GroceryProvider.updateGroceryItem(req.body)
-        .then((response: GroceryItem) => {
+        .then((response: Grocery) => {
             res.json(response);
         })
         .catch((err: any) => {
@@ -54,9 +54,9 @@ router.post('/:id', (req: Request, res: Response, next: NextFunction) => {
 });
 
 //delete grocery item
-router.delete('/:groceryItemId', (req: Request, res: Response, next: NextFunction) => {
-    GroceryProvider.deleteGroceryItem(new ObjectId(req.body.groceryItemId))
-        .then((response: GroceryItem) => {
+router.delete('/:groceryId', (req: Request, res: Response, next: NextFunction) => {
+    GroceryProvider.deleteGroceryItem(new ObjectId(req.body.groceryId))
+        .then((response: Grocery) => {
             res.json(response);
         })
         .catch((err: any) => {
