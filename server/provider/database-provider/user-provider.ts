@@ -35,16 +35,55 @@ export namespace UserProvider {
         });
     }
 
-    export function saveUser(user: User): Promise<Response<User>> {
+    export function login(user: any): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
-            DbUser.create(user, function (err: any, response: any) {
-                if (err) {
-                    console.log(err);
-                    reject(err);
+            let response = new Response<User>();
+            DbUser.findOne({
+                $or: [{ email: user.username }, { username: user.username }],
+                password: user.password
+            })
+            .then((dbRes: any) => {
+                if (!dbRes) {
+                    response.message = "user does not exist!";
+                    reject(response);
                     return;
                 }
+                response.isSuccessful = true;
+                response.message = "Successfully logged in as " + dbRes.name;
+                response.data = User.getUser(dbRes);
                 resolve(response);
+            })
+            .catch((err: any) => {
+                console.log(err);
+                response.message = "error occured while fetching user details!";
+                reject(response);
             });
+        });
+    }
+
+    export function saveUser(user: User): Promise<Response<User>> {
+        user.personalInfo = null;
+        return new Promise((resolve: Function, reject: Function) => {
+            let response = new Response<User>();
+            DbUser
+                .create(user)
+                .then((dbRes: any) => {
+                    if (!dbRes) {
+                        response.isSuccessful = false;
+                        response.data = null;
+                        response.message = "error occured while saving user details!";
+                        return resolve(response);
+                    }
+                    response.isSuccessful = true;
+                    response.message = "user created successfully!";
+                    response.data = User.getUser(dbRes);
+                    return resolve(response);
+                })
+                .catch((err: any) => {
+                    console.log(err);
+                    response.message = "error occured while saving user details!";
+                    reject(response);
+                });
         });
     }
 
@@ -63,20 +102,24 @@ export namespace UserProvider {
                 personalInfo: user.personalInfo
             }, { 
                 new: true 
-            }, function (err: any, dbRes: any) {
-                if (err) {
-                    console.log(err);
-                    response.message = "error occured while creating new user!";
-                    reject(response);
-                } else if (!dbRes) {
-                    response.message = "failed to create user!";
-                    reject(response);
-                } else {
-                    response.isSuccessful = true;
-                    response.data = User.getUser(dbRes);
-                    resolve(response);
+            })
+            .then((dbRes: any) => {
+                if (!dbRes) {
+                    response.isSuccessful = false;
+                    response.data = null;
+                    response.message = "error occured while updating user details!";
+                    return resolve(response);
                 }
-            });
+                response.isSuccessful = true;
+                response.message = "user info updated successfully!";
+                response.data = User.getUser(dbRes);
+                return resolve(response);
+            })
+            .catch((err: any) => {
+                console.log(err);
+                response.message = "error occured while updating user details!";
+                reject(response);
+            });;
         });
     }
 

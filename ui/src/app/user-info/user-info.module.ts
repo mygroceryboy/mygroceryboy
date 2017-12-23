@@ -19,8 +19,13 @@ import { PersonalInfoComponent } from 'app/user-info/components/personal-info/pe
         UtilsModule,
         RouterModule
     ],
-    providers: [UserService],
     declarations: [
+        UserInfoComponent,
+        PersonalInfoComponent,
+        UserProfileComponent
+    ],
+    providers: [UserService],
+    exports: [
         UserInfoComponent,
         PersonalInfoComponent,
         UserProfileComponent

@@ -1,17 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import * as express from "express";
-import { RegisterProvider } from "../provider/database-provider/register-provider";
 import { ObjectId } from "bson";
 import { authenticate } from "./validate-session";
+import { UserProvider } from "../provider/database-provider/user-provider";
 
 let router = express.Router();
-let provider: RegisterProvider = new RegisterProvider();
 
 router.post('', (req: Request, res: Response, next: NextFunction) => {
     req.body._id = new ObjectId();
-    provider.register(req.body).then(response => {
+    UserProvider.saveUser(req.body).then((response: any) => {
         res.json(response);
-    }).catch(err => {
+    }).catch((err: any) => {
         res.json(err);
     });
 });
