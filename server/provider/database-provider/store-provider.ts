@@ -46,6 +46,7 @@ export namespace StoreProvider {
     }
 
     export function createStore(store: Store): Promise<Store> {
+        store.images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQImNrmb9FLej0Vk3ao3eniBeseBsPyedSDmoDwUNRpx3-ANGhG"];
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore
@@ -71,6 +72,7 @@ export namespace StoreProvider {
     }
 
     export function updateStore(store: Store): Promise<Store> {
+        store.images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQImNrmb9FLej0Vk3ao3eniBeseBsPyedSDmoDwUNRpx3-ANGhG"];
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store>();
             DbStore

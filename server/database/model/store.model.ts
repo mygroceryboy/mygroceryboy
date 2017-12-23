@@ -16,6 +16,10 @@ let StoreSchema = new Schema({
         type: String,
         required: [true, 'phone is required']
     },
+    images: {
+        type: [String],
+        required: [true, 'store name is required']
+    },
     address: {
         type: AddressSchema,
         required: [true, 'address is required']

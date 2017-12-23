@@ -20,10 +20,10 @@ export namespace UserProvider {
         });
     }
 
-    export function getUser(id: ObjectId): Promise<Response<User>> {
+    export function getUser(_id: ObjectId): Promise<Response<User>> {
         return new Promise((resolve: Function, reject: Function) => {
             UserModel.findById({
-                id: id
+                _id: _id
             }, function (err: any, response: any) {
                 if (err) {
                     console.error(err);
@@ -53,9 +53,9 @@ export namespace UserProvider {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<User>();
             UserModel.findOneAndUpdate({ 
-                id: user._id 
+                _id: user._id 
             }, {
-                id: user._id,
+                _id: user._id,
                 username: user.username,
                 name: user.name,
                 userType: user.userType,
@@ -80,10 +80,10 @@ export namespace UserProvider {
         });
     }
 
-    export function deleteUser(id: ObjectId): Promise<boolean> {
+    export function deleteUser(_id: ObjectId): Promise<boolean> {
         return new Promise((resolve: Function, reject: Function) => {
             UserModel.findOneAndRemove({
-                id: id
+                _id: _id
             }, function (err: any, response: any) {
                 if (err) {
                     console.error(err);
