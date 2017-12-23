@@ -5,7 +5,7 @@ let GrocerySchema = new Schema({
     _user: {
         type: Schema.Types.ObjectId,
         ref: APP_CONSTANTS.DB.COLLECTIONS.USERS,
-        required: [true, 'store id is required']
+        required: [true, 'user id is required']
     },
     _store: {
         type: Schema.Types.ObjectId,
