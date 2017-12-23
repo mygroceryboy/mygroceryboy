@@ -26,8 +26,16 @@ export class GroceryListComponent implements OnInit {
             .getGrocerys(this._Route.snapshot.params.storeId)
             .then((response: Array<Grocery>) => {
                 this.items = response;
-                this.links = [{ label: 'Grocery List', path: `store/${this._Route.snapshot.params.storeId}/grocery/list` },
-                { label: 'Add Grocery', path: `store/${this._Route.snapshot.params.storeId}/grocery/new` }];
+                this.links = [{
+                    label: 'Store Details',
+                    path: `store/${this._Route.snapshot.params.storeId}`
+                }, {
+                    label: 'Grocery List',
+                    path: `store/${this._Route.snapshot.params.storeId}/grocery/list`
+                }, {
+                    label: 'Add Grocery',
+                    path: `store/${this._Route.snapshot.params.storeId}/grocery/new`
+                }];
             })
             .catch((err: any) => {
 

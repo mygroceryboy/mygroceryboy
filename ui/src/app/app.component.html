@@ -17,8 +17,8 @@
         </div>
         <div *ngIf="links && links.length" class="route-links" slot="top">
             <ng-container *ngFor="let link of links">
-                <paper-button>
-                    <a class="router-link" [routerLink]="link.path" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact:true}">{{link.label}}</a>
+                <paper-button (click)="anchor.click()">
+                    <a #anchor class="router-link" [routerLink]="link.path" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact:true}">{{link.label}}</a>
                 </paper-button>
             </ng-container>
         </div>

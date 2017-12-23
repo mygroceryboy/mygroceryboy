@@ -29,8 +29,16 @@ export class GroceryCreateComponent implements OnInit {
         this.model = this.model || new Grocery();
         this.model._user = this._AuthService.user._id;
         this.model._store = this._Route.snapshot.params.storeId;
-        this.links = [{ label: 'Grocery List', path: `store/${this._Route.snapshot.params.storeId}/grocery/list` },
-            { label: 'Add Grocery', path: `store/${this._Route.snapshot.params.storeId}/grocery/new` }];
+        this.links = [{
+            label: 'Store Details',
+            path: `store/${this._Route.snapshot.params.storeId}`
+        }, {
+            label: 'Grocery List',
+            path: `store/${this._Route.snapshot.params.storeId}/grocery/list`
+        }, {
+            label: 'Add Grocery',
+            path: `store/${this._Route.snapshot.params.storeId}/grocery/new`
+        }];
     }
 
     private createGrocery(dialog: any): void {
