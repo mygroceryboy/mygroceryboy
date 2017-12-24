@@ -3,44 +3,46 @@ import { RouterModule } from "@angular/router";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
+import { UtilsModule } from './modules/utils.module';
+import { UserModule } from "./modules/user.module";
+import { StoreModule as ShopModule } from "./modules/store.module"
+import { GroceryModule } from "./modules/grocery.module"
+
 import { AppComponent } from './app.component';
+import { HomeComponent } from "app/views/home/home.component";
+import { AboutUsComponent } from './views/about-us/about-us.component';
+import { ContactUsComponent } from './views/contact-us/contact-us.component';
+import { ErrorPageComponent } from "app/views/error-page/error-page.component";
 
-import { LoginModule } from "./login/login.module";
-import { ErrorPageModule } from "./error-page/error-page.module";
-import { AppRoutes } from "./app-routes";
-import { RegisterModule } from "./register/register.module";
-import { UserInfoModule } from "./user-info/user-info.module";
-import { HomeModule } from "./home/home.module";
-import { StoreModule as ShopModule } from "./store/store.module"
-import { GroceryModule } from "./grocery/grocery.module"
-
-import { LocationService } from "./utils/providers/location/location.service";
-
-import { ToastReducer } from "./utils/redux/app-reducers";
-import { StoreProviders } from "./utils/redux/store.providers";
-import { AboutUsComponent } from './about-us/about-us.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { UtilsModule } from './utils/utils.module';
+import { LocationService } from "./controllers/location/location.service";
+import { NgrxStoreProviders } from "./redux/ngrx-store.providers";
+import { AppRoutes } from "./routes/app-routes";
 
 @NgModule({
     declarations: [
         AppComponent,
+        HomeComponent,
+        ErrorPageComponent,
         AboutUsComponent,
         ContactUsComponent
     ],
     imports: [
         BrowserModule,
         RouterModule,
-        HomeModule,
-        ErrorPageModule,
-        LoginModule,
-        RegisterModule,
-        UserInfoModule,
+        UserModule,
         ShopModule,
         GroceryModule,
         UtilsModule,
-        StoreModule.provideStore(StoreProviders),
+        StoreModule.provideStore(NgrxStoreProviders),
+        //RouterModule always in the end
         RouterModule.forRoot(AppRoutes)
+    ],
+    exports: [
+        AppComponent,
+        HomeComponent,
+        ErrorPageComponent,
+        AboutUsComponent,
+        ContactUsComponent
     ],
     providers: [LocationService],
     bootstrap: [AppComponent],

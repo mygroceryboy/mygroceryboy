@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs/Subscription";
-import { ToastModel, MenuLink } from "./utils/redux/app-reducers";
-import { AuthService } from "./utils/providers/auth/auth.service";
+import { ToastModel, MenuLink } from "./redux/app-reducers";
+import { AuthService } from "./services/auth/auth.service";
 import { User } from "./models/user.model";
 
 @Component({
