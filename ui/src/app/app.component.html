@@ -5,9 +5,17 @@
     </a>
 </paper-toast>
 
+<paper-dialog modal [opened]="isActive">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <img src="loader.png" alt="loader">
+            <h1>Loading Results...</h1>
+        </div>
+    </div>
+</paper-dialog>
 
 <app-drawer-layout>
-    
+
     <paper-toolbar>
         <!-- <paper-icon-button slot="top" icon="menu" onclick="menu.toggle()"></paper-icon-button> -->
         <div slot="top">

@@ -9,7 +9,10 @@ let router: Router = Router();
 router.get('/all/:userId', (req: Request, res: Response, next: NextFunction) => {
     StoreProvider.getUserStores(new ObjectId(req.params.userId))
         .then((response: Store[]) => {
-            res.json(response);
+            setTimeout(() => {
+                res.json(response);
+                
+            }, 3000);
         })
         .catch((err: any) => {
             res.json(err);

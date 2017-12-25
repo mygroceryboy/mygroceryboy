@@ -1,3 +1,7 @@
+paper-card {
+    background-color: var(--paper-blue-50);
+}
+
 .card-content img {
     border: solid thin var(--paper-light-blue-50);
     height: 120px;

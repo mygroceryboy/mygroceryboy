@@ -1,19 +1,20 @@
-import { Component, OnInit, Input, Output, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ElementRef, EventEmitter } from '@angular/core';
 import { FilterGroup, Search, Range, Select, SelectFilter } from "../../../models/filter.model";
 
 @Component({
-    selector: 'app-list-filter',
+    selector: 'app-filter-list',
     templateUrl: './filter.component.html',
     styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
     @Input()
     public filterJson: FilterGroup;
+    @Output()
+    public filterEvent: EventEmitter<FilterGroup> = new EventEmitter();;
 
     public constructor(private elementRef: ElementRef) { }
 
     public ngOnInit(): void {
-        this.filterJson = new FilterGroup({ search: { title: "Search Filters", filters: [{ key: "name", value: "Manoj" }, { key: "description", value: "Chalode" }] }, range: { title: "Range Filters", filters: [{ key: "price", min: 1200, max: 15000 }] }, select: [{ title: "Categories", type: "checkbox", filters: [{ key: "name", value: true }, { key: "description", value: false }, { key: "address", value: true }] }, { title: "Stores", type: "radio", filters: [{ key: "name", value: false }, { key: "description", value: true }, { key: "address", value: false }] }] });
     }
 
     private filterList(): void {
@@ -21,7 +22,7 @@ export class FilterComponent implements OnInit {
         this.getRangeFilters();
         this.getCheckboxFilters();
         this.getRadioFilters();
-        console.log(btoa(JSON.stringify(this.filterJson)));
+        this.filterEvent.next(this.filterJson);
     }
 
     private getSearchFilters(): void {
@@ -90,5 +91,6 @@ export class FilterComponent implements OnInit {
 
     private resetList(): void {
         this.filterJson = JSON.parse(JSON.stringify(this.filterJson));
+        this.filterEvent.next(this.filterJson);
     }
 }

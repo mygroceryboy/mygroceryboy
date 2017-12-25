@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Store } from "../../../models/store.model";
-import { Address } from '../../../models/base/address.model';
-import { Filter } from "../../../models/filter.model";
+import { FilterGroup } from "../../../models/filter.model";
 import { StoreService } from "../../../controllers/store/store.service";
 
 import * as filterJson from "./filter.json";
@@ -16,17 +15,27 @@ export class StoreListComponent implements OnInit {
 
     private stores: Array<Store> = [];
     private filterData: Map<string, Array<string>>;
-    private filter: Filter;
     private filterJson: any;
 
-    constructor(private _Router: Router,
-        private _StoreService: StoreService) { }
+    constructor(private route: ActivatedRoute,
+        private _Router: Router,
+        private _StoreService: StoreService) {
+        this.filterJson = filterJson;
+        this.route.params.subscribe(params => {
+            if (params.query) {
+                this.filterJson = JSON.parse(atob(params.query));
+            }
+        });
+    }
 
     public ngOnInit(): void {
-        this.filterJson = filterJson;
         this._StoreService.getStores()
             .then((response: Array<Store>) => {
                 this.stores = response;
             });
+    }
+
+    private onFilterChange(filter: FilterGroup) {
+        this._Router.navigate(['store', 'list', btoa(JSON.stringify(filter))])
     }
 }

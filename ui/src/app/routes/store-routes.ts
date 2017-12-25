@@ -19,7 +19,7 @@ export const StoreRoute: Route = {
             component: StoreListComponent
         },
         {
-            path: "list/filter/:query",
+            path: "list/:query",
             canActivate: [AuthGuard],
             component: StoreListComponent
         },

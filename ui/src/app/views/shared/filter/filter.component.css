@@ -1,6 +1,6 @@
-/* paper-card {
-    height: 90vh;
-} */
+paper-card {
+    background-color: var(--paper-blue-50);
+}
 
 h3 {
     color: var(--paper-blue-700);

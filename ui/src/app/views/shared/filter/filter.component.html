@@ -11,7 +11,7 @@
     <div class="mts mbs">
         <h3>{{filterJson.search.title}}</h3>
         <paper-input *ngFor="let searchFilter of filterJson.search.filters" class="search" 
-            [attr.data-search-key]="searchFilter.key" [value]="searchFilter.value" label="search by store {{searchFilter.key}}">
+            [attr.data-search-key]="searchFilter.key" [value]="searchFilter.value" label="search by {{searchFilter.key}}">
         </paper-input>
     </div>
 </paper-card>
@@ -39,7 +39,7 @@
         [class]="select.type === 'checkbox' ? 'checkbox-card col-lg-12 mtl' : 'radio-card col-lg-12 mtl'" 
         [attr.data-select-type]="select.type" [attr.data-select-title]="select.title" elevation="5">
         <div class="mts">
-            <div class="mbs">
+            <div [class.mbs]="select.type === 'checkbox'">
                 <h3>{{select.title}}</h3>
             </div>
             <ng-container *ngIf="select.type === 'checkbox'">

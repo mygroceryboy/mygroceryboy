@@ -116,3 +116,8 @@ paper-menu-button {
 paper-listbox {
     cursor: pointer;
 }
+
+paper-dialog {
+    width: 100vh;
+    background-color: var(--paper-blue-50);
+}

@@ -1,6 +1,6 @@
 <div menu-links linkGroup="StoreList" class="container">
     <div class="row">
-        <app-list-filter *ngIf="!!filterJson" class="col-lg-3" [filterJson]="filterJson"></app-list-filter>
+        <app-filter-list *ngIf="!!filterJson" class="col-lg-3" [filterJson]="filterJson" (filterEvent)="onFilterChange($event)"></app-filter-list>
         <div [class]="!!filterJson ? 'col-lg-9' : 'col-lg-12'">
             <ng-container *ngIf="stores?.length;">
                 <app-store-item *ngFor="let store of stores" [store]="store"></app-store-item>
