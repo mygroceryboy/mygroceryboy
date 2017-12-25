@@ -1,0 +1,23 @@
+/* paper-card {
+    height: 90vh;
+} */
+
+h3 {
+    color: var(--paper-blue-700);
+    text-align: center;
+    margin: 0;
+}
+
+paper-button {
+    color: white;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+paper-button.filter-reset {
+    background-color: var(--paper-orange-700);
+}
+
+paper-button.filter {
+    background-color: var(--paper-blue-700);
+}

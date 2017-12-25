@@ -1,33 +1,7 @@
 <div menu-links linkGroup="StoreList" class="container">
     <div class="row">
-        <div class="col-lg-4">
-            <paper-card class="col-lg-12 mtl text-center" elevation="5">
-                <div class="card-heading">
-                    <h3>Filters</h3>
-                </div>
-                <div class="card-content text-left">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <paper-input label="search store name"></paper-input>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <paper-input label="search store address"></paper-input>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-actions">
-                    <paper-button raised (click)="reset()" class="pull-left btn-sm filter-reset">
-                        Reset
-                    </paper-button>
-                    <paper-button raised (click)="filter()" class="pull-right btn-sm filter">
-                        Filter Results
-                    </paper-button>
-                </div>
-            </paper-card>
-        </div>
-        <div class="col-lg-8">
+        <app-list-filter *ngIf="!!filterJson" class="col-lg-3" [filterJson]="filterJson"></app-list-filter>
+        <div [class]="!!filterJson ? 'col-lg-9' : 'col-lg-12'">
             <ng-container *ngIf="stores?.length;">
                 <app-store-item *ngFor="let store of stores" [store]="store"></app-store-item>
             </ng-container>

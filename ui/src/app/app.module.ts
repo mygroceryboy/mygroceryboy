@@ -7,6 +7,7 @@ import { UtilsModule } from './modules/utils.module';
 import { UserModule } from "./modules/user.module";
 import { StoreModule as ShopModule } from "./modules/store.module"
 import { GroceryModule } from "./modules/grocery.module"
+import { SharedViewModule } from "./modules/shared-view.module";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from "app/views/home/home.component";
@@ -33,6 +34,7 @@ import { AppRoutes } from "./routes/app-routes";
         ShopModule,
         GroceryModule,
         UtilsModule,
+        SharedViewModule,
         StoreModule.provideStore(NgrxStoreProviders),
         //RouterModule always in the end
         RouterModule.forRoot(AppRoutes)

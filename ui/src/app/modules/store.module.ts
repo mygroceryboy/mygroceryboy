@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 
 import { UtilsModule } from "./utils.module";
+import { SharedViewModule } from "./shared-view.module";
 
 import { StoreListComponent } from "../views/store/store-list/store-list.component";
 import { StoreCreateComponent } from "../views/store/store-create/store-create.component";
@@ -20,11 +21,11 @@ import { StoreService } from "../controllers/store/store.service";
         HttpModule,
         FormsModule,
         UtilsModule,
+        SharedViewModule,
         RouterModule
     ],
     declarations: [
-        StoreListComponent
-        ,
+        StoreListComponent,
         StoreCreateComponent,
         StoreUpdateComponent,
         StoreItemComponent

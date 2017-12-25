@@ -1,0 +1,36 @@
+<paper-card class="col-lg-12 mtl" elevation="5" *ngIf="filterJson?.search?.filters?.length">
+    <div class="mtm">
+        <h3>{{filterJson.search.title}}</h3>
+        <paper-input *ngFor="let searchFilter of filterJson.search.filters" class="search" [attr.data-search-key]="searchFilter"
+            label="search by store {{searchFilter}}">
+        </paper-input>
+    </div>
+    <paper-button raised (click)="resetList()" class="pull-left btn-sm filter-reset">
+        Reset
+    </paper-button>
+    <paper-button raised (click)="filterList()" class="pull-right btn-sm filter">
+        Filter Results
+    </paper-button>
+</paper-card>
+
+<paper-card class="col-lg-12 mtm" elevation="5" *ngIf="filterJson?.range?.filters?.length">
+    <div class="mtm">
+        <h3>{{filterJson.range.title}}</h3>
+        <div class="row" *ngFor="let rangeFilter of filterJson.range.filters">
+            <div class="col-lg-6">
+                <paper-input class="col-lg-12" class="range" [attr.data-range-key-low]="rangeFilter" label="min {{rangeFilter}}">
+                </paper-input>
+            </div>
+            <div class="col-lg-6">
+                <paper-input class="col-lg-12" class="range" [attr.data-range-key-high]="rangeFilter" label="max {{rangeFilter}}">
+                </paper-input>
+            </div>
+        </div>
+    </div>
+    <paper-button raised (click)="resetList()" class="pull-left btn-sm filter-reset">
+        Reset
+    </paper-button>
+    <paper-button raised (click)="filterList()" class="pull-right btn-sm filter">
+        Filter Results
+    </paper-button>
+</paper-card>

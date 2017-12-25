@@ -45,13 +45,13 @@ export class MenuLinksDirective implements OnInit, OnChanges {
     }
 
     private loadLinks() {
-        setTimeout(function () {
+        setTimeout(() => {
             if (this.linkGroup) {
                 this._Store.dispatch({
                     type: ReducerActions.Links.Set,
                     payload: MenuLinksConfig[this.linkGroup]
                 });
             }
-        }.bind(this));
+        }, 200);
     }
 }
