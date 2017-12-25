@@ -10,10 +10,10 @@ export class StoreService {
     constructor(private _Http: Http,
         private _AuthService: AuthService) { }
 
-    public getStores(): Promise<Store[]> {
+    public getStores(query: string = ""): Promise<Store[]> {
         return new Promise((resolve: Function, reject: Function) => {
             return this._Http
-                .get(`/api/store/all/${this._AuthService.user._id}`)
+                .get(`/api/store/all/${this._AuthService.user._id}${query}`)
                 .subscribe((httpResponse: any) => {
                     let response: Response<Store[]> = httpResponse.json();
                     if (!response || !response.isSuccessful) {

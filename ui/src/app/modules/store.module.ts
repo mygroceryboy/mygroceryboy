@@ -12,7 +12,10 @@ import { StoreListComponent } from "../views/store/store-list/store-list.compone
 import { StoreCreateComponent } from "../views/store/store-create/store-create.component";
 import { StoreUpdateComponent } from "../views/store/store-update/store-update.component";
 import { StoreItemComponent } from "../views/store/store-item/store-item.component";
+
 import { StoreService } from "../controllers/store/store.service";
+import { StoreListResolverService } from "../resolvers/store-list-resolver.service";
+
 
 @NgModule({
     imports: [
@@ -30,7 +33,10 @@ import { StoreService } from "../controllers/store/store.service";
         StoreUpdateComponent,
         StoreItemComponent
     ],
-    providers: [StoreService],
+    providers: [
+        StoreService,
+        StoreListResolverService
+    ],
     exports: [
         StoreListComponent,
         StoreCreateComponent,

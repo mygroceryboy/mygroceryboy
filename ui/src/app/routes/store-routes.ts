@@ -4,6 +4,7 @@ import { StoreUpdateComponent } from "../views/store/store-update/store-update.c
 import { StoreCreateComponent } from "../views/store/store-create/store-create.component";
 import { AuthGuard } from "../guards/auth-guard/auth-guard";
 import { GroceryRoute } from "./grocery-routes";
+import { StoreListResolverService } from "../resolvers/store-list-resolver.service";
 
 export const StoreRoute: Route = {
     path: "store",
@@ -16,12 +17,18 @@ export const StoreRoute: Route = {
         {
             path: "list",
             canActivate: [AuthGuard],
-            component: StoreListComponent
+            component: StoreListComponent,
+            resolve: {
+                stores: StoreListResolverService
+            }
         },
         {
             path: "list/:query",
             canActivate: [AuthGuard],
-            component: StoreListComponent
+            component: StoreListComponent,
+            resolve: {
+                stores: StoreListResolverService
+            }
         },
         {
             path: "new",

@@ -29,10 +29,7 @@ export class StoreListComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this._StoreService.getStores()
-            .then((response: Array<Store>) => {
-                this.stores = response;
-            });
+        this.stores = this.route.snapshot.data['stores'];
     }
 
     private onFilterChange(filter: FilterGroup) {
