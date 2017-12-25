@@ -21,3 +21,7 @@ paper-button.filter-reset {
 paper-button.filter {
     background-color: var(--paper-blue-700);
 }
+
+paper-checkbox, paper-radio-group, paper-radio-button {
+    padding-left: 0;
+}

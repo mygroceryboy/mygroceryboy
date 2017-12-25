@@ -2,23 +2,52 @@
     "search": {
         "title": "Search Filters",
         "filters": [
-            "name",
-            "description",
-            "address"
+            {
+                "key": "name"
+            },
+            {
+                "key": "description"
+            }
         ]
     },
     "range": {
         "title": "Range Filters",
         "filters": [
-            "price"
+            {
+                "key": "price"
+            }
         ]
     },
-    "select": {
-        "title": "Search Filters",
-        "filters": [
-            "name",
-            "description",
-            "address"
-        ]
-    }
+    "select": [
+        {
+            "title": "Categories",
+            "type": "checkbox",
+            "filters": [
+                {
+                    "key": "name"
+                },
+                {
+                    "key": "description"
+                },
+                {
+                    "key": "address"
+                }
+            ]
+        },
+        {
+            "title": "Stores",
+            "type": "radio",
+            "filters": [
+                {
+                    "key": "name"
+                },
+                {
+                    "key": "description"
+                },
+                {
+                    "key": "address"
+                }
+            ]
+        }
+    ]
 }

@@ -1,70 +1,48 @@
-export class Filter {
+export class Search {
+    public key: string;
+    public value: string;
+}
 
-    public constructor() {}
+export class Range {
+    public key: string;
+    public min: number;
+    public max: number;
+}
 
-    private _searchFilters: Map<string, string>
-    public get searchFilters(): Map<string, string> {
-        return this._searchFilters;
+export class Select {
+    public key: string;
+    public value: boolean;
+}
+
+export class Filter<T> {
+    public title: string;
+    public filters: T[];
+}
+
+export class SelectFilter<T> extends Filter<T> {
+    public type: string;
+}
+
+export class FilterGroup {
+
+    public constructor(filter: any) {
+        this._search = filter.search;
+        this._range = filter.range;
+        this._select = filter.select;
     }
 
-    private _rangeFilters: Map<string, Array<number>>;
-    public get rangeFilters(): Map<string, Array<number>> {
-        return this._rangeFilters;
+    private _search: Filter<Search>;
+    public get search(): Filter<Search> {
+        return this._search;
     }
 
-    private _multiSelectFilters: Map<string, Array<string>>;
-    public get multiSelectFilters(): Map<string, Array<string>> {
-        return this._multiSelectFilters;
+    private _range:  Filter<Range>;
+    public get range():  Filter<Range> {
+        return this._range;
     }
 
-    public updateSearchFilter(key: string, value: string = ""): void {
-        if (!key) {
-            return;
-        }
-        if (!this._searchFilters) {
-            this._searchFilters = new Map<string, string>();
-        }
-        this.searchFilters.set(key, value);
-    }
-
-    public removeSearchFilter(key: string): void {
-        if (!key) {
-            return;
-        }
-        this._searchFilters.delete(key);
-    }
-
-    public updateRangeFilter(key: string, value: Array<number> = []): void {
-        if (!key) {
-            return;
-        }
-        if (!this._rangeFilters) {
-            this._rangeFilters = new Map<string, Array<number>>();
-        }
-        this.rangeFilters.set(key, value || []);
-    }
-
-    public removeRangeFilter(key: string): void {
-        if (!key) {
-            return;
-        }
-        this._searchFilters.delete(key);
-    }
-
-    public updateMultiselectFilter(key: string, value: Array<string> = []): void {
-        if (!key) {
-            return;
-        }
-        if (!this._multiSelectFilters) {
-            this._multiSelectFilters = new Map<string, Array<string>>();
-        }
-        this.multiSelectFilters.set(key, value || []);
-    }
-
-    public removeMultiselectFilter(key: string): void {
-        if (!key) {
-            return;
-        }
-        this._searchFilters.delete(key);
+    private _select: Array<SelectFilter<Select>>;
+    public get select(): Array<SelectFilter<Select>> {
+        return this._select;
     }
 }

@@ -1,36 +1,60 @@
-<paper-card class="col-lg-12 mtl" elevation="5" *ngIf="filterJson?.search?.filters?.length">
-    <div class="mtm">
-        <h3>{{filterJson.search.title}}</h3>
-        <paper-input *ngFor="let searchFilter of filterJson.search.filters" class="search" [attr.data-search-key]="searchFilter"
-            label="search by store {{searchFilter}}">
-        </paper-input>
-    </div>
-    <paper-button raised (click)="resetList()" class="pull-left btn-sm filter-reset">
+<paper-card class="col-lg-12 mtl mbm" elevation="5">
+    <paper-button raised (click)="resetList()" class="pull-left filter-reset">
         Reset
     </paper-button>
-    <paper-button raised (click)="filterList()" class="pull-right btn-sm filter">
-        Filter Results
+    <paper-button raised (click)="filterList()" class="pull-right filter">
+        Apply Filters
     </paper-button>
 </paper-card>
 
-<paper-card class="col-lg-12 mtm" elevation="5" *ngIf="filterJson?.range?.filters?.length">
-    <div class="mtm">
+<paper-card class="search-card col-lg-12 mts" elevation="5" *ngIf="filterJson?.search?.filters?.length">
+    <div class="mts mbs">
+        <h3>{{filterJson.search.title}}</h3>
+        <paper-input *ngFor="let searchFilter of filterJson.search.filters" class="search" 
+            [attr.data-search-key]="searchFilter.key" [value]="searchFilter.value" label="search by store {{searchFilter.key}}">
+        </paper-input>
+    </div>
+</paper-card>
+
+<paper-card class="range-card col-lg-12 mtl" elevation="5" *ngIf="filterJson?.range?.filters?.length">
+    <div class="mts mbs">
         <h3>{{filterJson.range.title}}</h3>
         <div class="row" *ngFor="let rangeFilter of filterJson.range.filters">
             <div class="col-lg-6">
-                <paper-input class="col-lg-12" class="range" [attr.data-range-key-low]="rangeFilter" label="min {{rangeFilter}}">
+                <paper-input class="col-lg-12" class="range" type="number" [attr.data-range-key-min]="rangeFilter.key" 
+                    label="min {{rangeFilter.key}}" [value]="rangeFilter.min">
                 </paper-input>
             </div>
             <div class="col-lg-6">
-                <paper-input class="col-lg-12" class="range" [attr.data-range-key-high]="rangeFilter" label="max {{rangeFilter}}">
+                <paper-input class="col-lg-12" class="range" type="number" [attr.data-range-key-max]="rangeFilter.key" 
+                    label="max {{rangeFilter.key}}" [value]="rangeFilter.max">
                 </paper-input>
             </div>
         </div>
     </div>
-    <paper-button raised (click)="resetList()" class="pull-left btn-sm filter-reset">
-        Reset
-    </paper-button>
-    <paper-button raised (click)="filterList()" class="pull-right btn-sm filter">
-        Filter Results
-    </paper-button>
 </paper-card>
+
+<ng-container *ngIf="filterJson?.select?.length">
+    <paper-card *ngFor="let select of filterJson?.select" 
+        [class]="select.type === 'checkbox' ? 'checkbox-card col-lg-12 mtl' : 'radio-card col-lg-12 mtl'" 
+        [attr.data-select-type]="select.type" [attr.data-select-title]="select.title" elevation="5">
+        <div class="mts">
+            <div class="mbs">
+                <h3>{{select.title}}</h3>
+            </div>
+            <ng-container *ngIf="select.type === 'checkbox'">
+                <paper-checkbox class="mbm col-lg-12" *ngFor="let selectFilter of select.filters" 
+                    [attr.data-select-key]="selectFilter.key" [checked]="!!selectFilter.value">
+                    {{selectFilter.key}}
+                </paper-checkbox>
+            </ng-container>
+            <paper-radio-group *ngIf="select.type === 'radio'" class="col-lg-12" allow-empty-selection
+                [selected]="getSelectedRadio(select.filters)">
+                <paper-radio-button class="col-lg-12" *ngFor="let selectFilter of select.filters" 
+                    [attr.data-select-key]="selectFilter.key" [name]="selectFilter.key">
+                    {{selectFilter.key}}
+                </paper-radio-button>
+            </paper-radio-group>
+        </div>
+    </paper-card>
+</ng-container>
