@@ -1,19 +1,36 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My Grocery Boy</title>
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="dist/bootstrap.min.css">
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <title>My Grocery Boy</title>
-    <base href="/">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="dist/bootstrap.min.css">
-    <link rel="import" href="dist/polymer-components.html">
-</head>
-
-<body>
-    <app-root></app-root>
-    <script type="javascript" src="dist/webcomponents-lite.js"></script>
-</body>
+    <body>
+        <app-root id="root" hidden></app-root>
+    </body>
+    <script src="index.js"></script>
+    <!-- <script>
+        (function() {
+            if (!('registerElement' in document) || 
+                !('import' in document.createElement('link')) || 
+                !('content' in document.createElement('template'))) {
+                    var polyfill = document.createElement('script');
+                    polyfill.src = '/dist/webcomponents-lite.js';
+                    document.body.appendChild(polyfill);
+            }
+            
+            var polymerImport = document.createElement('link');
+            polymerImport.rel="import"
+            polymerImport.href = '/dist/polymer-components.html';
+            document.body.appendChild(polymerImport);
+            setTimeout(() => {                
+                var root = document.getElementById('root');
+                root.hidden = false;
+            }, 500);
+        })();
+    </script> -->
 </html>

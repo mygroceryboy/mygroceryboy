@@ -5,9 +5,7 @@ var minifyInline = require('gulp-minify-inline');
 
 gulp.task("copy", function () {
     return gulp.src([
-        "src/bower_components/webcomponentsjs/webcomponents-lite.js",
-        "node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "node_modules/bootstrap/dist/css/bootstrap.min.css.map",
+        "src/bower_components/webcomponentsjs/webcomponents-lite.js"
     ])
     .pipe(gulp.dest("src/dist"));
 });
