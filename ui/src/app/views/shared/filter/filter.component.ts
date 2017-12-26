@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, ElementRef, EventEmitter } from '@angular/core';
-import { FilterGroup, Search, Range, Select, SelectFilter } from "../../../models/filter.model";
+import { FilterGroup, Search, Range, Select, SelectFilter, Filter } from "../../../models/filter.model";
 
 @Component({
     selector: 'app-filter-list',
@@ -8,7 +8,7 @@ import { FilterGroup, Search, Range, Select, SelectFilter } from "../../../model
 })
 export class FilterComponent implements OnInit {
     @Input()
-    public filterJson: FilterGroup;
+    public filterGroup: FilterGroup;
     @Output()
     public filterEvent: EventEmitter<FilterGroup> = new EventEmitter();;
 
@@ -22,14 +22,14 @@ export class FilterComponent implements OnInit {
         this.getRangeFilters();
         this.getCheckboxFilters();
         this.getRadioFilters();
-        this.filterEvent.next(this.filterJson);
+        this.filterEvent.next(this.filterGroup);
     }
 
     private getSearchFilters(): void {
         let searchInputs: Array<HTMLInputElement> =
             this.elementRef.nativeElement.querySelectorAll('paper-card.search-card paper-input');
         searchInputs.forEach((element: HTMLInputElement) => {
-            this.filterJson.search.filters.forEach((filter: Search) => {
+            this.filterGroup.search.filters.forEach((filter: Search) => {
                 if (element.dataset.searchKey === filter.key) {
                     filter.value = element.value;
                 }
@@ -41,7 +41,7 @@ export class FilterComponent implements OnInit {
         let rangeInputs: Array<HTMLInputElement> =
             this.elementRef.nativeElement.querySelectorAll('paper-card.range-card paper-input');
         rangeInputs.forEach((element: HTMLInputElement) => {
-            this.filterJson.range.filters.forEach((filter: Range) => {
+            this.filterGroup.range.filters.forEach((filter: Range) => {
                 if (element.dataset.rangeKeyMin === filter.key) {
                     filter.min = parseInt(element.value);
                 }
@@ -69,7 +69,7 @@ export class FilterComponent implements OnInit {
             let querySelector: string = filterCard.dataset.selectType === "checkbox" ? "paper-checkbox" : "paper-radio-button";
             let checkboxList: NodeListOf<Element> = filterCard.querySelectorAll(querySelector);
             [].forEach.call(checkboxList, (element: HTMLInputElement) => {
-                let selectFilter: SelectFilter<Select> = this.filterJson.select.find((filter: SelectFilter<Select>): boolean => {
+                let selectFilter: SelectFilter<Select> = this.filterGroup.select.find((filter: SelectFilter<Select>): boolean => {
                     return filter.title === filterCard.dataset.selectTitle;
                 });
                 selectFilter.filters.forEach((filter: Select) => {
@@ -90,7 +90,7 @@ export class FilterComponent implements OnInit {
     }
 
     private resetList(): void {
-        this.filterJson = JSON.parse(JSON.stringify(this.filterJson));
-        this.filterEvent.next(this.filterJson);
+        FilterGroup.reset(this.filterGroup);
+        this.filterEvent.next(null);
     }
 }

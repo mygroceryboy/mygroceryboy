@@ -10,7 +10,7 @@ export class StoreListResolverService implements Resolve<Store[]> {
 
     resolve(route: ActivatedRouteSnapshot) {
         //pagination
-        let query: string = route.params && route.params.query ? "?q=" + route.params.query : "";
+        let query: string = route.params && route.params.query ? "?filter=" + route.params.query : "";
         return this._StoreService.getStores(query);
     }
 }

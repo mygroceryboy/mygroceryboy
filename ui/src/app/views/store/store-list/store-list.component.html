@@ -1,12 +1,29 @@
 <div menu-links linkGroup="StoreList" class="container">
+    <div class="row mtl">
+        <div class="col-lg-12">
+            <paper-card class="col-lg-12" elevation="5">
+                <div class="row mts mbs">
+                    <div class="col-lg-2">
+                        <paper-button class="pull-left">Previous</paper-button>
+                    </div>
+                    <div class="col-lg-8 text-center">
+                        <h4>Showing 1 to 21 of 49 store(s).</h4>
+                    </div>
+                    <div class="col-lg-2">
+                        <paper-button class="pull-right">Next</paper-button>
+                    </div>
+                </div>
+            </paper-card>
+        </div>
+    </div>
     <div class="row">
-        <app-filter-list *ngIf="!!filterJson" class="col-lg-3" [filterJson]="filterJson" (filterEvent)="onFilterChange($event)"></app-filter-list>
-        <div [class]="!!filterJson ? 'col-lg-9' : 'col-lg-12'">
+        <app-filter-list *ngIf="!!filterGroup" class="col-lg-3" [filterGroup]="filterGroup" (filterEvent)="onFilterChange($event)"></app-filter-list>
+        <div [class]="!!filterGroup ? 'col-lg-9' : 'col-lg-12'">
             <ng-container *ngIf="stores?.length;">
                 <app-store-item *ngFor="let store of stores" [store]="store"></app-store-item>
             </ng-container>
             <div *ngIf="!stores?.length;" class="row text-center mtxl">
-                <div [class]="!!filterJson ? 'col-lg-offset-3 col-lg-9' : 'col-lg-12'">
+                <div [class]="!!filterGroup ? 'col-lg-offset-3 col-lg-9' : 'col-lg-12'">
                     <h2>No stores added yet!</h2>
                     <span>Go to Add Store or click </span>
                     <a routerLink="/store/new">here</a>

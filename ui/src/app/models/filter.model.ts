@@ -25,10 +25,7 @@ export class SelectFilter<T> extends Filter<T> {
 
 export class FilterGroup {
 
-    public constructor(filter: any) {
-        this._search = filter.search;
-        this._range = filter.range;
-        this._select = filter.select;
+    public constructor() {
     }
 
     private _search: Filter<Search>;
@@ -44,5 +41,20 @@ export class FilterGroup {
     private _select: Array<SelectFilter<Select>>;
     public get select(): Array<SelectFilter<Select>> {
         return this._select;
+    }
+
+    public static reset(filterGroup: FilterGroup): void {
+        filterGroup.search.filters.forEach((filter: Search) => {
+            filter.value = "";
+        });
+        filterGroup.range.filters.forEach((filter: Range) => {
+            filter.min = null;
+            filter.max = null;
+        });
+        filterGroup.select.forEach((selectFilter: SelectFilter<Select>) => {
+            selectFilter.filters.forEach((filter: Select) => {
+                filter.value = false;
+            });
+        });
     }
 }

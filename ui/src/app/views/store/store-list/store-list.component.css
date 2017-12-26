@@ -1,3 +1,13 @@
 .container {
     margin-bottom: 30px;
 }
+
+paper-card {
+    background-color: var(--paper-blue-50);
+}
+
+paper-button {
+    background-color: var(--paper-blue-700);
+    color: white;
+    font-weight: bold;
+}

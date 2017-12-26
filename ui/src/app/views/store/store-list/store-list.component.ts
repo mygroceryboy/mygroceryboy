@@ -14,16 +14,15 @@ import * as filterJson from "./filter.json";
 export class StoreListComponent implements OnInit {
 
     private stores: Array<Store> = [];
-    private filterData: Map<string, Array<string>>;
-    private filterJson: any;
+    private filterGroup: FilterGroup;
 
     constructor(private route: ActivatedRoute,
         private _Router: Router,
         private _StoreService: StoreService) {
-        this.filterJson = filterJson;
+        this.filterGroup = JSON.parse(JSON.stringify(filterJson));
         this.route.params.subscribe(params => {
             if (params.query) {
-                this.filterJson = JSON.parse(atob(params.query));
+                this.filterGroup = JSON.parse(atob(params.query));
             }
         });
     }
@@ -33,6 +32,6 @@ export class StoreListComponent implements OnInit {
     }
 
     private onFilterChange(filter: FilterGroup) {
-        this._Router.navigate(['store', 'list', btoa(JSON.stringify(filter))])
+        this._Router.navigate(['store', 'list', filter == null ? "" : btoa(JSON.stringify(filter))])
     }
 }
