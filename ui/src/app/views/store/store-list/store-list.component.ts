@@ -35,9 +35,7 @@ export class StoreListComponent implements OnInit {
         this._Router.navigate(['store', 'list', filter == null ? "" : btoa(JSON.stringify(filter))])
     }
 
-    private onPageChanged(pagination: any){
-        this.filterGroup.page = pagination.page;
-        this.filterGroup.size = pagination.size;
-        this.onFilterChange(this.filterGroup);
+    private onPageChanged(filter: FilterGroup) {
+        this._Router.navigate(['store', 'list', filter == null ? "" : btoa(JSON.stringify(filter))])
     }
 }

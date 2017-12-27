@@ -1,3 +1,5 @@
+export type OrderType = "asc" | "desc";
+
 export class Search {
     public key: string;
     public value: string;
@@ -31,8 +33,9 @@ export class FilterGroup {
     }
 
     public page: number;
-
     public size: number;
+    public orderType: OrderType;
+    public orderBy: string;
 
     private _search: Filter<Search>;
     public get search(): Filter<Search> {

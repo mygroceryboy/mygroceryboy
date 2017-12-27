@@ -2,6 +2,10 @@ paper-card {
     background-color: var(--paper-blue-50);
 }
 
-select#page-size {
+select {
     height: 45px;
+}
+
+.pagination-info {
+    color: var(--paper-blue-700);
 }

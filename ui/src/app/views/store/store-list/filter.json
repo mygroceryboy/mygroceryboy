@@ -1,6 +1,8 @@
 {
     "page": 1,
     "size": 20,
+    "orderType": "asc",
+    "orderBy": "name",
     "search": {
         "title": "Search Filters",
         "filters": [

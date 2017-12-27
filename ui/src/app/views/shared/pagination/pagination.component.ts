@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { OrderType, FilterGroup } from "../../../models/filter.model";
 
 @Component({
     selector: 'app-pagination-list',
@@ -8,13 +9,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PaginationComponent implements OnInit {
 
     @Input()
+    public filterGroup: FilterGroup;
+
+    @Input()
     public count: number;
 
     @Input()
-    public page: number;
-
-    @Input()
-    public size: number;
+    public orderByParams: Array<string>;
 
     @Output()
     public pageChanged : EventEmitter<any> = new EventEmitter();
@@ -22,16 +23,12 @@ export class PaginationComponent implements OnInit {
     public constructor() { }
 
     public ngOnInit(): void {
-        this.page = this.page || 1;
-        this.size = this.size || 20;
+        this.filterGroup.page = this.filterGroup.page || 1;
+        this.filterGroup.size = this.filterGroup.size || 20;
         this.count = this.count || 0;
     }
 
     public onPaginationChanged(): void {
-        this.pageChanged.next({
-            count: this.count,
-            page: this.page,
-            size: parseInt(this.size.toString())
-        });
+        this.pageChanged.next(this.filterGroup);
     }
 }
