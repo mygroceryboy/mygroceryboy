@@ -1,20 +1,6 @@
 <div menu-links linkGroup="StoreList" class="container">
     <div class="row mtl">
-        <div class="col-lg-12">
-            <paper-card class="col-lg-12" elevation="5">
-                <div class="row mts mbs">
-                    <div class="col-lg-2">
-                        <paper-button class="pull-left">Previous</paper-button>
-                    </div>
-                    <div class="col-lg-8 text-center">
-                        <h4>Showing 1 to 21 of 49 store(s).</h4>
-                    </div>
-                    <div class="col-lg-2">
-                        <paper-button class="pull-right">Next</paper-button>
-                    </div>
-                </div>
-            </paper-card>
-        </div>
+        <app-pagination-list class="col-lg-12" [count]="113" [page]="filterGroup.page" [size]="filterGroup.size" (pageChanged)="onPageChanged($event)"></app-pagination-list>
     </div>
     <div class="row">
         <app-filter-list *ngIf="!!filterGroup" class="col-lg-3" [filterGroup]="filterGroup" (filterEvent)="onFilterChange($event)"></app-filter-list>

@@ -12,7 +12,7 @@ export class FilterComponent implements OnInit {
     @Output()
     public filterEvent: EventEmitter<FilterGroup> = new EventEmitter();;
 
-    public constructor(private elementRef: ElementRef) { }
+    public constructor(private _ElementRef: ElementRef) { }
 
     public ngOnInit(): void {
     }
@@ -27,7 +27,7 @@ export class FilterComponent implements OnInit {
 
     private getSearchFilters(): void {
         let searchInputs: Array<HTMLInputElement> =
-            this.elementRef.nativeElement.querySelectorAll('paper-card.search-card paper-input');
+            this._ElementRef.nativeElement.querySelectorAll('paper-card.search-card paper-input');
         searchInputs.forEach((element: HTMLInputElement) => {
             this.filterGroup.search.filters.forEach((filter: Search) => {
                 if (element.dataset.searchKey === filter.key) {
@@ -39,7 +39,7 @@ export class FilterComponent implements OnInit {
 
     private getRangeFilters(): void {
         let rangeInputs: Array<HTMLInputElement> =
-            this.elementRef.nativeElement.querySelectorAll('paper-card.range-card paper-input');
+            this._ElementRef.nativeElement.querySelectorAll('paper-card.range-card paper-input');
         rangeInputs.forEach((element: HTMLInputElement) => {
             this.filterGroup.range.filters.forEach((filter: Range) => {
                 if (element.dataset.rangeKeyMin === filter.key) {
@@ -54,13 +54,13 @@ export class FilterComponent implements OnInit {
 
     private getCheckboxFilters(): void {
         let checkboxFilters: Array<HTMLInputElement> =
-            this.elementRef.nativeElement.querySelectorAll('paper-card.checkbox-card');
+            this._ElementRef.nativeElement.querySelectorAll('paper-card.checkbox-card');
         this.getSelectFilters(checkboxFilters);
     }
 
     private getRadioFilters(): void {
         let radioFilters: Array<HTMLInputElement> =
-            this.elementRef.nativeElement.querySelectorAll('paper-card.radio-card');
+            this._ElementRef.nativeElement.querySelectorAll('paper-card.radio-card');
         this.getSelectFilters(radioFilters);
     }
 

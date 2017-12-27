@@ -26,7 +26,13 @@ export class SelectFilter<T> extends Filter<T> {
 export class FilterGroup {
 
     public constructor() {
+        this.page = 1;
+        this.size = 20;
     }
+
+    public page: number;
+
+    public size: number;
 
     private _search: Filter<Search>;
     public get search(): Filter<Search> {

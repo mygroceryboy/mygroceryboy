@@ -1,0 +1,20 @@
+<paper-card class="col-lg-12" elevation="5">
+    <div class="row mts mbs">
+        <div class="col-lg-2">
+            <button [disabled]="page <= 1" (click)="page = page - 1; onPaginationChanged();" class="btn btn-primary btn-lg pull-left">Previous</button>
+        </div>
+        <div class="col-lg-6 text-center">
+            <h4>Showing {{(page - 1) * size + 1}} to {{page * size > count ? count : page * size}} of {{count}} store(s).</h4>
+        </div>
+        <div class="col-lg-2">
+            <button [disabled]="count <= page * size" (click)="page = page + 1; onPaginationChanged();" class="btn btn-primary btn-lg pull-right">Next</button>
+        </div>
+        <div class="col-lg-2">
+            <select (change)="page = 1; onPaginationChanged();" id="page-size" [(ngModel)]="size" class="form-control col-lg-12">
+                <option value="10">10 items per page</option>
+                <option value="20">20 items per page</option>
+                <option value="40">40 items per page</option>
+            </select>
+        </div>
+    </div>
+</paper-card>

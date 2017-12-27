@@ -1,0 +1,7 @@
+paper-card {
+    background-color: var(--paper-blue-50);
+}
+
+select#page-size {
+    height: 45px;
+}

@@ -8,7 +8,9 @@ let router: Router = Router();
 //get store list
 router.get('/all/:userId', (req: Request, res: Response, next: NextFunction) => {
     let query = req.query.filter;
-    console.log(query);
+    if (query) {
+        console.log(JSON.parse(new Buffer(query, 'base64').toString('ascii')));
+    }
     StoreProvider.getUserStores(new ObjectId(req.params.userId))
         .then((response: Store[]) => {
             res.json(response);
