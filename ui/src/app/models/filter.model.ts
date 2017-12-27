@@ -42,8 +42,8 @@ export class FilterGroup {
         return this._search;
     }
 
-    private _range:  Filter<Range>;
-    public get range():  Filter<Range> {
+    private _range: Filter<Range>;
+    public get range(): Filter<Range> {
         return this._range;
     }
 
@@ -65,5 +65,35 @@ export class FilterGroup {
                 filter.value = false;
             });
         });
+    }
+
+    public static isEmpty(filterGroup: FilterGroup): boolean {
+
+        if (!filterGroup) {
+            return true;
+        }
+
+        let isEmpty: boolean = true;
+
+        isEmpty = isEmpty && (!filterGroup.search ||
+            !filterGroup.search.filters ||
+            filterGroup.search.filters.every((filter: Search) => {
+                return !filter.value;
+            }));
+
+        isEmpty = isEmpty && (!filterGroup.range ||
+            !filterGroup.range.filters ||
+            filterGroup.range.filters.every((filter: Range) => {
+                return !filter.min && !filter.max;
+            }));
+
+        if (filterGroup.select) {
+            filterGroup.select.forEach((select: SelectFilter<Select>) => {
+                isEmpty = isEmpty && (select.filters.every((filter: Select) => {
+                    return !filter.value;
+                }));
+            })
+        }
+        return isEmpty;
     }
 }

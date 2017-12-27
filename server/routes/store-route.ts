@@ -2,16 +2,18 @@ import { Router, Request, Response, NextFunction } from "express";
 import { ObjectId } from "bson";
 import { StoreProvider } from "../provider/database-provider/store-provider";
 import { Store } from "../models/store.model";
+import { FilterGroup } from "../database/model/filter-group.model";
 
 let router: Router = Router();
 
 //get store list
 router.get('/all/:userId', (req: Request, res: Response, next: NextFunction) => {
+    let filter: FilterGroup;
     let query = req.query.filter;
     if (query) {
-        console.log(JSON.parse(new Buffer(query, 'base64').toString('ascii')));
+        filter = JSON.parse(new Buffer(query, 'base64').toString('ascii'));
     }
-    StoreProvider.getUserStores(new ObjectId(req.params.userId))
+    StoreProvider.getUserStores(new ObjectId(req.params.userId), filter)
         .then((response: Store[]) => {
             res.json(response);
         })

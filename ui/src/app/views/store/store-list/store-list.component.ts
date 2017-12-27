@@ -21,6 +21,7 @@ export class StoreListComponent implements OnInit {
         private _StoreService: StoreService) {
         this.filterGroup = JSON.parse(JSON.stringify(filterJson));
         this.route.params.subscribe(params => {
+            this.stores = this.route.snapshot.data['stores'];
             if (params.query) {
                 this.filterGroup = JSON.parse(atob(params.query));
             }
@@ -28,7 +29,6 @@ export class StoreListComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.stores = this.route.snapshot.data['stores'];
     }
 
     private onFilterChange(filter: FilterGroup) {

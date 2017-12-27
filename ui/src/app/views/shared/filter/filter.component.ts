@@ -22,7 +22,7 @@ export class FilterComponent implements OnInit {
         this.getRangeFilters();
         this.getCheckboxFilters();
         this.getRadioFilters();
-        this.filterEvent.next(this.filterGroup);
+        this.filterEvent.next(FilterGroup.isEmpty(this.filterGroup) ? null :  this.filterGroup);
     }
 
     private getSearchFilters(): void {

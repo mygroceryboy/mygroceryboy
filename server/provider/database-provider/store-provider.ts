@@ -4,14 +4,15 @@ import { Store } from "../../models/store.model";
 import { ObjectId } from "bson";
 import { Address } from "../../models/base/address.model";
 import { User } from "../../models/user.model";
+import { FilterGroup } from "../../database/model/filter-group.model";
 
 export namespace StoreProvider {
 
-    export function getUserStores(_userId: ObjectId): Promise<Store[]> {
+    export function getUserStores(_userId: ObjectId, filter: FilterGroup): Promise<Store[]> {
         return new Promise((resolve: Function, reject: Function) => {
             let response = new Response<Store[]>();
-            DbStore
-                .find({_user: _userId})
+            FilterGroup
+                .generateQuery(filter, DbStore.find({ _user: _userId }))
                 .then((dbRes: any[]) => {
                     response.isSuccessful = true;
                     response.data = dbRes.map(function (item: any) {
